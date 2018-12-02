@@ -349,3 +349,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,python,windows,pycharm,pycharm+iml,pycharm+all
+
+inputs/
