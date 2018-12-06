@@ -1,5 +1,4 @@
 """Solution of day 2 part 2."""
-from itertools import product
 from typing import List
 
 
@@ -14,14 +13,16 @@ def are_almost_identical(first_id: str, second_id: str) -> bool:
 
 
 def find_correct_boxes(box_ids: List[str]) -> str:
-  """
-  :param box_ids: list of the box IDs
-  :return: the letters which are common between the two correct box IDs
+    """
+    :param box_ids: list of the box IDs
+    :return: the letters which are common between the two correct box IDs
+    """
     for i, first_id in enumerate(box_ids):
         for second_id in box_ids[i:]:
-        if are_almost_identical(first_id, second_id):
-            return ''.join(
-                first_char for first_char, second_char in zip(first_id, second_id) if first_char == second_char).strip()
+            if are_almost_identical(first_id, second_id):
+                return ''.join(
+                    first_char for first_char, second_char in zip(first_id, second_id) if
+                    first_char == second_char).strip()
 
 
 def strings_from_file(path: str) -> List[str]:
@@ -36,7 +37,7 @@ def strings_from_file(path: str) -> List[str]:
 
 def main():
     box_ids = strings_from_file('inputs\\2.txt')
-    print(set(find_correct_boxes(box_ids)))
+    print(find_correct_boxes(box_ids))
 
 
 if __name__ == '__main__':
