@@ -1,4 +1,4 @@
-from d03p1 import Hunk
+from d03 import Hunk
 
 
 def test_hunk():
