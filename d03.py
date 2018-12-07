@@ -40,6 +40,11 @@ def hunks_from_file(path: str = 'inputs\\3.txt') -> List[Hunk]:
 if __name__ == '__main__':
     hunks = hunks_from_file()
     covered_cells = [cell for hunk in hunks for cell in hunk.covered_cells()]
-    covered_cells_amounts = Counter(covered_cells).values()
-    duplicates = sum(count > 1 for count in covered_cells_amounts)
-    print(f"Amount of duplicates: {duplicates}")
+    covered_cells_amounts = Counter(covered_cells)
+    duplicates = sum(count > 1 for count in covered_cells_amounts.values())
+    print(f'Amount of duplicates: {duplicates}')
+
+    # covered_cells_amounts = dict(covered_cells)
+    for hunk in hunks:
+        if all(covered_cells_amounts[cell] == 1 for cell in hunk.covered_cells()):
+            print(f'Claim which does not overlap: {hunk.id}')
