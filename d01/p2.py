@@ -34,8 +34,7 @@ def numbers_from_file(path: str) -> List[float]:
 
 
 def main():
-    frequencies = numbers_from_file('inputs\\1.txt')
-    print(frequencies)
+    frequencies = numbers_from_file('..\\inputs\\1.txt')
     print(first_duplicate(frequencies))
 
 

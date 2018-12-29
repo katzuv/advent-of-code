@@ -20,7 +20,7 @@ class Rectangle:
         return self._min_x < coordinate.x < self._max_x and self._min_y < coordinate.y < self._max_y
 
 
-def targets_from_file(path='inputs\\6.txt') -> Iterable[Coordinate]:
+def targets_from_file(path='..\inputs\\6.txt') -> Iterable[Coordinate]:
     """Return a list of targets which are stored in a file, each target in its own line.
     :param path: path of file with targets
     :return: list of targets from file

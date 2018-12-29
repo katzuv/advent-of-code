@@ -41,7 +41,7 @@ def strings_from_file(path: str) -> List[str]:
 
 
 def main():
-    box_ids = strings_from_file('inputs\\2.txt')
+    box_ids = strings_from_file('..\\inputs\\2.txt')
     print(checksum(box_ids))
 
 
