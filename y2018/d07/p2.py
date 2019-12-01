@@ -1,7 +1,7 @@
 import itertools
 from typing import List, Dict, Set
 
-from d07.p1 import couples_from_file, steps_to_their_dependencies
+from p1 import couples_from_file, steps_to_their_dependencies
 
 NUMBER_OF_WORKERS = 5
 

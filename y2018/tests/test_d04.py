@@ -1,4 +1,4 @@
-from d04 import amount_of_most_common_item_only_one
+from y2018.d04 import amount_of_most_common_item_only_one
 
 
 def test_amount_of_most_common_item():
