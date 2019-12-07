@@ -4,7 +4,7 @@ import p1
 
 
 def main():
-    original_numbers = p1.get_numbers_from_input()
+    original_numbers = p1.get_program_from_input()
     for noun, verb in itertools.product(range(100), range(100)):
         numbers = original_numbers
         numbers[1] = noun

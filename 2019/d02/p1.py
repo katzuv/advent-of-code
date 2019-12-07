@@ -28,6 +28,5 @@ def main():
     print(f'Value at position 0: {output[0]}')
 
 
-
 if __name__ == '__main__':
     main()

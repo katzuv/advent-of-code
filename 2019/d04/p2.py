@@ -1,13 +1,13 @@
-import p01
+import p1
 
 
 def main():
-    lower_bound, upper_bound = p01.get_passwords_range()
+    lower_bound, upper_bound = p1.get_passwords_range()
 
     valid_passwords = 0
     for number in range(int(lower_bound), int(upper_bound) + 1):
         string_number = str(number)
-        if len(string_number) != p01.NUMBER_LENGTH:
+        if len(string_number) != p1.NUMBER_LENGTH:
             continue
         if string_number != ''.join(sorted(string_number)):
             continue

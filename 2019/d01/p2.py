@@ -1,4 +1,4 @@
-import p01
+import p1
 
 
 def mass_needed_for_mass_recursive(mass: int) -> int:
@@ -8,7 +8,7 @@ def mass_needed_for_mass_recursive(mass: int) -> int:
     """
     if mass < 1:
         return 0
-    mass_needed = p01.mass_needed_for_mass(mass)
+    mass_needed = p1.mass_needed_for_mass(mass)
     return mass_needed + mass_needed_for_mass_recursive(mass_needed)
 
 
