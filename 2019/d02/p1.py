@@ -8,33 +8,44 @@ def get_program_from_input():
 
 
 class IntcodeComputer:
+    OPCODES_TO_AMOUNT_OF_PARAMS = {1: 3, 2: 3, 3: 2, 4: 1}
+
     def __init__(self, program: List[int]):
         self.program = program
+
+    def add_opcode(self, opcode: int, amount_of_params: int):
+        self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode] = amount_of_params
 
     def program_output(self) -> int:
         self._run_program()
         return self.program[0]
 
     def _run_program(self):
-        for i in range(0, len(self.program), 4):
+        indexes = iter(range(0, len(self.program)))
+        for i in indexes:
             opcode = self.program[i]
             if opcode == 99:
-                break
-            first_parameter, second_parameter, third_parameter = self.program[i + 1: i + 4]
-            self._run_instruction(opcode, first_parameter, second_parameter, third_parameter)
+                return
+            try:
+                amount = self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode]
+            except KeyError:
+                raise NotImplementedError(f'opcode {opcode} is not yet supported')
+            self._run_instruction(opcode, self.program[i + 1: i + 1 + amount])
+            for _ in range(amount):
+                next(indexes)
 
-    def _run_instruction(self, opcode: int, first_parameter: int, second_parameter: int, third_parameter: int):
-        getattr(self, f'_run_opcode_{opcode}')(first_parameter, second_parameter, third_parameter)
+    def _run_instruction(self, opcode: int, parameters: List[int]):
+        getattr(self, f'_run_opcode_{opcode}')(parameters)
 
-    def _run_opcode_1(self, first_parameter: int, second_parameter: int, output_index: int):
-        first = self.program[first_parameter]
-        second = self.program[second_parameter]
-        self.program[output_index] = first + second
+    def _run_opcode_1(self, parameters: List[int]):
+        first = self.program[parameters[0]]
+        second = self.program[parameters[1]]
+        self.program[parameters[2]] = first + second
 
-    def _run_opcode_2(self, first_parameter: int, second_parameter: int, output_index: int):
-        first = self.program[first_parameter]
-        second = self.program[second_parameter]
-        self.program[output_index] = first * second
+    def _run_opcode_2(self, parameters: List[int]):
+        first = self.program[parameters[0]]
+        second = self.program[parameters[1]]
+        self.program[parameters[2]] = first * second
 
 
 def main():
