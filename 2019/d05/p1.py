@@ -11,21 +11,24 @@ class ThermalEnvironmentSupervisionTerminal(IntcodeComputer):
         self.program[parameters[0]] = int(input('Enter input for opcode 3: '))
 
     def _run_opcode_4(self, parameters: list[int], modes: list[int]):
-        address = parameters[0]
-        print(f'Value at address {address}: {self.program[address]}')
+        value = self.arg(parameters[0], modes[0])
+        print(f'Value at address {parameters[0]}: {value}')
 
     def _run_program(self):
-        i = 0
         while True:
-            instruction = str(self.program[i])
+            self._has_pointer_jumped = False
+            instruction = str(self.program[self._pointer])
             opcode = self._get_opcode_from_instruction(instruction)
             if opcode == 99:
                 return
             modes = self._pad_modes(instruction, opcode)
-            self._run_instruction(opcode, self.program[i + 1: i + 1 + self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode]], modes)
 
-            i += self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode] + 1
-            # print(i, instruction, sep=', ')
+            parameters = self.program[self._pointer + 1: self._pointer + 1 + self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode]]
+            self._run_instruction(opcode, parameters, modes)
+            if self._has_pointer_jumped:
+                continue
+
+            self._pointer += self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode] + 1
 
     @staticmethod
     def _get_opcode_from_instruction(instruction: str) -> int:
