@@ -8,7 +8,7 @@ def get_program_from_input(day_number):
 
 
 class IntcodeComputer:
-    OPCODES_TO_AMOUNT_OF_PARAMS = {1: 3, 2: 3, 3: 1, 4: 1}
+    OPCODES_TO_AMOUNT_OF_PARAMS = {1: 3, 2: 3, 3: 1, 4: 1, 5: 2, 6: 2, 7: 3, 8: 3}
 
     def __init__(self, program: List[int]):
         self.program = program
