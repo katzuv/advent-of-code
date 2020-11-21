@@ -1,14 +1,14 @@
 from typing import List
 
 
-def get_program_from_input():
-    with open('../inputs/2.txt') as input_file:
+def get_program_from_input(day_number):
+    with open(f'../inputs/{day_number}.txt') as input_file:
         numbers = [int(number) for number in input_file.read().split(',')]
     return numbers
 
 
 class IntcodeComputer:
-    OPCODES_TO_AMOUNT_OF_PARAMS = {1: 3, 2: 3, 3: 2, 4: 1}
+    OPCODES_TO_AMOUNT_OF_PARAMS = {1: 3, 2: 3, 3: 1, 4: 1}
 
     def __init__(self, program: List[int]):
         self.program = program
@@ -34,22 +34,29 @@ class IntcodeComputer:
             for _ in range(amount):
                 next(indexes)
 
-    def _run_instruction(self, opcode: int, parameters: List[int]):
-        getattr(self, f'_run_opcode_{opcode}')(parameters)
+    def _run_instruction(self, opcode: int, parameters: List[int], modes: List[int]):
+        getattr(self, f'_run_opcode_{opcode}')(parameters, modes)
 
-    def _run_opcode_1(self, parameters: List[int]):
-        first = self.program[parameters[0]]
-        second = self.program[parameters[1]]
+    def _run_opcode_1(self, parameters: List[int], modes: List[int]):
+        first = self.arg(parameters[0], modes[0])
+        second = self.arg(parameters[1], modes[1])
         self.program[parameters[2]] = first + second
 
-    def _run_opcode_2(self, parameters: List[int]):
-        first = self.program[parameters[0]]
-        second = self.program[parameters[1]]
+    def _run_opcode_2(self, parameters: List[int], modes: List[int]):
+        first = self.arg(parameters[0], modes[0])
+        second = self.arg(parameters[1], modes[1])
         self.program[parameters[2]] = first * second
+
+    def arg(self, param: int, mode: int):
+        if mode == 0:
+            return self.program[param]
+        elif mode == 1:
+            return param
+        raise LookupError(f'Parameter mode {mode} is not supported')
 
 
 def main():
-    program = get_program_from_input()
+    program = get_program_from_input(2)
     program[1] = 12
     program[2] = 2
     computer = IntcodeComputer(program)
