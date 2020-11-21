@@ -356,3 +356,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,linux,python,pycharm,windows,pycharm+all,pycharm+iml
+/2019/inputs
+/y2018/inputs
