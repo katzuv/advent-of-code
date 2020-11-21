@@ -12,6 +12,8 @@ class IntcodeComputer:
 
     def __init__(self, program: List[int]):
         self.program = program
+        self._pointer = 0
+        self._has_pointer_jumped = False
 
     def add_opcode(self, opcode: int, amount_of_params: int):
         self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode] = amount_of_params
