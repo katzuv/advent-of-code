@@ -22,25 +22,45 @@ def get_input(year: str, day_number: str) -> str:
     return r.text
 
 
-def main():
+def get_year_input() -> str:
     year_input = input('Enter year (2020 is default): ')
     if year_input == '':
         year_input = '2020'
-    day_number_input = input('Enter day number: ')
-    input_text = get_input(year_input, day_number_input)
+    return year_input
 
-    input_directory_path = Path(year_input, INPUT_DIRECTORY_NAME)
+
+def get_day_input() -> str:
+    day_number_input = input('Enter day number: ')
+    return day_number_input
+
+
+def write_input_file(year: str, day: str, input_text: str):
+    input_directory_path = Path(year, INPUT_DIRECTORY_NAME)
     input_directory_path.mkdir(parents=True, exist_ok=True)
-    input_file = (input_directory_path / day_number_input).with_suffix(TXT_SUFFIX)
+    input_file = (input_directory_path / day).with_suffix(TXT_SUFFIX)
     input_file.write_text(input_text)
 
-    padded_day_number = day_number_input.rjust(2, '0')
-    solution_directory_path = Path(year_input, DAY_DIRECTORY_PATH.format(day_number=padded_day_number))
+
+def create_solutions_directory(year: str, day: str):
+    padded_day_number = day.rjust(2, '0')
+    solution_directory_path = Path(year, DAY_DIRECTORY_PATH.format(day_number=padded_day_number))
     if solution_directory_path.exists():
         return
+
+    solution_directory_path.mkdir()
     for part in (1, 2):
-        part_solution_path = solution_directory_path / f'p0{part}.py'
+        part_solution_path = solution_directory_path / f'p{part}.py'
         part_solution_path.touch()
+
+
+def main():
+    year_input = get_year_input()
+    day_input = get_day_input()
+
+    input_text = get_input(year_input, day_input)
+    write_input_file(year_input, day_input, input_text)
+
+    create_solutions_directory(year_input, day_input)
 
 
 if __name__ == '__main__':
