@@ -9,7 +9,9 @@ def main():
 
     seats_ids.sort()
     for i, seat_id in enumerate(seats_ids):
-        if seats_ids[i + 1] - seat_id == 2:  # My seat is missing from the list, so if there is a seat id
+        if seats_ids[i + 1] - seat_id == 2:
+            # All seats are filled except mine, so if there is a pair of following seats IDs whose difference is 2,
+            # my seat ID is the one between them.
             missing_seat_id = seat_id + 1
             break
 
