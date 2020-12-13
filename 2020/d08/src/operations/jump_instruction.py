@@ -1,4 +1,4 @@
-from instruction_base import InstructionBase
+from .instruction_base import InstructionBase
 
 
 class JumpOperation(InstructionBase):
