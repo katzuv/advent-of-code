@@ -1,5 +1,3 @@
-import re
-
 from .operations import AccumulatorOperation, JumpOperation, NoOperationOperation
 from .program_state import ProgramState
 
@@ -10,21 +8,27 @@ class GameConsole:
     def __init__(self, code: list[str]):
         self._program_state = ProgramState(code)
 
-    def run(self):
+    def run(self) -> bool:
+        """
+        Run the program.
+        :return: whether the program terminated successfully (reached the last instruction)
+        """
         while True:
-            operation, argument = self._parse(self._program_state.current_instruction)
+            operation_type, argument = self._parse(self._program_state.current_instruction)
 
-            operation_handler = self._OPERATIONS_TO_HANDLERS[operation]
-            operation = operation_handler(self._program_state, argument)
+            operation_handler = self._OPERATIONS_TO_HANDLERS[operation_type]
+            operation_runner = operation_handler(self._program_state, argument)
 
-            should_halt = operation.run()
+            should_halt = operation_runner.run()
             if self._program_state.has_instruction_executed_twice() or should_halt:
-                return
+                return False
+            if self._program_state.program_finished:
+                return True
             self._program_state.add_current_command_index_to_list()
 
     @staticmethod
     def _parse(command: str) -> tuple[str, int]:
-        operation, argument = re.match(r'(\w+) ([+-]\d+)', command).groups()
+        operation, argument = command.split()
         argument = int(argument)
         return operation, argument
 
