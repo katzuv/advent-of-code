@@ -1,32 +1,17 @@
-import functools
+from collections import defaultdict
 from pprint import pprint
-import random
-from typing import Union
 
-from frozendict import frozendict
 from p1 import get_adapters_from_input, INPUT_FILE_PATH
 
 
 class Node:
-    def __init__(self, name: str, parent=None):
+    def __init__(self, name: int):
         self.name = name
-        self.parent = parent
+        self.parents = []
         self.children = []
 
     def __repr__(self):
-        if self.parent is not None:
-            return f'{self.__class__.__name__}({self.name}, {self.parent})'
         return f'{self.__class__.__name__}({self.name})'
-
-    @property
-    def parent(self):
-        return self._parent
-
-    @parent.setter
-    def parent(self, value):
-        self._parent = value
-        if value is not None:
-            value.children.append(self)
 
     @property
     def descendants(self) -> list:
@@ -35,47 +20,12 @@ class Node:
             result.extend(child.descendants)
         return result
 
-
-def get_next_available_adapters(adapter_joltage: int, adapters: tuple[int]) -> tuple[int]:
-    return tuple(adapter for adapter in adapters if 0 < adapter - adapter_joltage <= 3)
-
-
-leaves = 0
+    def __eq__(self, other):
+        return self.name == other.name
 
 
-@functools.cache
-def construct_dict(adapter: int, available_adapters: tuple[int]) -> frozendict:
-    next_adapters = get_next_available_adapters(adapter, available_adapters)
-    result = {}
-    for next_adapter in next_adapters:
-        result[next_adapter] = construct_dict(next_adapter, available_adapters[1:])
-    return frozendict(result)
-
-
-i = 0
-
-
-@functools.cache
-def count_leaves(tree: Union[dict, frozendict]) -> int:
-    global i
-    print(i)
-    i += 1
-    total = 0
-    if len(tree) == 0:
-        total += 1
-    for child in tree.values():
-        total += count_leaves(child)
-    return total
-
-
-@functools.cache
-def construct_tree(adapter: Node, available_adapters: tuple[int]):
-    adapter_joltage = int(adapter.name)
-    next_adapters = get_next_available_adapters(adapter_joltage, available_adapters)
-    for next_adapter in next_adapters:
-        node = Node(str(next_adapter), parent=adapter)
-        remaining_adapters = available_adapters[1:]
-        construct_tree(node, remaining_adapters)
+def get_next_available_adapters(adapter_joltage: int, adapters: list[int]) -> list[int]:
+    return [adapter for adapter in adapters if 0 < adapter - adapter_joltage <= 3]
 
 
 def print_tree(node: Node, indent=0):
@@ -84,20 +34,58 @@ def print_tree(node: Node, indent=0):
         print_tree(child, indent + 1)
 
 
+def populate_adapters(adapters: list[int]):
+    result = defaultdict(list)
+    for adapter_joltage in adapters:
+        for next_adapter in get_next_available_adapters(adapter_joltage, adapters):
+            result[adapter_joltage].append(next_adapter)
+    return result
+
+
+def get_node(next_adapter: int, nodes: list[Node]):
+    for node in nodes:
+        if node.name == next_adapter:
+            return node
+    raise ValueError(f'No adapter with {next_adapter} joltage found')
+
+
+def get_arrangements_amount(adapter: int, adapters_to_next: dict[int, list[int]],
+                            adapter_to_amount: dict[int, int]) -> int:
+    if len(adapters_to_next[adapter]) == 0:
+        return 1
+    result = 0
+    for next_adapter in adapters_to_next[adapter]:
+        amount = adapter_to_amount[next_adapter]
+        result += amount * get_arrangements_amount(next_adapter, adapters_to_next, adapter_to_amount)
+    return result
+
+
+def count_adapters(adapters: dict[int, list[int]]) -> dict[int, int]:
+    histogram = defaultdict(int)
+    all_adapters = []
+    for adapters_lists in adapters.values():
+        all_adapters.extend(adapters_lists)
+
+    for adapter in all_adapters:
+        histogram[adapter] += 1
+
+    return histogram
+
+
 def main():
     input_text = INPUT_FILE_PATH.read_text()
     adapters = get_adapters_from_input(input_text)
     adapters.sort()
 
-    tree = construct_dict(0, tuple(adapters))
-    print(construct_dict.cache_info())
-    # pprint(tree)
-    print(count_leaves(tree))
-    print(count_leaves.cache_info())
-    # print(construct_tree.cache_info())
-    # print_tree(root)
-    # leaves = len([node for node in root.descendants if len(node.children) == 0])
-    # print(f'Total number of arrangements: {leaves}')
+    adapters_to_next = populate_adapters(adapters)
+    adapter_to_amount = count_adapters(adapters_to_next)
+    # print(adapter_to_amount)
+    # pprint(adapters_to_next)
+
+    total = 1
+
+    arrangements = get_arrangements_amount(0, adapters_to_next, adapter_to_amount)
+    # print(f'Total number of arrangements: {arrangements}')
 
 
 if __name__ == '__main__':
