@@ -2,9 +2,10 @@ from pathlib import Path
 
 import requests
 
+from session_id import SESSION_ID
+
 URL = 'https://adventofcode.com/{year}/day/{day_number}/input'
-COOKIE = dict(
-    session='53616c7465645f5f405c809e0f85ce95631c200e0fe9b1651e31982e553be0d2d03af5a96bd8625b5cd8c11167112e9e')
+COOKIE = dict(session=SESSION_ID)
 HTTP_OK_CODE = 200
 
 INPUT_DIRECTORY_NAME = Path('inputs')
