@@ -22,7 +22,7 @@ def get_notes_from_input(input_text: str) -> tuple[int, list[int]]:
 def get_bus_departure_timestamp_difference(bus_id: int, timestamp: int) -> int:
     if timestamp % bus_id == 0:
         return 0
-    last_departure_before_timestamp = (timestamp // bus_id) * bus_id
+    last_departure_before_timestamp = timestamp - timestamp % bus_id
     first_departure_after_timestamp = last_departure_before_timestamp + bus_id
     difference = first_departure_after_timestamp - timestamp
     return difference
