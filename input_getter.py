@@ -17,9 +17,7 @@ DAY_DIRECTORY_PATH = 'd{day_number}'
 def get_input(year: str, day_number: str) -> str:
     url = URL.format(year=year, day_number=day_number)
     request = requests.get(url, cookies=COOKIE)
-    if request.status_code != 200:
-        print(url)
-        raise ConnectionError(f'Something went wrong. Response: {request.text}')
+    request.raise_for_status()
     return request.text
 
 
