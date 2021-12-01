@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -22,9 +23,10 @@ def get_input(year: str, day_number: str) -> str:
 
 
 def get_year_input() -> str:
-    year_input = input('Enter year (2020 is default): ')
+    current_year = str(datetime.today().year)
+    year_input = input(f'Enter year ({current_year} is default): ')
     if year_input == '':
-        year_input = '2020'
+        year_input = current_year
     return year_input
 
 
