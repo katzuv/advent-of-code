@@ -19,3 +19,15 @@ def get_depth_measurements_increases(measurements: Iterator[int]) -> int:
     """
     couples = zip(measurements[:-1], measurements[1:])
     return sum(couple[1] > couple[0] for couple in couples)
+
+
+def main():
+    input_text = INPUT_FILE_PATH.read_text()
+    measurements = get_measurements_from_input(input_text)
+
+    depth_measurements_increases = get_depth_measurements_increases(measurements)
+    print(f'Amount of measurements which are larger than the previous measurement: {depth_measurements_increases}')
+
+
+if __name__ == '__main__':
+    main()
