@@ -1,7 +1,7 @@
 from typing import Iterator
 
 import directions
-from p1 import Command
+from p1 import INPUT_FILE_PATH, get_commands_from_input, Command
 
 
 def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 0, aim: int = 0) -> tuple[int, int]:
@@ -25,3 +25,16 @@ def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 
                 aim -= step
 
     return horizontal, depth
+
+
+def main():
+    input_text = INPUT_FILE_PATH.read_text()
+    measurements = get_commands_from_input(input_text)
+
+    horizontal_position, depth = get_position(measurements)
+    product = horizontal_position * depth
+    print(f"Product of the submarine's positional position with its depth: {product}")
+
+
+if __name__ == '__main__':
+    main()
