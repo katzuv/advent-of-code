@@ -9,9 +9,9 @@ import directions
 INPUT_FILE_PATH = Path('..', 'inputs', '2.txt')
 
 DIRECTION = 'direction'
-STEP_SIZE = 'step_size'
+STEP = 'step'
 
-Command = collections.namedtuple('Command', (DIRECTION, STEP_SIZE))
+Command = collections.namedtuple('Command', (DIRECTION, STEP))
 
 
 def get_commands_from_input(input_text: str) -> list[Command]:
@@ -21,9 +21,9 @@ def get_commands_from_input(input_text: str) -> list[Command]:
     """
     commands = []
     for command in input_text.splitlines():
-        match = re.match(fr'(?P<{DIRECTION}>forward|down|up) (?P<{STEP_SIZE}>\d+)', command)
-        direction, step_size = match.groupdict().values()
-        commands.append(Command(direction, int(step_size)))
+        match = re.match(fr'(?P<{DIRECTION}>forward|down|up) (?P<{STEP}>\d+)', command)
+        direction, step = match.groupdict().values()
+        commands.append(Command(direction, int(step)))
     return commands
 
 
@@ -36,14 +36,14 @@ def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 
     :return: horizontal and depth of the submarine after completing the given commands
     """
     for command in commands:
-        step_size = command.step_size
+        step = command.step
         match command.direction:
             case directions.FORWARD:
-                horizontal += step_size
+                horizontal += step
             case directions.DOWN:
-                depth += step_size
+                depth += step
             case directions.UP:
-                depth -= step_size
+                depth -= step
 
     return horizontal, depth
 
