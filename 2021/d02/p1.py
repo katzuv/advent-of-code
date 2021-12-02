@@ -1,5 +1,4 @@
 import collections
-import re
 from pathlib import Path
 from typing import Iterator
 
@@ -21,8 +20,7 @@ def get_commands_from_input(input_text: str) -> list[Command]:
     """
     commands = []
     for command in input_text.splitlines():
-        match = re.match(fr'(?P<{DIRECTION}>forward|down|up) (?P<{STEP}>\d+)', command)
-        direction, step = match.groupdict().values()
+        direction, step = command.split()
         commands.append(Command(direction, int(step)))
     return commands
 
