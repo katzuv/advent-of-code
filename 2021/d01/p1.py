@@ -1,5 +1,6 @@
 from pathlib import Path
-from typing import Iterator
+from typing import Sequence
+
 
 INPUT_FILE_PATH = Path('..', 'inputs', '1.txt')
 
@@ -12,7 +13,7 @@ def get_measurements_from_input(input_text: str) -> list[int]:
     return list(map(int, input_text.splitlines()))
 
 
-def get_depth_measurements_increases(measurements: Iterator[int]) -> int:
+def get_depth_measurements_increases(measurements: Sequence[int]) -> int:
     """
     :param measurements: measurements to parse
     :return: count of the number of times a depth measurement increases
