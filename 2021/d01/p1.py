@@ -1,3 +1,4 @@
+import itertools
 from pathlib import Path
 from typing import Sequence
 
@@ -18,8 +19,7 @@ def get_depth_measurements_increases(measurements: Sequence[int]) -> int:
     :param measurements: measurements to parse
     :return: count of the number of times a depth measurement increases
     """
-    couples = zip(measurements[:-1], measurements[1:])
-    return sum(couple[1] > couple[0] for couple in couples)
+    return sum(couple[1] > couple[0] for couple in itertools.pairwise(measurements))
 
 
 def main():
