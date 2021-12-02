@@ -1,17 +1,17 @@
 import itertools
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence, Iterable
 
 
 INPUT_FILE_PATH = Path('..', 'inputs', '1.txt')
 
 
-def get_measurements_from_input(input_text: str) -> list[int]:
+def get_measurements_from_input(input_text: str) -> Iterable[int]:
     """
     :param input_text: input test to process
     :return: split measurements from the input
     """
-    return list(map(int, input_text.splitlines()))
+    return map(int, input_text.splitlines())
 
 
 def get_depth_measurements_increases(measurements: Sequence[int]) -> int:
