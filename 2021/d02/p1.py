@@ -7,10 +7,8 @@ import directions
 
 INPUT_FILE_PATH = Path('..', 'inputs', '2.txt')
 
-DIRECTION = 'direction'
-STEP = 'step'
 
-Command = collections.namedtuple('Command', (DIRECTION, STEP))
+Command = collections.namedtuple('Command', ('direction', 'step'))
 
 
 def get_commands_from_input(input_text: str) -> list[Command]:
