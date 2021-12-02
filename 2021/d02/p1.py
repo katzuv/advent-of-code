@@ -46,3 +46,16 @@ def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 
                 depth -= step_size
 
     return horizontal, depth
+
+
+def main():
+    input_text = INPUT_FILE_PATH.read_text()
+    measurements = get_commands_from_input(input_text)
+
+    horizontal_position, depth = get_position(measurements)
+    product = horizontal_position * depth
+    print(f"Product of the submarine's positional position with its depth: {product}")
+
+
+if __name__ == '__main__':
+    main()
