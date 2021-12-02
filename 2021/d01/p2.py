@@ -2,6 +2,7 @@ from typing import Iterator
 
 from p1 import INPUT_FILE_PATH, get_measurements_from_input, get_depth_measurements_increases
 
+
 _DEFAULT_WINDOW_SIZE = 3
 
 
