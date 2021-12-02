@@ -1,4 +1,4 @@
-from typing import Iterator, Iterable
+from typing import Iterable
 
 from p1 import INPUT_FILE_PATH, get_measurements_from_input, get_depth_measurements_increases
 
@@ -6,7 +6,7 @@ from p1 import INPUT_FILE_PATH, get_measurements_from_input, get_depth_measureme
 _DEFAULT_WINDOW_SIZE = 3
 
 
-def get_measurements_windows(measurements: Iterator[int], window_size: int = _DEFAULT_WINDOW_SIZE) -> Iterable[
+def get_measurements_windows(measurements: Iterable[int], window_size: int = _DEFAULT_WINDOW_SIZE) -> Iterable[
                                                                                                       tuple[int]]:
     """
     Create sliding windows of measurements and return them.
