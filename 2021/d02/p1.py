@@ -1,6 +1,9 @@
 import collections
 import re
 from pathlib import Path
+from typing import Iterator
+
+import directions
 
 
 INPUT_FILE_PATH = Path('..', 'inputs', '2.txt')
@@ -22,3 +25,24 @@ def get_commands_from_input(input_text: str) -> list[Command]:
         direction, step_size = match.groupdict().values()
         commands.append(Command(direction, int(step_size)))
     return commands
+
+
+def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 0) -> tuple[int, int]:
+    """
+    Get position the submarine would be at after completing the given commands.
+    :param commands: list of command to follow
+    :param horizontal: initial horizontal position, defaults to 0
+    :param depth: initial depth, defaults to 0
+    :return: horizontal and depth of the submarine after completing the given commands
+    """
+    for command in commands:
+        step_size = command.step_size
+        match command.direction:
+            case directions.FORWARD:
+                horizontal += step_size
+            case directions.UP:
+                depth -= step_size
+            case directions.DOWN:
+                depth += step_size
+
+    return horizontal, depth
