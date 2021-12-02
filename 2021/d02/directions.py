@@ -1,3 +1,3 @@
 FORWARD = 'forward'
-UP = 'up'
 DOWN = 'down'
+UP = 'up'

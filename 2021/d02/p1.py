@@ -21,7 +21,7 @@ def get_commands_from_input(input_text: str) -> list[Command]:
     """
     commands = []
     for command in input_text.splitlines():
-        match = re.match(fr'(?P<{DIRECTION}>forward|up|down) (?P<{STEP_SIZE}>\d+)', command)
+        match = re.match(fr'(?P<{DIRECTION}>forward|down|up) (?P<{STEP_SIZE}>\d+)', command)
         direction, step_size = match.groupdict().values()
         commands.append(Command(direction, int(step_size)))
     return commands
@@ -40,9 +40,9 @@ def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 
         match command.direction:
             case directions.FORWARD:
                 horizontal += step_size
-            case directions.UP:
-                depth -= step_size
             case directions.DOWN:
                 depth += step_size
+            case directions.UP:
+                depth -= step_size
 
     return horizontal, depth
