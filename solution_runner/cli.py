@@ -1,6 +1,8 @@
 import click
 
+import consts
 from consts import CliConstants
+from defaults_and_choices import get_default_year
 
 
 @click.group(context_settings=CliConstants.CONTEXT)
@@ -13,7 +15,9 @@ def cli():
 
 
 @cli.command()
-def setup():
+@click.option('-y', '--year', type=click.IntRange(consts.FIRST_AOC_YEAR, get_default_year()),
+              default=get_default_year(), help='year of challenge setting up solution for')
+def setup(year: int):
     """Set up a solution: fetch input and create solution files."""
 
 
