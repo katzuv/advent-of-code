@@ -1,4 +1,3 @@
-from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -21,15 +20,6 @@ def get_input(year: str, day_number: str) -> str:
     request = requests.get(url, cookies=COOKIE)
     request.raise_for_status()
     return request.text
-
-
-def _get_default_year() -> int:
-    today = datetime.today()
-    current_year = today.year
-    if today.month == 12:
-        return current_year
-    else:  # If it not December, chances are we are solving last year's challenges.
-        return current_year - 1
 
 
 def get_year_input() -> str:
