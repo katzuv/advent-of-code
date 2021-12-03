@@ -32,7 +32,7 @@ def _get_default_year() -> int:
 
 
 def get_year_input() -> str:
-    current_year = str(datetime.today().year)
+    current_year = _get_default_year()
     year_input = input(f'Enter year ({current_year} is default): ')
     if year_input == '':
         year_input = current_year
