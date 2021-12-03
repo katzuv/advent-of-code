@@ -12,5 +12,10 @@ def cli():
     """
 
 
+@cli.command()
+def setup():
+    """Set up a solution: fetch input and create solution files."""
+
+
 if __name__ == '__main__':
     cli()
