@@ -5,6 +5,7 @@ import requests
 
 from session_id import SESSION_ID
 
+
 URL = 'https://adventofcode.com/{year}/day/{day_number}/input'
 COOKIE = {'session': SESSION_ID}
 HTTP_OK_CODE = 200
