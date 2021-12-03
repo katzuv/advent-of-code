@@ -17,7 +17,8 @@ def cli():
 @cli.command()
 @click.option('-y', '--year', type=click.IntRange(consts.FIRST_AOC_YEAR, get_default_year()),
               default=get_default_year(), help='year of challenge setting up solution for')
-def setup(year: int):
+@click.option('-d', '--day', type=click.IntRange(1, 25), help='day of challenge setting up solution for')
+def setup(year: int, day: int):
     """Set up a solution: fetch input and create solution files."""
 
 
