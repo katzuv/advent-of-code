@@ -22,8 +22,17 @@ def get_input(year: str, day_number: str) -> str:
     return request.text
 
 
+def _get_default_year() -> int:
+    today = datetime.today()
+    current_year = today.year
+    if today.month == 12:
+        return current_year
+    else:  # If it not December, chances are we are solving last year's challenges.
+        return current_year - 1
+
+
 def get_year_input() -> str:
-    current_year = str(datetime.today().year)
+    current_year = _get_default_year()
     year_input = input(f'Enter year ({current_year} is default): ')
     if year_input == '':
         year_input = current_year
