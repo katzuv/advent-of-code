@@ -28,5 +28,11 @@ def _add_commands_to_cli(cli: click.Group, commands_files_paths: Iterator[Path])
         cli.add_command(module.command)
 
 
-if __name__ == '__main__':
+def main():
+    """Add subcommands to the solution runner CLI and run it."""
+    _add_commands_to_cli(cli, consts.COMMANDS_FILES_PATHS)
     cli()
+
+
+if __name__ == '__main__':
+    main()
