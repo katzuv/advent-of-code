@@ -6,7 +6,7 @@ from defaults_and_choices import get_default_year
 
 
 @click.group(context_settings=CliConstants.CONTEXT)
-def cli():
+def cli() -> click.Group:
     """
     Main CLI holding all Advent of Code related commands.
 
