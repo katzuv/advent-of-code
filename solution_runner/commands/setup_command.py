@@ -34,6 +34,24 @@ def _abort_if_puzzle_locked(year: int, day: int):
         click.Context(command).abort()
 
 
+def _ask_user_to_mkdir(directory: Path, name: str = None):
+    """
+    Ask the user whether to create the given directory and abort if negative.
+
+    Should be use for directories which do not exist.
+    :param directory: directory to ask about
+    :param name: name of the directory to ask the user about, given directory name is default
+    """
+    if directory.is_dir():
+        return
+
+    if name is None:
+        name = directory.name
+    if click.confirm(f"{name} directory doesn't exist, do you want to create it?", prompt_suffix='', default=True,
+                     show_default=True, abort=True):
+        directory.mkdir()
+
+
 def _abort_input_file_already_exists(year: str, day: str):
     """
     Abort the script because the input file and notify the user.
