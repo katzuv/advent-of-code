@@ -28,3 +28,16 @@ def _abort_input_file_already_exists(year: str, day: str):
     day = day.lstrip(consts.ZERO)  # Remove leading zeros for prettier printing.
     click.secho(f"Input file for {year}'s day {day} challenge already exists", fg='red')
     click.Context(command).abort()
+
+
+def _create_files(year_solutions_directory: Path, day: str):
+    """
+    Create challenge directory and files.
+    :param year_solutions_directory: challenges solution files of the relevant year
+    :param day: day of the challenge
+    """
+    solutions_directory = year_solutions_directory / day
+    solutions_directory.mkdir()
+    for part in ('1', '2'):
+        filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
+        filepath.touch()
