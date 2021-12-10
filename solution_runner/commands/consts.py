@@ -3,4 +3,4 @@ ZERO = '0'
 
 
 class FileExtensions:
-    pass
+    PYTHON = '.py'
