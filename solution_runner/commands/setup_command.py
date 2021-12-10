@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import click
 
 import consts
@@ -17,6 +19,19 @@ from defaults_and_choices import get_default_year
               help='session ID to access puzzles input [default stored in AOC_SESSION_ID environment variable]')
 def command(year: int, day: int, should_use_cache: bool, root_directory: Path, session_id: str):
     """Set up a solution: fetch input and create solution files."""
+
+
+def _abort_if_puzzle_locked(year: int, day: int):
+    """
+    Check if the puzzle at the given time wasn't unlocked yet, and abort if true.
+    :param year: year of the puzzle
+    :param day: day of the puzzle
+    """
+    puzzle_unlock_time = consts.AOC_UNLOCK_TIME_TEMPLATE.replace(year=year, day=day)
+    now = datetime.now(tz=consts.US_EASTERN_TIMEZONE)
+    if puzzle_unlock_time > now:
+        click.secho(f"{year}'s day {day} puzzle wasn't unlocked yet.", fg='red')
+        click.Context(command).abort()
 
 
 def _abort_input_file_already_exists(year: str, day: str):
