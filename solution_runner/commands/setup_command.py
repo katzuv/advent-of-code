@@ -17,3 +17,14 @@ from defaults_and_choices import get_default_year
               help='session ID to access challenges input [default stored in AOC_SESSION_ID environment variable]')
 def command(year: int, day: int, should_use_cache: bool, root_directory: Path, session_id: str):
     """Set up a solution: fetch input and create solution files."""
+
+
+def _abort_input_file_already_exists(year: str, day: str):
+    """
+    Abort the script because the input file and notify the user.
+    :param year: year of the challenge
+    :param day: day of the challenge
+    """
+    day = day.lstrip(consts.ZERO)  # Remove leading zeros for prettier printing.
+    click.secho(f"Input file for {year}'s day {day} challenge already exists", fg='red')
+    click.Context(command).abort()
