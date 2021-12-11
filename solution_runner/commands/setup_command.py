@@ -8,16 +8,16 @@ from . import consts
 from .consts import Directories, FileExtensions
 from .defaults_and_choices import get_default_year
 
-import consts
-from defaults_and_choices import get_default_year
+
+_default_year = get_default_year()
 
 
 @click.command(name='setup')
-@click.option('-y', '--year', type=click.IntRange(consts.FIRST_AOC_YEAR, get_default_year()),
-              default=get_default_year(), help='year of puzzle setting up solution for')
+@click.option('-y', '--year', type=click.IntRange(consts.FIRST_AOC_YEAR, _default_year), default=_default_year,
+              show_default=f'last year: {_default_year}', help='year of puzzle setting up solution for')
 @click.option('-d', '--day', type=click.IntRange(1, 25), required=True, help='day of puzzle setting up solution for')
-@click.option('--use_cache/--ignore_cache', 'should_use_cache', default=True,
-              help='whether to use cached input file [default: true]')
+@click.option('--use_cache/--ignore_cache', 'should_use_cache', default=True, show_default='true',
+              help='whether to use cached input file')
 @click.option('--root', 'root_directory', required=True, envvar='AOC_ROOT_DIRECTORY', prompt=True,
               type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True, readable=True, path_type=Path,
                               resolve_path=True), help='root directory of Advent of Code puzzles solutions')
