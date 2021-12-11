@@ -6,6 +6,7 @@ ZERO = '0'
 
 
 class FileExtensions:
+    TEXT = '.txt'
     PYTHON = '.py'
 
 
