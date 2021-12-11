@@ -74,3 +74,22 @@ def _create_files(year_solutions_directory: Path, day: str):
     for part in ('1', '2'):
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
         filepath.touch()
+
+
+def _download_input(year: str, day: str, input_file: Path, session_id: str):
+    """
+    Download the puzzle's input and write it to a file.
+    :param year: year of the puzzle
+    :param day: day of the puzzle
+    :param input_file: input file path
+    :param session_id: session ID to download input from website
+    """
+    day = day.lstrip(consts.ZERO)
+    url = consts.INPUT_URL.format(year=year, day=day)
+    cookie = {'session': session_id}
+
+    request = requests.get(url, cookies=cookie)
+    request.raise_for_status()
+
+    input_text = request.text
+    input_file.write_text(input_text)
