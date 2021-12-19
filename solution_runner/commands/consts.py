@@ -10,6 +10,7 @@ COOKIE = {'session': None}
 
 class Directories:
     SOLUTIONS = Path('solutions')
+    INPUTS = Path('inputs')
 
 
 class FileExtensions:
