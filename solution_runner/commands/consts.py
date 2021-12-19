@@ -1,12 +1,15 @@
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 
 FIRST_AOC_YEAR = 2015
 ZERO = '0'
+INPUT_URL = 'https://adventofcode.com/{year}/day/{day}/input'
+COOKIE = {'session': None}
 
 
 class Directories:
-    pass
+    SOLUTIONS = Path('solutions')
 
 
 class FileExtensions:
