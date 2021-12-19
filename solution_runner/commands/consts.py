@@ -5,6 +5,10 @@ FIRST_AOC_YEAR = 2015
 ZERO = '0'
 
 
+class Directories:
+    pass
+
+
 class FileExtensions:
     TEXT = '.txt'
     PYTHON = '.py'
