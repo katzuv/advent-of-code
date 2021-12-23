@@ -5,7 +5,7 @@ import click
 
 import consts
 from consts import CliConstants
-from solution_runner.modules_utils import get_module_from_filepath
+from modules_utils import get_module_from_filepath
 
 
 @click.group(context_settings=CliConstants.CONTEXT)
