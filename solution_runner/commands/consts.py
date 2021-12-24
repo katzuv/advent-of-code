@@ -8,6 +8,12 @@ ZERO = '0'
 INPUT_URL = 'https://adventofcode.com/{year}/day/{day}/input'
 COOKIE = {'session': None}
 
+CONFIGURATION_KEY_TO_PARAMETERS = {
+    # Explanation, type to use to check the value against, stored type in configuration file, whether to hide input.
+    'root_directory': ('root directory of Advent of Code project', Path, str, False),
+    'session_id': ('session ID to download input files (can be accessed from AoC website cookies', str, str, True)
+}
+
 
 class Directories:
     SOLUTIONS = Path('solutions')
