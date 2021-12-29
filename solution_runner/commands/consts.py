@@ -2,11 +2,15 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import click
+
 
 FIRST_AOC_YEAR = 2015
 ZERO = '0'
 INPUT_URL = 'https://adventofcode.com/{year}/day/{day}/input'
 COOKIE = {'session': None}
+
+ROOT_DIRECTORY_TYPE = click.Path(file_okay=False, dir_okay=True, writable=True, readable=True, resolve_path=True)
 
 
 class Directories:
