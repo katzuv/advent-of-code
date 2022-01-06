@@ -26,6 +26,7 @@ def command(root_directory: str, session_id: str):
 
     root_directory = _configure_root_directory(configuration, root_directory)
     root_directory = Path(root_directory)
+    root_directory.mkdir(exist_ok=True)
 
 
 def _configure_root_directory(configuration: dict[str, Any], root_directory: str | None) -> str:
