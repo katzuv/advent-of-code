@@ -10,6 +10,7 @@ ZERO = '0'
 INPUT_URL = 'https://adventofcode.com/{year}/day/{day}/input'
 COOKIE = {'session': None}
 
+APP_DATA_DIRECTORY = click.get_app_dir('Advent of Code')
 ROOT_DIRECTORY_TYPE = click.Path(file_okay=False, dir_okay=True, writable=True, readable=True, resolve_path=True)
 
 
