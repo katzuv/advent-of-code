@@ -43,3 +43,16 @@ def _configure_root_directory(configuration: dict[str, Any], root_directory: str
         configuration[consts.ROOT_DIRECTORY] = click.prompt('Enter path for Advent of Code project root directory',
                                                             type=consts.ROOT_DIRECTORY_TYPE)
     return configuration[consts.ROOT_DIRECTORY]
+
+
+def _configure_session_id(configuration: dict[str, Any], session_id: str | None):
+    """
+    Configure the session ID if needed.
+    :param configuration: current configuration
+    :param session_id: session ID passed by the user, `None` if wasn't passed
+    """
+    if session_id is not None:
+        configuration[consts.SESSION_ID] = session_id
+    elif consts.SESSION_ID not in configuration:
+        configuration[consts.SESSION_ID] = click.prompt(
+            'Enter session ID to download input files (available in AoC website cookies)', hide_input=True)
