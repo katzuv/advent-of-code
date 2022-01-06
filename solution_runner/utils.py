@@ -1,4 +1,3 @@
-"""Filepaths and modules utils."""
 import importlib
 from pathlib import Path
 from types import ModuleType
