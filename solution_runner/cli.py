@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import Iterator
 
@@ -23,9 +24,13 @@ def _add_commands_to_cli(cli: click.Group, commands_files_paths: Iterator[Path])
     :param commands_files_paths: path to directory containing Python files with Python subcommands
     :return: CLI with added subcommands
     """
+    file_directory = Path(__file__).parent
+    current_directory = Path.cwd()
+    os.chdir(file_directory)
     for filepath in commands_files_paths:
         module = get_module_from_filepath(filepath)
         cli.add_command(module.command)
+    os.chdir(current_directory)
 
 
 def main():
