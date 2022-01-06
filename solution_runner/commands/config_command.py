@@ -21,3 +21,4 @@ def command(root_directory: str, session_id: str):
         Path(app_data_directory).mkdir(exist_ok=True)
         configuration_file.touch()
         configuration = {}
+    initial_configuration = configuration.copy()
