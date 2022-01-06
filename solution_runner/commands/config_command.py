@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import click
 import yaml
@@ -22,3 +23,21 @@ def command(root_directory: str, session_id: str):
         configuration_file.touch()
         configuration = {}
     initial_configuration = configuration.copy()
+
+    root_directory = _configure_root_directory(configuration, root_directory)
+    root_directory = Path(root_directory)
+
+
+def _configure_root_directory(configuration: dict[str, Any], root_directory: str | None) -> str:
+    """
+    Edit the root directory configuration if needed.
+    :param configuration: current configuration
+    :param root_directory: root directory passed by the user, `None` if wasn't passed
+    :return: root directory after configuration if needed
+    """
+    if root_directory is not None:
+        configuration[consts.ROOT_DIRECTORY] = root_directory
+    elif consts.ROOT_DIRECTORY not in configuration:
+        configuration[consts.ROOT_DIRECTORY] = click.prompt('Enter path for Advent of Code project root directory',
+                                                            type=consts.ROOT_DIRECTORY_TYPE)
+    return configuration[consts.ROOT_DIRECTORY]
