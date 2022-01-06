@@ -29,6 +29,8 @@ def command(root_directory: str, session_id: str):
     root_directory = Path(root_directory)
     root_directory.mkdir(exist_ok=True)
 
+    _configure_session_id(configuration, session_id)
+
 
 def _configure_root_directory(configuration: dict[str, Any], root_directory: str | None) -> str:
     """
