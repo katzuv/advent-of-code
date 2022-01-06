@@ -4,7 +4,7 @@ from typing import Any
 import click
 import yaml
 
-import consts
+from . import consts
 
 
 @click.command(name='config')
