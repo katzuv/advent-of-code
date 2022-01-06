@@ -31,6 +31,9 @@ def command(root_directory: str, session_id: str):
 
     _configure_session_id(configuration, session_id)
 
+    if configuration != initial_configuration:
+        configuration_file.write_text(yaml.dump(configuration))
+
 
 def _configure_root_directory(configuration: dict[str, Any], root_directory: str | None) -> str:
     """
