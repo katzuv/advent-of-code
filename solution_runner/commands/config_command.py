@@ -2,6 +2,8 @@ from pathlib import Path
 
 import click
 
+import consts
+
 
 @click.command(name='config')
 @click.option('--root', 'root_directory', type=consts.ROOT_DIRECTORY_TYPE, prompt=True, prompt_required=False,
@@ -9,4 +11,4 @@ import click
 @click.option('--session-id', help='session ID to access puzzles input')
 def command(root_directory: str, session_id: str):
     """Set options."""
-    pass
+    app_data_directory = click.get_app_dir(consts.APP_DATA_DIRECTORY)
