@@ -30,6 +30,8 @@ def command(year: int, day: int, should_use_cache: bool):
         root_directory = utils.get_setting(consts.ROOT_DIRECTORY)
     except FileNotFoundError:
         click.Context(command).abort()
+    inputs_directory = root_directory / Directories.INPUTS
+    _ask_user_to_mkdir(inputs_directory, 'input files')
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
