@@ -7,6 +7,7 @@ import requests
 from . import consts
 from .consts import Directories, FileExtensions
 from .defaults_and_choices import get_default_year
+from .. import utils
 
 
 _default_year = get_default_year()
@@ -24,6 +25,11 @@ def command(year: int, day: int, should_use_cache: bool):
 
     year = str(year)
     day = str(day).zfill(2)  # Add a leading zero for single digit numbers.
+
+    try:
+        root_directory = utils.get_setting(consts.ROOT_DIRECTORY)
+    except FileNotFoundError:
+        click.Context(command).abort()
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
