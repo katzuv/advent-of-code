@@ -20,6 +20,7 @@ _default_year = get_default_year()
               help='whether to use cached input file')
 def command(year: int, day: int, should_use_cache: bool):
     """Set up a solution: fetch input and create solution files."""
+    _abort_if_puzzle_locked(year, day)
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
