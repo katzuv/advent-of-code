@@ -33,6 +33,9 @@ def command(year: int, day: int, should_use_cache: bool):
     inputs_directory = root_directory / Directories.INPUTS
     _ask_user_to_mkdir(inputs_directory, 'input files')
 
+    year_inputs_directory = inputs_directory / year
+    _ask_user_to_mkdir(year_inputs_directory, f'{year} input files')
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
