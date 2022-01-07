@@ -46,6 +46,8 @@ def command(year: int, day: int, should_use_cache: bool):
     except FileNotFoundError:
         click.Context(command).abort()
 
+    _download_input(year, day, input_file, session_id)
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
