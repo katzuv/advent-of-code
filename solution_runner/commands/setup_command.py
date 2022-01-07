@@ -41,6 +41,11 @@ def command(year: int, day: int, should_use_cache: bool):
         _abort_input_file_already_exists(year, day)
     input_file.touch()
 
+    try:
+        session_id = utils.get_setting(consts.SESSION_ID)
+    except FileNotFoundError:
+        click.Context(command).abort()
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
