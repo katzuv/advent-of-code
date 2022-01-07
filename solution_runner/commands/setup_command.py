@@ -37,6 +37,10 @@ def command(year: int, day: int, should_use_cache: bool):
     _ask_user_to_mkdir(year_inputs_directory, f'{year} input files')
     input_file = (year_inputs_directory / day).with_suffix(FileExtensions.TEXT)
 
+    if should_use_cache and input_file.exists() and input_file.read_text():  # Abort if the file exists but it's empty.
+        _abort_input_file_already_exists(year, day)
+    input_file.touch()
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
