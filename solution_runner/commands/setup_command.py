@@ -23,6 +23,7 @@ def command(year: int, day: int, should_use_cache: bool):
     _abort_if_puzzle_locked(year, day)
 
     year = str(year)
+    day = str(day).zfill(2)  # Add a leading zero for single digit numbers.
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
