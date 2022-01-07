@@ -48,6 +48,9 @@ def command(year: int, day: int, should_use_cache: bool):
 
     _download_input(year, day, input_file, session_id)
 
+    solutions_directory = root_directory / Directories.SOLUTIONS
+    _ask_user_to_mkdir(solutions_directory, 'solution files')
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
