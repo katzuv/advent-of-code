@@ -22,6 +22,8 @@ def command(year: int, day: int, should_use_cache: bool):
     """Set up a solution: fetch input and create solution files."""
     _abort_if_puzzle_locked(year, day)
 
+    year = str(year)
+
 
 def _abort_if_puzzle_locked(year: int, day: int):
     """
