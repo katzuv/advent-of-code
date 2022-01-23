@@ -120,7 +120,7 @@ def _download_input(year: str, day: str, input_file: Path, session_id: str):
     """
     day = day.lstrip(consts.ZERO)
     url = consts.INPUT_URL.format(year=year, day=day)
-    cookie = {'session': session_id}
+    cookie = {consts.SESSION: session_id}
 
     request = requests.get(url, cookies=cookie)
     request.raise_for_status()
