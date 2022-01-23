@@ -104,7 +104,7 @@ def _create_files(year_solutions_directory: Path, day: str):
     solutions_directory.mkdir()
     for part in ('1', '2'):
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
-        filepath.touch()
+        filepath.write_text(consts.SOLUTION_FILE_CONTENT)
 
 
 def _download_input(year: str, day: str, input_file: Path, session_id: str):
