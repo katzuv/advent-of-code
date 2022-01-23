@@ -15,6 +15,7 @@ CONFIGURATION_FILE_NAME = Path('configuration.yaml')
 ROOT_DIRECTORY_TYPE = click.Path(file_okay=False, dir_okay=True, writable=True, readable=True, resolve_path=True)
 ROOT_DIRECTORY = 'root directory'
 SESSION_ID = 'session ID'
+SOLUTION_FILE_CONTENT = Path('solution_template.py').read_text()
 
 
 class Directories:
