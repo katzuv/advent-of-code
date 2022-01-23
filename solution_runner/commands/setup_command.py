@@ -53,6 +53,7 @@ def command(year: int, day: int, should_use_cache: bool):
 
     year_solutions_directory = solutions_directory / year
     _ask_user_to_mkdir(year_solutions_directory, f'{year} solution files')
+    _create_files(year_solutions_directory, day)
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
