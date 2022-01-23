@@ -4,10 +4,9 @@ from pathlib import Path
 import click
 import requests
 
-from . import consts
+from . import consts, commands_utils
 from .consts import Directories, FileExtensions
 from .defaults_and_choices import get_default_year
-from .. import utils
 
 
 _default_year = get_default_year()
@@ -27,7 +26,7 @@ def command(year: int, day: int, should_use_cache: bool):
     day = str(day).zfill(2)  # Add a leading zero for single digit numbers.
 
     try:
-        root_directory = utils.get_setting(consts.ROOT_DIRECTORY)
+        root_directory = commands_utils.get_setting(consts.ROOT_DIRECTORY)
     except FileNotFoundError:
         click.Context(command).abort()
     inputs_directory = root_directory / Directories.INPUTS
@@ -42,7 +41,7 @@ def command(year: int, day: int, should_use_cache: bool):
     input_file.touch()
 
     try:
-        session_id = utils.get_setting(consts.SESSION_ID)
+        session_id = commands_utils.get_setting(consts.SESSION_ID)
     except FileNotFoundError:
         click.Context(command).abort()
 
