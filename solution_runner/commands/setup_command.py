@@ -105,7 +105,7 @@ def _create_files(year_solutions_directory: Path, day: str):
     """
     solutions_directory = year_solutions_directory / day
     solutions_directory.mkdir()
-    for part in ('1', '2'):
+    for part in consts.SOLUTION_PARTS:
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
         filepath.write_text(consts.SOLUTION_FILE_CONTENT)
 
