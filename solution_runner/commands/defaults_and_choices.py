@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import consts
+
 
 def get_default_year() -> int:
     """
@@ -7,7 +9,7 @@ def get_default_year() -> int:
     """
     today = datetime.today()
     current_year = today.year
-    if today.month == 12:
+    if today.month == consts.DECEMBER:
         return current_year
     else:
         return current_year - 1
