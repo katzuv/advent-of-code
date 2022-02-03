@@ -18,7 +18,7 @@ def cli() -> click.Group:
     """
 
 
-def _add_commands_to_cli(cli: click.Group, commands_files_paths: Iterator[Path]) -> click.Group:
+def _add_commands_to_cli(cli: click.Group, commands_files_paths: Iterable[Path]) -> click.Group:
     """
     :param cli: click.Group object
     :param commands_files_paths: path to directory containing Python files with Python subcommands
