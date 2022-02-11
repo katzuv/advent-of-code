@@ -11,5 +11,4 @@ def get_default_year() -> int:
     current_year = today.year
     if today.month == consts.DECEMBER:
         return current_year
-    else:
-        return current_year - 1
+    return current_year - 1
