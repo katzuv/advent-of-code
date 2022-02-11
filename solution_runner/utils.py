@@ -5,7 +5,7 @@ from types import ModuleType
 import consts
 
 
-def get_module_from_filepath(filepath: Path, directory_relative_to: Path | str = Path('.')) -> ModuleType:
+def get_module_from_filepath(filepath: Path, directory_relative_to: Path | str = Path.cwd()) -> ModuleType:
     """
     :param filepath: file path to import
     :param directory_relative_to: directory to compute relative path to from `file_path`, default is current directory
