@@ -1,3 +1,4 @@
+import string
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -9,7 +10,7 @@ FIRST_AOC_YEAR = 2015
 DECEMBER = 12
 ADVENT_DAYS_RANGE = click.IntRange(1, 25)
 ZERO = '0'
-INPUT_URL = 'https://adventofcode.com/$year/day/$day/input'
+INPUT_URL = string.Template('https://adventofcode.com/$year/day/$day/input')
 SESSION = 'session'
 
 APP_DATA_DIRECTORY = click.get_app_dir('Advent of Code')

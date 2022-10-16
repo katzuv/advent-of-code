@@ -119,7 +119,7 @@ def _download_input(year: str, day: str, input_file: Path, session_id: str):
     :param session_id: session ID to download input from website
     """
     day = day.lstrip(consts.ZERO)
-    url = consts.INPUT_URL.format(year=year, day=day)
+    url = consts.INPUT_URL.substitute(year=year, day=day)
     cookie = {consts.SESSION: session_id}
 
     request = requests.get(url, cookies=cookie)
