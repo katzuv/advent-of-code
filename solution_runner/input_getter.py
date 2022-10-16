@@ -13,7 +13,7 @@ HTTP_OK_CODE = 200
 INPUT_DIRECTORY_NAME = Path('inputs')
 TXT_SUFFIX = '.txt'
 
-DAY_DIRECTORY_PATH = 'd{day_number}'
+DAY_DIRECTORY_PATH = 'd$day_number'
 
 
 def get_input(year: str, day_number: str) -> str:
