@@ -3,6 +3,7 @@ from pathlib import Path
 import requests
 
 from session_id import SESSION_ID
+from solution_runner.commands.defaults_and_choices import get_default_year
 
 
 URL = 'https://adventofcode.com/{year}/day/{day_number}/input'
@@ -23,7 +24,7 @@ def get_input(year: str, day_number: str) -> str:
 
 
 def get_year_input() -> str:
-    current_year = _get_default_year()
+    current_year = get_default_year()
     year_input = input(f'Enter year ({current_year} is default): ')
     if year_input == '':
         year_input = current_year
