@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import consts
+from . import consts
 
 
 def get_default_year() -> int:

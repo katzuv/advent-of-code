@@ -3,7 +3,7 @@ from typing import Any
 import click
 import yaml
 
-import consts
+from . import consts
 
 
 def get_setting(key: str) -> Any:

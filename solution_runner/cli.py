@@ -1,6 +1,6 @@
 import click
 
-from solution_runner.consts import CliConstants
+from consts import CliConstants
 
 
 @click.group(context_settings=CliConstants.CONTEXT)

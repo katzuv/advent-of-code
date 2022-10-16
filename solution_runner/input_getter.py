@@ -2,8 +2,8 @@ from pathlib import Path
 
 import requests
 
+from commands.defaults_and_choices import get_default_year
 from session_id import SESSION_ID
-from solution_runner.commands.defaults_and_choices import get_default_year
 
 
 URL = 'https://adventofcode.com/{year}/day/{day_number}/input'
