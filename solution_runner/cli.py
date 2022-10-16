@@ -12,10 +12,5 @@ def cli() -> click.Group:
     """
 
 
-def main():
-    """Add subcommands to the solution runner CLI and run it."""
-    cli()
-
-
 if __name__ == '__main__':
-    main()
+    cli()
