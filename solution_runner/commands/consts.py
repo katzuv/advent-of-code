@@ -17,7 +17,7 @@ APP_DATA_DIRECTORY = click.get_app_dir('Advent of Code')
 CONFIGURATION_FILE_NAME = Path('configuration.yaml')
 ROOT_DIRECTORY_TYPE = click.Path(file_okay=False, dir_okay=True, writable=True, readable=True, resolve_path=True)
 ROOT_DIRECTORY = 'root directory'
-SOLUTION_PARTS = ('1', '2')
+SOLUTION_PARTS = ('p1', 'p2')
 SESSION_ID = 'session ID'
 SOLUTION_FILE_CONTENT = Path(Path(__file__).parent, 'solution_template.py').read_text()
 
