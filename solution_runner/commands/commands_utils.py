@@ -1,9 +1,15 @@
+from enum import Enum
 from typing import Any
 
 import click
 import yaml
 
 from . import consts
+
+
+class PathType(Enum):
+    FILE = 1
+    DIRECTORY = 2
 
 
 def get_setting(key: str) -> Any:
