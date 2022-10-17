@@ -103,7 +103,7 @@ def _create_files(year_solutions_directory: Path, day: str):
     :param year_solutions_directory: challenges solution files of the relevant year
     :param day: day of the challenge
     """
-    solutions_directory = year_solutions_directory / day
+    solutions_directory = year_solutions_directory / f"d{day}"
     solutions_directory.mkdir()
     for part in consts.SOLUTION_PARTS:
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
