@@ -14,4 +14,5 @@ _default_year = get_default_year()
 @click.option('-p', '--part', type=click.Choice(('1', '2')), required=True, help='puzzle part to submit')
 def command(year: int, day: int, part: int):
     """Submit solution."""
-    pass
+    year = str(year)
+    day = str(day)
