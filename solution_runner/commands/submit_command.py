@@ -1,6 +1,8 @@
 import click
 
 from . import consts
+from .commands_utils import get_setting
+from .consts import Directories
 from .defaults_and_choices import get_default_year
 
 
@@ -16,3 +18,9 @@ def command(year: int, day: int, part: int):
     """Submit solution."""
     year = str(year)
     day = str(day)
+
+    root_directory = get_setting(consts.ROOT_DIRECTORY)
+    solutions_directory = root_directory / Directories.SOLUTIONS / year / f"d{day}"
+    if not solutions_directory.is_dir():
+        click.secho("Solution directory does not exist. Run setup command first", fg='red')
+        click.Context(command).abort()
