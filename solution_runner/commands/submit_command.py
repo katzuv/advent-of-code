@@ -2,7 +2,7 @@ import click
 
 from . import consts
 from .commands_utils import get_setting
-from .consts import Directories
+from .consts import Directories, FileExtensions
 from .defaults_and_choices import get_default_year
 
 
@@ -24,3 +24,6 @@ def command(year: int, day: int, part: int):
     if not solutions_directory.is_dir():
         click.secho("Solution directory does not exist. Run setup command first", fg='red')
         click.Context(command).abort()
+
+    input_path = (root_directory / Directories.INPUTS / year / day).with_suffix(FileExtensions.TEXT)
+    input_text = input_path.read_text()
