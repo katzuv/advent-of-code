@@ -1,3 +1,5 @@
+import subprocess
+
 import click
 
 from . import consts
@@ -27,3 +29,14 @@ def command(year: int, day: int, part: int):
 
     input_path = (root_directory / Directories.INPUTS / year / day).with_suffix(FileExtensions.TEXT)
     input_text = input_path.read_text()
+
+    part_solution_path = (solutions_directory / f"p{part}").with_suffix(FileExtensions.PYTHON)
+    command_arguments = ("python", part_solution_path, input_text)
+    try:
+        result = subprocess.run(command_arguments, capture_output=True, check=True, text=True)
+    # If an error occurred in the called solution file, print the exception and abort.
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+        raise click.Abort()
+
+    solution = result.stdout.strip()
