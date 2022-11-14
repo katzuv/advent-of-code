@@ -1,8 +1,10 @@
+import urllib.parse
 from enum import Enum
 from pathlib import Path
 from typing import Any
 
 import click
+import requests
 import yaml
 
 from . import consts
@@ -48,3 +50,22 @@ def check_path_exists(path: Path, command: click.Command, path_type: str = None)
         case _:
             return  # If everything is OK, exit the function before aborting.
     click.Context(command).abort()
+
+
+def send_aoc_request(method, endpoint: str, payload=None) -> str:
+    """
+    Send a request to Advent of Code's website and return the textual response.
+    :param method: method of the request
+    :param endpoint: endpoint to append to the base URL
+    :param payload: optional payload to attach to the request
+    :return: text content of the response
+    """
+    if payload is None:
+        payload = {}
+    session_id = get_setting(consts.SESSION_ID)
+    cookies = {consts.SESSION: session_id}
+    url = urllib.parse.urljoin(consts.BASE_URL, endpoint)
+
+    request = requests.request(method, url, cookies=cookies, data=payload)
+    request.raise_for_status()
+    return request.text
