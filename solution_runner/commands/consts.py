@@ -33,5 +33,10 @@ class FileExtensions:
     PYTHON = '.py'
 
 
+class HttpMethods:
+    GET = 'GET'
+    POST = 'POST'
+
+
 US_EASTERN_TIMEZONE = ZoneInfo('US/Eastern')
 AOC_UNLOCK_TIME_TEMPLATE = datetime(year=1, month=12, day=1, hour=0, tzinfo=US_EASTERN_TIMEZONE)
