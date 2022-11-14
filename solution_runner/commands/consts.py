@@ -13,6 +13,8 @@ ZERO = '0'
 BASE_URL = 'https://adventofcode.com/'
 INPUT_ENDPOINT_TEMPLATE = string.Template('/$year/day/$day/input')
 SESSION = 'session'
+# Requested by Advent of Code owner to help track requests.
+USER_AGENT_HEADER = {'User-Agent': 'AoC.CLI.katzuv'}
 
 APP_DATA_DIRECTORY = click.get_app_dir('Advent of Code')
 CONFIGURATION_FILE_NAME = Path('configuration.yaml')

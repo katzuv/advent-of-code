@@ -66,6 +66,6 @@ def send_aoc_request(method, endpoint: str, payload=None) -> str:
     cookies = {consts.SESSION: session_id}
     url = urllib.parse.urljoin(consts.BASE_URL, endpoint)
 
-    request = requests.request(method, url, cookies=cookies, data=payload)
+    request = requests.request(method, url, headers=consts.USER_AGENT_HEADER, cookies=cookies, data=payload)
     request.raise_for_status()
     return request.text
