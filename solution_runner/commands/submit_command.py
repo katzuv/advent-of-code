@@ -1,5 +1,6 @@
 import subprocess
 
+import bs4
 import click
 
 from . import consts
@@ -9,6 +10,19 @@ from .defaults_and_choices import get_default_year
 
 
 _default_year = get_default_year()
+
+
+def _get_result(result: str) -> tuple[str, bool]:
+    """
+    :param result: result page after submitting an answer
+    :return: tuple of (result description, whether the solution was correct or not)
+    """
+    parsed_result = bs4.BeautifulSoup(result, 'html.parser')
+    result_paragraph = parsed_result.find('p').text
+    first_sentence = result_paragraph.split('.', maxsplit=1)[0] + '.'
+
+    right_answer = "That's the right answer!" in first_sentence
+    return first_sentence, right_answer
 
 
 @click.command(name='submit')
