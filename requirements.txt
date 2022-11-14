@@ -1,3 +1,4 @@
 requests
 click
 pyyaml
+beautifulsoup4
