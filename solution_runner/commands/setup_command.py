@@ -2,10 +2,9 @@ from datetime import datetime
 from pathlib import Path
 
 import click
-import requests
 
 from . import consts, commands_utils
-from .consts import Directories, FileExtensions
+from .consts import Directories, FileExtensions, HttpMethods
 from .defaults_and_choices import get_default_year
 
 
@@ -119,11 +118,6 @@ def _download_input(year: str, day: str, input_file: Path, session_id: str):
     :param session_id: session ID to download input from website
     """
     day = day.lstrip(consts.ZERO)
-    url = consts.INPUT_URL.substitute(year=year, day=day)
-    cookie = {consts.SESSION: session_id}
-
-    request = requests.get(url, cookies=cookie)
-    request.raise_for_status()
-
-    input_text = request.text
+    endpoint = consts.INPUT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
+    input_text = commands_utils.send_aoc_request(HttpMethods.GET, endpoint)
     input_file.write_text(input_text)

@@ -4,7 +4,7 @@ import click
 
 from . import consts
 from .commands_utils import get_setting
-from .consts import Directories, FileExtensions
+from .consts import Directories, FileExtensions, HttpMethods
 from .defaults_and_choices import get_default_year
 
 

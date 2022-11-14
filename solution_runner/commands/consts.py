@@ -11,7 +11,7 @@ DECEMBER = 12
 ADVENT_DAYS_RANGE = click.IntRange(1, 25)
 ZERO = '0'
 BASE_URL = 'https://adventofcode.com/'
-INPUT_URL = string.Template('https://adventofcode.com/$year/day/$day/input')
+INPUT_ENDPOINT_TEMPLATE = string.Template('/$year/day/$day/input')
 SESSION = 'session'
 
 APP_DATA_DIRECTORY = click.get_app_dir('Advent of Code')
