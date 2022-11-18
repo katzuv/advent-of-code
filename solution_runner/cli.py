@@ -13,7 +13,7 @@ def cli() -> click.Group:
     """
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli.add_command(commands.setup)
     cli.add_command(commands.config)
     cli.add_command(commands.submit)

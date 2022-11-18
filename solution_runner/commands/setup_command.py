@@ -11,12 +11,29 @@ from .defaults_and_choices import get_default_year
 _default_year = get_default_year()
 
 
-@click.command(name='setup')
-@click.option('-y', '--year', type=click.IntRange(consts.FIRST_AOC_YEAR, _default_year), default=_default_year,
-              show_default=f'last year: {_default_year}', help='year of puzzle setting up solution for')
-@click.option('-d', '--day', type=consts.ADVENT_DAYS_RANGE, required=True, help='day of puzzle setting up solution for')
-@click.option('--use-cache/--ignore-cache', 'should_use_cache', default=True, show_default='true',
-              help='whether to use cached input file')
+@click.command(name="setup")
+@click.option(
+    "-y",
+    "--year",
+    type=click.IntRange(consts.FIRST_AOC_YEAR, _default_year),
+    default=_default_year,
+    show_default=f"last year: {_default_year}",
+    help="year of puzzle setting up solution for",
+)
+@click.option(
+    "-d",
+    "--day",
+    type=consts.ADVENT_DAYS_RANGE,
+    required=True,
+    help="day of puzzle setting up solution for",
+)
+@click.option(
+    "--use-cache/--ignore-cache",
+    "should_use_cache",
+    default=True,
+    show_default="true",
+    help="whether to use cached input file",
+)
 def command(year: int, day: int, should_use_cache: bool):
     """Set up a solution: fetch input and create solution files."""
     _abort_if_puzzle_locked(year, day)
@@ -29,13 +46,15 @@ def command(year: int, day: int, should_use_cache: bool):
     except FileNotFoundError:
         click.Context(command).abort()
     inputs_directory = root_directory / Directories.INPUTS
-    _ask_user_to_mkdir(inputs_directory, 'input files')
+    _ask_user_to_mkdir(inputs_directory, "input files")
 
     year_inputs_directory = inputs_directory / year
-    _ask_user_to_mkdir(year_inputs_directory, f'{year} input files')
+    _ask_user_to_mkdir(year_inputs_directory, f"{year} input files")
     input_file = (year_inputs_directory / day).with_suffix(FileExtensions.TEXT)
 
-    if should_use_cache and input_file.exists() and input_file.read_text():  # Abort if the file exists but it's empty.
+    if (
+        should_use_cache and input_file.exists() and input_file.read_text()
+    ):  # Abort if the file exists but it's empty.
         _abort_input_file_already_exists(year, day)
     input_file.touch()
 
@@ -47,10 +66,10 @@ def command(year: int, day: int, should_use_cache: bool):
     _download_input(year, day, input_file, session_id)
 
     solutions_directory = root_directory / Directories.SOLUTIONS
-    _ask_user_to_mkdir(solutions_directory, 'solution files')
+    _ask_user_to_mkdir(solutions_directory, "solution files")
 
     year_solutions_directory = solutions_directory / year
-    _ask_user_to_mkdir(year_solutions_directory, f'{year} solution files')
+    _ask_user_to_mkdir(year_solutions_directory, f"{year} solution files")
     _create_files(year_solutions_directory, day)
 
 
@@ -63,7 +82,7 @@ def _abort_if_puzzle_locked(year: int, day: int):
     puzzle_unlock_time = consts.AOC_UNLOCK_TIME_TEMPLATE.replace(year=year, day=day)
     now = datetime.now(tz=consts.US_EASTERN_TIMEZONE)
     if puzzle_unlock_time > now:
-        click.secho(f"{year}'s day {day} puzzle wasn't unlocked yet.", fg='red')
+        click.secho(f"{year}'s day {day} puzzle wasn't unlocked yet.", fg="red")
         click.Context(command).abort()
 
 
@@ -80,8 +99,13 @@ def _ask_user_to_mkdir(directory: Path, name: str = None):
 
     if name is None:
         name = directory.name
-    if click.confirm(f"{name} directory doesn't exist, do you want to create it?", prompt_suffix='', default=True,
-                     show_default=True, abort=True):
+    if click.confirm(
+        f"{name} directory doesn't exist, do you want to create it?",
+        prompt_suffix="",
+        default=True,
+        show_default=True,
+        abort=True,
+    ):
         directory.mkdir()
 
 
@@ -92,7 +116,7 @@ def _abort_input_file_already_exists(year: str, day: str):
     :param day: day of the puzzle
     """
     day = day.lstrip(consts.ZERO)  # Remove leading zeros for prettier printing.
-    click.secho(f"Input file for {year}'s day {day} puzzle already exists.", fg='red')
+    click.secho(f"Input file for {year}'s day {day} puzzle already exists.", fg="red")
     click.Context(command).abort()
 
 

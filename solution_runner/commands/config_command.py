@@ -7,11 +7,22 @@ import yaml
 from . import consts
 
 
-@click.command(name='config')
-@click.option('--root', 'root_directory', type=consts.ROOT_DIRECTORY_TYPE, prompt=True, prompt_required=False,
-              help='root directory of Advent of Code puzzles project')
-@click.option('--session-id', prompt=True, prompt_required=False, hide_input=True,
-              help='session ID to access puzzles input')
+@click.command(name="config")
+@click.option(
+    "--root",
+    "root_directory",
+    type=consts.ROOT_DIRECTORY_TYPE,
+    prompt=True,
+    prompt_required=False,
+    help="root directory of Advent of Code puzzles project",
+)
+@click.option(
+    "--session-id",
+    prompt=True,
+    prompt_required=False,
+    hide_input=True,
+    help="session ID to access puzzles input",
+)
 def command(root_directory: str, session_id: str):
     """Set options."""
     app_data_directory = click.get_app_dir(consts.APP_DATA_DIRECTORY)
@@ -35,7 +46,9 @@ def command(root_directory: str, session_id: str):
         configuration_file.write_text(yaml.dump(configuration))
 
 
-def _configure_root_directory(configuration: dict[str, Any], root_directory: str | None) -> str:
+def _configure_root_directory(
+    configuration: dict[str, Any], root_directory: str | None
+) -> str:
     """
     Edit the root directory configuration if needed.
     :param configuration: current configuration
@@ -45,8 +58,10 @@ def _configure_root_directory(configuration: dict[str, Any], root_directory: str
     if root_directory is not None:
         configuration[consts.ROOT_DIRECTORY] = root_directory
     elif consts.ROOT_DIRECTORY not in configuration:
-        configuration[consts.ROOT_DIRECTORY] = click.prompt('Enter path for Advent of Code project root directory',
-                                                            type=consts.ROOT_DIRECTORY_TYPE)
+        configuration[consts.ROOT_DIRECTORY] = click.prompt(
+            "Enter path for Advent of Code project root directory",
+            type=consts.ROOT_DIRECTORY_TYPE,
+        )
     return configuration[consts.ROOT_DIRECTORY]
 
 
@@ -60,4 +75,6 @@ def _configure_session_id(configuration: dict[str, Any], session_id: str | None)
         configuration[consts.SESSION_ID] = session_id
     elif consts.SESSION_ID not in configuration:
         configuration[consts.SESSION_ID] = click.prompt(
-            'Enter session ID to download input files (available in AoC website cookies)', hide_input=True)
+            "Enter session ID to download input files (available in AoC website cookies)",
+            hide_input=True,
+        )
