@@ -1,10 +1,12 @@
 import click
 
 import commands
-from consts import CliConstants
 
 
-@click.group(context_settings=CliConstants.CONTEXT)
+CONTEXT = {"help_option_names": ["-h", "--help"]}
+
+
+@click.group(context_settings=CONTEXT)
 def cli() -> click.Group:
     """
     Main CLI holding all Advent of Code related commands.
