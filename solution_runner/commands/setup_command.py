@@ -5,10 +5,9 @@ import click
 
 from . import consts, commands_utils
 from .consts import Directories, FileExtensions, HttpMethods
-from .defaults_and_choices import get_default_year
 
 
-_default_year = get_default_year()
+_default_year = commands_utils.get_default_year()
 
 
 @click.command(name="setup")
