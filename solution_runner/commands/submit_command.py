@@ -3,7 +3,7 @@ import subprocess
 import bs4
 import click
 
-from . import consts
+from . import consts, commands_utils
 from .commands_utils import get_setting
 from .consts import Directories, FileExtensions, HttpMethods
 from .defaults_and_choices import get_default_year
@@ -54,3 +54,6 @@ def command(year: int, day: int, part: int):
         raise click.Abort()
 
     solution = result.stdout.strip()
+    body = {"level": str(part), "answer": solution}
+    submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
+    result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
