@@ -57,11 +57,6 @@ def command(year: int, day: int, should_use_cache: bool):
         _abort_input_file_already_exists(year, day)
     input_file.touch()
 
-    try:
-        session_id = commands_utils.get_setting(consts.SESSION_ID)
-    except FileNotFoundError:
-        click.Context(command).abort()
-
     _download_input(year, day, input_file)
 
     solutions_directory = root_directory / Directories.SOLUTIONS
