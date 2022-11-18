@@ -57,3 +57,7 @@ def command(year: int, day: int, part: int):
     body = {"level": str(part), "answer": solution}
     submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
     result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
+
+    sentence, is_answer_right = _get_result(result)
+    color = 'green' if is_answer_right else 'yellow'
+    click.secho(sentence, fg=color)
