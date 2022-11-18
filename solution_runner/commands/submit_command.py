@@ -69,14 +69,26 @@ def command(year: int, day: int, part: int):
         FileExtensions.PYTHON
     )
     answer = _get_answer(input_text, solution_path)
-
-    body = {"level": str(part), "answer": answer}
-    submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
-    result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
+    result = _get_result_from_website(year, day, part, answer)
 
     sentence, is_answer_right = _get_result(result)
     color = "green" if is_answer_right else "yellow"
     click.secho(sentence, fg=color)
+
+
+def _get_result_from_website(year: str, day: str, part: int, answer: str) -> str:
+    """
+    Submit the answer to the website and return its response to it.
+    :param year: year of the puzzle
+    :param day: day of the puzzle
+    :param part: part of the day's puzzle
+    :param answer: puzzle answer to submit
+    :return: response from the website
+    """
+    body = {"level": str(part), "answer": answer}
+    submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
+    result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
+    return result
 
 
 def _get_answer(input_text: str, solution_path: Path) -> str:
