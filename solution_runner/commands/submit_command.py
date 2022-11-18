@@ -1,4 +1,5 @@
 import subprocess
+from pathlib import Path
 
 import bs4
 import click
@@ -64,11 +65,29 @@ def command(year: int, day: int, part: int):
         FileExtensions.TEXT
     )
     input_text = input_path.read_text()
-
-    part_solution_path = (solutions_directory / f"p{part}").with_suffix(
+    solution_path = (root_directory / Directories.SOLUTIONS / year / day).with_suffix(
         FileExtensions.PYTHON
     )
-    command_arguments = ("python", part_solution_path, input_text)
+    answer = _get_answer(input_text, solution_path)
+
+    body = {"level": str(part), "answer": answer}
+    submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
+    result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
+
+    sentence, is_answer_right = _get_result(result)
+    color = "green" if is_answer_right else "yellow"
+    click.secho(sentence, fg=color)
+
+
+def _get_answer(input_text: str, solution_path: Path) -> str:
+    """
+    Run the solution module and return the answer.
+    :param input_text: input to pass to the solution module
+    :param solution_path: path to the Python solution module
+    :return: puzzle answer
+    :raise: `click.Abort` if an error occurred while running the solution module
+    """
+    command_arguments = ("python", solution_path, input_text)
     try:
         result = subprocess.run(
             command_arguments, capture_output=True, check=True, text=True
@@ -79,10 +98,4 @@ def command(year: int, day: int, part: int):
         raise click.Abort()
 
     solution = result.stdout.strip()
-    body = {"level": str(part), "answer": solution}
-    submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
-    result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
-
-    sentence, is_answer_right = _get_result(result)
-    color = "green" if is_answer_right else "yellow"
-    click.secho(sentence, fg=color)
+    return solution
