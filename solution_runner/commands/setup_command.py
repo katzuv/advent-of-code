@@ -62,7 +62,7 @@ def command(year: int, day: int, should_use_cache: bool):
     except FileNotFoundError:
         click.Context(command).abort()
 
-    _download_input(year, day, input_file, session_id)
+    _download_input(year, day, input_file)
 
     solutions_directory = root_directory / Directories.SOLUTIONS
     _ask_user_to_mkdir(solutions_directory, "solution files")
@@ -132,13 +132,12 @@ def _create_files(year_solutions_directory: Path, day: str):
         filepath.write_text(consts.SOLUTION_FILE_CONTENT)
 
 
-def _download_input(year: str, day: str, input_file: Path, session_id: str):
+def _download_input(year: str, day: str, input_file: Path):
     """
     Download the puzzle's input and write it to a file.
     :param year: year of the puzzle
     :param day: day of the puzzle
     :param input_file: input file path
-    :param session_id: session ID to download input from website
     """
     day = day.lstrip(consts.ZERO)
     endpoint = consts.INPUT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
