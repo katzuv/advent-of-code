@@ -2,3 +2,4 @@ requests
 click
 pyyaml
 beautifulsoup4
+black
