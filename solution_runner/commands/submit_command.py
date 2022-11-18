@@ -12,7 +12,7 @@ from .consts import Directories, FileExtensions, HttpMethods
 _default_year = commands_utils.get_default_year()
 
 
-def _get_result(result: str) -> tuple[str, bool]:
+def _parse_result(result: str) -> tuple[str, bool]:
     """
     :param result: result page after submitting an answer
     :return: tuple of (result description, whether the solution was correct or not)
