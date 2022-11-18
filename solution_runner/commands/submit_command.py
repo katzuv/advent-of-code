@@ -70,8 +70,16 @@ def command(year: int, day: int, part: int):
     )
     answer = _get_answer(input_text, solution_path)
     result = _get_result_from_website(year, day, part, answer)
+    parsed_result = _parse_result(result)
+    _print_result(parsed_result)
 
-    sentence, is_answer_right = _get_result(result)
+
+def _print_result(result: tuple[str, bool]) -> None:
+    """
+    Print submit result retrieved from the website.
+    :param result: result retrieved from the website
+    """
+    sentence, is_answer_right = result
     color = "green" if is_answer_right else "yellow"
     click.secho(sentence, fg=color)
 
