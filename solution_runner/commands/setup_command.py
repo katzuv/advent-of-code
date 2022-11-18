@@ -43,7 +43,7 @@ def command(year: int, day: int, should_use_cache: bool):
     try:
         root_directory = commands_utils.get_setting(consts.ROOT_DIRECTORY)
     except FileNotFoundError:
-        click.Context(command).abort()
+        raise click.Abort()
     inputs_directory = root_directory / Directories.INPUTS
     _ask_user_to_mkdir(inputs_directory, "input files")
 
@@ -77,7 +77,7 @@ def _abort_if_puzzle_locked(year: int, day: int):
     now = datetime.now(tz=consts.US_EASTERN_TIMEZONE)
     if puzzle_unlock_time > now:
         click.secho(f"{year}'s day {day} puzzle wasn't unlocked yet.", fg="red")
-        click.Context(command).abort()
+        raise click.Abort()
 
 
 def _ask_user_to_mkdir(directory: Path, name: str = None):
@@ -111,7 +111,7 @@ def _abort_input_file_already_exists(year: str, day: str):
     """
     day = day.lstrip(consts.ZERO)  # Remove leading zeros for prettier printing.
     click.secho(f"Input file for {year}'s day {day} puzzle already exists.", fg="red")
-    click.Context(command).abort()
+    raise click.Abort()
 
 
 def _create_files(year_solutions_directory: Path, day: str):

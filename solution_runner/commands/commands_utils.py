@@ -54,7 +54,7 @@ def check_path_exists(path: Path, command: click.Command, path_type: str = None)
                 click.secho(f"File at {path} doesn't exist or isn't a file", fg="red")
         case _:
             return  # If everything is OK, exit the function before aborting.
-    click.Context(command).abort()
+    raise click.Abort()
 
 
 def send_aoc_request(method, endpoint: str, payload=None) -> str:

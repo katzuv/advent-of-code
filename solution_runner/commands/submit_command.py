@@ -58,7 +58,7 @@ def command(year: int, day: int, part: int):
         click.secho(
             "Solution directory does not exist. Run setup command first", fg="red"
         )
-        click.Context(command).abort()
+        raise click.Abort()
 
     input_path = (root_directory / Directories.INPUTS / year / day).with_suffix(
         FileExtensions.TEXT
