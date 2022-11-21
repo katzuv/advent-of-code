@@ -33,11 +33,10 @@ def get_setting(key: str) -> Any:
     return configuration[key]
 
 
-def check_path_exists(path: Path, command: click.Command, path_type: str = None):
+def check_path_exists(path: Path, path_type: str = None):
     """
     Abort if path doesn't exist.
     :param path: path to check
-    :param command: command to be passed to`click.Context` if aborting is needed
     :param path_type: optional "dir" or "file". If not passed, only check for existence. If passed, check for type.
     """
     match path_type:
