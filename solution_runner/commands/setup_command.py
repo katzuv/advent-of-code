@@ -57,7 +57,7 @@ def command(year: int, day: int, should_use_cache: bool):
         should_use_cache
         and input_file.exists()
         and input_file.stat().st_size
-        > 0  # Don't abort if the file exists, but it's empty.
+        > 0  # Abort only if the file exists, and it is not empty.
     ):
         _abort_input_file_already_exists(year, day)
 
