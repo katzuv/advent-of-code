@@ -29,7 +29,10 @@ def calculate_move_score(move: tuple[str, str]) -> int:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the total score if everything goes exactly according to our strategy guide."""
+    moves = get_moves(input_text)
+    total_score = sum(calculate_move_score(move) for move in moves)
+    return total_score
 
 
 if __name__ == "__main__":
