@@ -26,4 +26,7 @@ def get_answer(input_text: str):
 
 
 if __name__ == "__main__":
-    print(get_answer(sys.argv[1]))
+    try:
+        print(get_answer(sys.argv[1]))
+    except IndexError:
+        pass  # Don't crash if no input was passed through command line arguments.
