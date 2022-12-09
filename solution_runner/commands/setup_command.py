@@ -124,7 +124,12 @@ def _create_files(year_solutions_directory: Path, day: str):
     :param day: day of the challenge
     """
     solutions_directory = year_solutions_directory / f"d{day}"
-    solutions_directory.mkdir()
+    try:
+        solutions_directory.mkdir()
+    except FileExistsError as error:
+        if error.errno == errno.EEXIST:
+            return  # If solution directory already exists, don't create new solution files.
+        raise
     for part in consts.SOLUTION_PARTS:
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
         shutil.copy(consts.SOLUTION_FILE_TEMPLATE_PATH, filepath)
