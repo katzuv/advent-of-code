@@ -26,6 +26,17 @@ def choose_shape(opponent_move: str, outcome: str) -> str:
                 return our_shape
 
 
+def generate_moves(moves_outcomes: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """
+    :param moves_outcomes: list of (opponent move, desired outcome) couples
+    :return: list of (opponent move, desired move for desired outcome to happen) couples
+    """
+    return [
+        (opponent_move, choose_shape(opponent_move, outcome))
+        for opponent_move, outcome in moves_outcomes
+    ]
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
