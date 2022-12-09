@@ -25,7 +25,7 @@ ROOT_DIRECTORY_TYPE = click.Path(
 ROOT_DIRECTORY = "root directory"
 SOLUTION_PARTS = ("p1", "p2")
 SESSION_ID = "session ID"
-SOLUTION_FILE_CONTENT = Path(Path(__file__).parent, "solution_template.py").read_text()
+SOLUTION_FILE_TEMPLATE_PATH = Path(Path(__file__).parent, "solution_template.py")
 
 
 class Directories:
