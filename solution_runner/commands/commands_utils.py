@@ -49,7 +49,9 @@ def send_aoc_request(method, endpoint: str, payload=None) -> str:
     request = requests.request(
         method, url, headers=consts.USER_AGENT_HEADER, cookies=cookies, data=payload
     )
-    request.raise_for_status()
+    if not request.ok:
+        click.secho(request.text, fg="red")
+        raise click.Abort()
     return request.text
 
 
