@@ -9,6 +9,7 @@ def get_answer(input_text: str):
     sums = p1.get_calories_sums(inventories)
 
     descending_calories = sorted(sums, reverse=True)
+    return sum(descending_calories[:3])
 
 
 if __name__ == "__main__":
