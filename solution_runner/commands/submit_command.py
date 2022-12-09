@@ -65,9 +65,9 @@ def command(year: int, day: int, part: int):
         FileExtensions.TEXT
     )
     input_text = input_path.read_text()
-    solution_path = (root_directory / Directories.SOLUTIONS / year / day).with_suffix(
-        FileExtensions.PYTHON
-    )
+    solution_path = (
+        root_directory / Directories.SOLUTIONS / year / f"d{day}" / f"p{part}"
+    ).with_suffix(FileExtensions.PYTHON)
     answer = _get_answer(input_text, solution_path)
     result = _get_result_from_website(year, day, part, answer)
     parsed_result = _parse_result(result)
