@@ -10,6 +10,14 @@ def get_inventories(input_text: str) -> list[list[int]]:
     return [[int(item) for item in inventory.splitlines()] for inventory in inventories]
 
 
+def get_calories_sums(inventories: list[list[int]]):
+    """
+    :param: inventories: list of inventories
+    :return: list containing the sum of each inventory
+    """
+    return list(map(sum, inventories))
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
