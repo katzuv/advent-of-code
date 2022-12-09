@@ -1,3 +1,4 @@
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -123,7 +124,7 @@ def _create_files(year_solutions_directory: Path, day: str):
     solutions_directory.mkdir()
     for part in consts.SOLUTION_PARTS:
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
-        filepath.write_text(consts.SOLUTION_FILE_CONTENT)
+        shutil.copy(consts.SOLUTION_FILE_TEMPLATE_PATH, filepath)
 
 
 def _download_input(year: str, day: str, input_file: Path):
