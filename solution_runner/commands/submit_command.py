@@ -51,7 +51,7 @@ def _parse_result(result: str) -> tuple[str, bool]:
 def command(year: int, day: int, part: int):
     """Submit solution."""
     year = str(year)
-    day = str(day)
+    day = str(day).zfill(2)
 
     root_directory = get_setting(consts.ROOT_DIRECTORY)
     solutions_directory = root_directory / Directories.SOLUTIONS / year / f"d{day}"
