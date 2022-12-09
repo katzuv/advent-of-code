@@ -19,7 +19,10 @@ def get_calories_sums(inventories: list[list[int]]):
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the maximal amount of calories carried by a single elf."""
+    inventories = get_inventories(input_text)
+    sums = get_calories_sums(inventories)
+    return max(sums)
 
 
 if __name__ == "__main__":
