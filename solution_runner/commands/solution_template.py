@@ -5,7 +5,7 @@ def get_answer(input_text: str):
     raise NotImplementedError
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         print(get_answer(sys.argv[1]))
     except IndexError:
