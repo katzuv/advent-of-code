@@ -1,8 +1,13 @@
 import sys
 
+import p1
+
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the total calories carried by the top three Elves carrying the most calories."""
+    inventories = p1.get_inventories(input_text)
+    sums = p1.get_calories_sums(inventories)
+
 
 
 if __name__ == "__main__":
