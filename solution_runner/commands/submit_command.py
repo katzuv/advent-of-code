@@ -94,6 +94,7 @@ def _get_result_from_website(year: str, day: str, part: int, answer: str) -> str
     :return: response from the website
     """
     body = {"level": str(part), "answer": answer}
+    day = day.removeprefix(consts.ZERO)
     submit_endpoint = consts.SUBMIT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
     result = commands_utils.send_aoc_request(HttpMethods.POST, submit_endpoint, body)
     return result
