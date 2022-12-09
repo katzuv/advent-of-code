@@ -55,7 +55,6 @@ def command(year: int, day: int, should_use_cache: bool):
         should_use_cache and input_file.exists() and input_file.read_text()
     ):  # Abort if the file exists but it's empty.
         _abort_input_file_already_exists(year, day)
-    input_file.touch()
 
     _download_input(year, day, input_file)
 
