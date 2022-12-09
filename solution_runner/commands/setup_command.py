@@ -53,8 +53,11 @@ def command(year: int, day: int, should_use_cache: bool):
     input_file = (year_inputs_directory / day).with_suffix(FileExtensions.TEXT)
 
     if (
-        should_use_cache and input_file.exists() and input_file.stat().st_size == 0
-    ):  # Don't abort if the file exists, but it's empty.
+        should_use_cache
+        and input_file.exists()
+        and input_file.stat().st_size
+        == 0  # Don't abort if the file exists, but it's empty.
+    ):
         _abort_input_file_already_exists(year, day)
 
     _download_input(year, day, input_file)
