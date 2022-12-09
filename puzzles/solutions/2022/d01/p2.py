@@ -8,6 +8,7 @@ def get_answer(input_text: str):
     inventories = p1.get_inventories(input_text)
     sums = p1.get_calories_sums(inventories)
 
+    descending_calories = sorted(sums, reverse=True)
 
 
 if __name__ == "__main__":
