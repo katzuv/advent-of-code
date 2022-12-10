@@ -1,6 +1,9 @@
 import functools
 import sys
 
+import p1
+
+
 GROUP_SIZE = 3
 
 
@@ -27,7 +30,10 @@ def get_group_badge(group_rucksacks: list[str]) -> str:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the sum of the priorities of the item types that correspond to the badges of each three-Elf group."""
+    group_rucksacks = get_group_rucksacks(input_text)
+    badges = list(map(get_group_badge, group_rucksacks))
+    return sum((map(p1.get_item_type_priority, badges)))
 
 
 if __name__ == "__main__":
