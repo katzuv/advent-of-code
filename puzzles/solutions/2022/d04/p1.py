@@ -19,7 +19,12 @@ def get_sections(input_text: str) -> tuple[tuple[set[int], set[int]]]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the number of assignment pairs where one range fully contains the other."""
+    section_pairs = get_sections(input_text)
+    return sum(
+        first_section <= second_section or second_section <= first_section
+        for first_section, second_section in section_pairs
+    )
 
 
 if __name__ == "__main__":
