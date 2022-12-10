@@ -1,5 +1,10 @@
 import sys
 
+# Lowercase item types are numbered 1 through 26, uppercase item types are numbered 27 through 52.
+LOWERCASE_ITEM_TYPE_PRIORITY_ASCII_DIFFERENCE = ord("a") - 1
+UPPERCASE_ITEM_TYPE_PRIORITY_ASCII_DIFFERENCE = ord("A") - 27
+
+
 def get_rucksacks_compartments(
     input_text: str,
 ) -> list[tuple[set, set]]:
