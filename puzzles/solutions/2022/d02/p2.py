@@ -4,11 +4,6 @@ import p1
 import shapes
 
 
-DEFEAT = "X"
-DRAW = "Y"
-WIN = "Z"
-
-
 def choose_shape(opponent_move: str, outcome: str) -> str:
     """
     :param opponent_move: move the opponent played
