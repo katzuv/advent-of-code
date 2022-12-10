@@ -6,7 +6,7 @@ import shapes
 def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
     """
     :param input_text: puzzle input
-    :return: list of (opponent move, our move) couples
+    :return: list of (opponent move, our move) pairs
     """
     moves = input_text.splitlines()
     return tuple(tuple(move.split()) for move in moves)
@@ -14,7 +14,7 @@ def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
 
 def calculate_move_score(move: tuple[str, str]) -> int:
     """
-    :param move: couple of (opponent move, our move) couples
+    :param move: pair of (opponent move, our move) pairs
     :return: total score of the move
     """
     score = 0
