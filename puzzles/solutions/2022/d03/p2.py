@@ -1,3 +1,4 @@
+import functools
 import sys
 
 GROUP_SIZE = 3
@@ -14,6 +15,15 @@ def get_group_rucksacks(input_text: str) -> list[list[str]]:
         group_rucksacks = rucksacks[rucksack_number : rucksack_number + GROUP_SIZE]
         groups.append(group_rucksacks)
     return groups
+
+
+def get_group_badge(group_rucksacks: list[str]) -> str:
+    """
+    :param group_rucksacks: list of rucksacks of the group
+    :return: group badge, which is the item type which is common between all rucksacks
+    """
+    group_rucksacks = map(set, group_rucksacks)
+    return tuple(functools.reduce(set.intersection, group_rucksacks))[0]
 
 
 def get_answer(input_text: str):
