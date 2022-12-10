@@ -14,7 +14,7 @@ def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
 
 def calculate_move_score(move: tuple[str, str]) -> int:
     """
-    :param move: pair of (opponent move, our move) pairs
+    :param move: pair of (opponent move, our move)
     :return: total score of the move
     """
     score = 0
