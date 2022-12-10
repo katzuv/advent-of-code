@@ -19,7 +19,9 @@ def choose_shape(opponent_move: str, outcome: str) -> str:
     return mapping[opponent_move]
 
 
-def generate_moves(moves_outcomes: tuple[tuple[str, str]]) -> tuple[tuple[str, str], ...]:
+def generate_moves(
+    moves_outcomes: tuple[tuple[str, str]]
+) -> tuple[tuple[str, str], ...]:
     """
     :param moves_outcomes: list of (opponent move, desired outcome) pairs
     :return: list of (opponent move, desired move for desired outcome to happen) pairs
