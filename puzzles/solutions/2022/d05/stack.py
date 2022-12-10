@@ -20,3 +20,10 @@ class Stack:
         removed = self._crates[-amount:]
         self._crates = self._crates[:-amount]
         return removed
+
+    @property
+    def top(self) -> str:
+        """
+        :return: crate at the top of the stack
+        """
+        return self._crates[-1]
