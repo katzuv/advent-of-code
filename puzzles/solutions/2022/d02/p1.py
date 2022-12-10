@@ -8,6 +8,9 @@ def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
     :param input_text: puzzle input
     :return: list of (opponent move, our move) pairs
     """
+    input_text = input_text.translate(
+        str.maketrans(shapes.IDENTICAL_SHAPES)
+    )  # Replace opponent shapes with generic shapes.
     moves = input_text.splitlines()
     return tuple(tuple(move.split()) for move in moves)
 
