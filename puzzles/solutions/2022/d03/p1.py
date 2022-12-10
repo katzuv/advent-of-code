@@ -44,7 +44,13 @@ def get_item_type_priority(item_type: str) -> int:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the sum of the priorities of shared item types in all the rucksacks."""
+    rucksacks_compartments = get_rucksacks_compartments(input_text)
+    shared_items = "".join(
+        get_shared_item_type(first_compartment, second_compartment)
+        for first_compartment, second_compartment in rucksacks_compartments
+    )
+    return sum(map(get_item_type_priority, shared_items))
 
 
 if __name__ == "__main__":
