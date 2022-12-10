@@ -24,7 +24,7 @@ def calculate_move_score(move: tuple[str, str]) -> int:
     opponent_move, our_move = move
     if shapes.WINNING_MOVES[our_move] == opponent_move:
         score += shapes.WIN_SCORE
-    elif move[0] == move[1]:
+    elif opponent_move == our_move:
         score += shapes.DRAW_SCORE
 
     score += shapes.SHAPE_TO_SCORE[our_move]
