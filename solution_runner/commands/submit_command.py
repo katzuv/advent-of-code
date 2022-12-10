@@ -53,7 +53,7 @@ def _parse_result(result: str) -> tuple[str, bool]:
     "--no-submit",
     "should_print_only",
     show_default="submit",
-    default=True,
+    default=False,
     is_flag=True,
     help="should the answer be printed only or submitted too",
 )
