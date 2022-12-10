@@ -3,13 +3,13 @@ import sys
 import shapes
 
 
-def get_moves(input_text: str) -> list[tuple[str, str]]:
+def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
     """
     :param input_text: puzzle input
     :return: list of (opponent move, our move) couples
     """
     moves = input_text.splitlines()
-    return [tuple(move.split()) for move in moves]
+    return tuple(tuple(move.split()) for move in moves)
 
 
 def calculate_move_score(move: tuple[str, str]) -> int:
