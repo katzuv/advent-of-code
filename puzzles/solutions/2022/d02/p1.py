@@ -22,10 +22,10 @@ def calculate_move_score(move: tuple[str, str]) -> int:
     """
     score = 0
     opponent_move, our_move = move
-    if shapes.OUR_TO_OPPONENT_SHAPE_DEFEAT[our_move] == opponent_move:
-        score += 6
-    elif shapes.IDENTICAL_SHAPES[our_move] == opponent_move:
-        score += 3
+    if shapes.WINNING_MOVES[our_move] == opponent_move:
+        score += shapes.WIN_SCORE
+    elif move[0] == move[1]:
+        score += shapes.DRAW_SCORE
 
     score += shapes.SHAPE_TO_SCORE[our_move]
     return score
