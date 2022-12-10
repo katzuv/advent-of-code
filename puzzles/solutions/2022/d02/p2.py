@@ -11,7 +11,9 @@ def choose_shape(opponent_move: str, outcome: str) -> str:
     :return: shape to play for the desired outcome to happen
     """
     mapping = shapes.OUTCOME_TO_MAPPING[outcome]
-    return mapping[opponent_move]
+    for our_move in mapping:
+        if mapping[our_move] == opponent_move:
+            return our_move
 
 
 def generate_moves(
