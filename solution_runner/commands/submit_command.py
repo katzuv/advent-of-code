@@ -48,7 +48,16 @@ def _parse_result(result: str) -> tuple[str, bool]:
     required=True,
     help="puzzle part to submit",
 )
-def command(year: int, day: int, part: int):
+@click.option(
+    "-n",
+    "--no-submit",
+    "should_print_only",
+    show_default="submit",
+    default=True,
+    is_flag=True,
+    help="should the answer be printed only or submitted too",
+)
+def command(year: int, day: int, part: int, should_print_only: bool):
     """Submit solution."""
     year = str(year)
     day = str(day).zfill(2)
@@ -70,6 +79,9 @@ def command(year: int, day: int, part: int):
     ).with_suffix(FileExtensions.PYTHON)
     answer = _get_answer(input_text, solution_path)
     click.echo(f"Your answer: {answer}")
+
+    if should_print_only:
+        return
     result = _get_result_from_website(year, day, part, answer)
     parsed_result = _parse_result(result)
     _print_result(parsed_result)
