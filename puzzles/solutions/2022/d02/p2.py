@@ -1,5 +1,6 @@
 import sys
 
+import p1
 import shapes
 
 
@@ -38,7 +39,11 @@ def generate_moves(moves_outcomes: list[tuple[str, str]]) -> list[tuple[str, str
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the total score if everything goes exactly according to our actual strategy guide."""
+    moves_outcomes = p1.get_moves(input_text)
+    moves = generate_moves(moves_outcomes)
+    total_score = sum(p1.calculate_move_score(move) for move in moves)
+    return total_score
 
 
 if __name__ == "__main__":
