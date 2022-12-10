@@ -19,6 +19,7 @@ WINNING_MOVES = {
     PAPER: ROCK,
     SCISSORS: PAPER,
 }
+DRAW_MOVES = {shape: shape for shape in (ROCK, PAPER, SCISSORS)}
 LOSING_MOVES = {
     ROCK: PAPER,
     PAPER: SCISSORS,
