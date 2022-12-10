@@ -15,16 +15,8 @@ def choose_shape(opponent_move: str, outcome: str) -> str:
     :param outcome: desired outcome of the move
     :return: shape to play for the desired outcome to happen
     """
-    if outcome == DEFEAT:
-        return shapes.OPPONENT_TO_OUR_SHAPE_DEFEAT[opponent_move]
-    if outcome == DRAW:
-        for our_shape, opponent_shape in shapes.IDENTICAL_SHAPES.items():
-            if opponent_shape == opponent_move:
-                return our_shape
-    if outcome == WIN:
-        for our_shape, opponent_shape in shapes.OUR_TO_OPPONENT_SHAPE_DEFEAT.items():
-            if opponent_shape == opponent_move:
-                return our_shape
+    mapping = shapes.OUTCOME_TO_MAPPING[outcome]
+    return mapping[opponent_move]
 
 
 def generate_moves(moves_outcomes: tuple[tuple[str, str]]) -> tuple[tuple[str, str], ...]:
