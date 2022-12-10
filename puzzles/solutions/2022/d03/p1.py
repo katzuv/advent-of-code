@@ -30,6 +30,19 @@ def get_shared_item_type(first_compartment: set, second_compartment: set) -> str
     return (first_compartment & second_compartment).pop()
 
 
+def get_item_type_priority(item_type: str) -> int:
+    """
+    :param item_type: item type
+    :return: priority of the item type
+    """
+    difference = (
+        LOWERCASE_ITEM_TYPE_PRIORITY_ASCII_DIFFERENCE
+        if item_type.islower()
+        else UPPERCASE_ITEM_TYPE_PRIORITY_ASCII_DIFFERENCE
+    )
+    return ord(item_type) - difference
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
