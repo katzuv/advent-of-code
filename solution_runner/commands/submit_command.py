@@ -79,6 +79,9 @@ def command(year: int, day: int, part: int, should_print_only: bool):
     ).with_suffix(FileExtensions.PYTHON)
     answer = _get_answer(input_text, solution_path)
     click.echo(f"Your answer: {answer}")
+
+    if should_print_only:
+        return
     result = _get_result_from_website(year, day, part, answer)
     parsed_result = _parse_result(result)
     _print_result(parsed_result)
