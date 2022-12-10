@@ -1,6 +1,6 @@
 import sys
 
-import shapes
+import consts
 
 
 def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
@@ -9,7 +9,7 @@ def get_moves(input_text: str) -> tuple[tuple[str, str], ...]:
     :return: list of (opponent move, our move) pairs
     """
     input_text = input_text.translate(
-        str.maketrans(shapes.IDENTICAL_SHAPES)
+        str.maketrans(consts.IDENTICAL_SHAPES)
     )  # Replace opponent shapes with generic shapes.
     moves = input_text.splitlines()
     return tuple(tuple(move.split()) for move in moves)
@@ -22,12 +22,12 @@ def calculate_move_score(move: tuple[str, str]) -> int:
     """
     score = 0
     opponent_move, our_move = move
-    if shapes.WINNING_MOVES[our_move] == opponent_move:
-        score += shapes.WIN_SCORE
+    if consts.WINNING_MOVES[our_move] == opponent_move:
+        score += consts.WIN_SCORE
     elif opponent_move == our_move:
-        score += shapes.DRAW_SCORE
+        score += consts.DRAW_SCORE
 
-    score += shapes.SHAPE_TO_SCORE[our_move]
+    score += consts.SHAPE_TO_SCORE[our_move]
     return score
 
 

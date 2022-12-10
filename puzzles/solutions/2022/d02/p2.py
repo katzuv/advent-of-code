@@ -1,7 +1,7 @@
 import sys
 
+import consts
 import p1
-import shapes
 
 
 def choose_shape(opponent_move: str, outcome: str) -> str:
@@ -10,7 +10,7 @@ def choose_shape(opponent_move: str, outcome: str) -> str:
     :param outcome: desired outcome of the move
     :return: shape to play for the desired outcome to happen
     """
-    mapping = shapes.OUTCOME_TO_MAPPING[outcome]
+    mapping = consts.OUTCOME_TO_MAPPING[outcome]
     for our_move in mapping:
         if mapping[our_move] == opponent_move:
             return our_move
