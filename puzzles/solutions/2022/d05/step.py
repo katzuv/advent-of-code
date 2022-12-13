@@ -7,3 +7,4 @@ class Step:
 
     amount: int
     src: int
+    dst: int
