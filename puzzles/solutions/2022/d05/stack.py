@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Sequence, Iterable
 
 
 class Stack:
@@ -17,7 +17,7 @@ class Stack:
         """
         return " ".join(self._crates)
 
-    def remove_crates(self, amount: int) -> list[str]:
+    def remove_crates(self, amount: int) -> Iterable[str]:
         """
         Remove crates from the top of the stack and return a list of them.
         :param amount: amount of crates to remove
@@ -25,14 +25,14 @@ class Stack:
         """
         removed = self._crates[-amount:]
         self._crates = self._crates[:-amount]
-        return removed
+        return reversed(removed)
 
     def add_crates(self, crates: Iterable[str]):
         """
         Add crates to the stack.
         :param crates: crates to add to the stack
         """
-        self._crates.extend(reversed(crates))
+        self._crates.extend(crates)
 
     @property
     def top(self) -> str:
