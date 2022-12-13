@@ -1,5 +1,8 @@
+import re
+
 import consts
 from stack import Stack
+from step import Step
 
 
 def get_starting_stacks(stacks_input: str) -> tuple[Stack]:
@@ -32,3 +35,18 @@ def get_starting_stacks(stacks_input: str) -> tuple[Stack]:
                 stacks[stack_number].add_crates(character)
 
     return stacks
+
+
+def get_procedure_steps(procedure_input: str) -> tuple[Step]:
+    """
+    :param procedure_input: procedure steps part of the puzzle input
+    :return: tuple of `Step`s parsed from the input
+    """
+    steps = []
+    for line in procedure_input.splitlines():
+        values = re.match(
+            r"move (?P<amount>\d+) from (?P<src>\d+) to (?P<dst>\d+)", line
+        ).groupdict()
+        values = {field: int(value) for field, value in values.items()}
+        steps.append(Step(**values))
+    return tuple(steps)
