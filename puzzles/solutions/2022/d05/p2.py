@@ -1,6 +1,8 @@
 import sys
 from typing import Sequence
 
+import consts
+import input_parsing
 from stack import Stack
 from step import Step
 
@@ -18,7 +20,16 @@ def execute_transfer_step(stacks: Sequence[Stack], step: Step):
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """
+    Return the crates that end up on top of each stack after the rearrangement procedure completes,
+    now when crates retain their order.
+    """
+    starting_stacks, steps = input_text.split(consts.INPUT_PARTS_SPLITTER)
+    stacks = input_parsing.get_starting_stacks(starting_stacks)
+    steps = input_parsing.get_procedure_steps(steps)
+    for step in steps:
+        execute_transfer_step(stacks, step)
+    return "".join(stack.top for stack in stacks)
 
 
 if __name__ == "__main__":
