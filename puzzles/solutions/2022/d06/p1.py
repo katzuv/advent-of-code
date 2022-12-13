@@ -16,7 +16,8 @@ def get_unique_sequence_start_index(datastream: str, minimum_unique_sequence_len
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return how many characters need to be processed before the first start-of-packet marker is detected."""
+    return get_unique_sequence_start_index(input_text, START_OF_PACKET_MINIMUM_UNIQUE_SEQUENCE_LENGTH)
 
 
 if __name__ == "__main__":
