@@ -21,6 +21,13 @@ class Stack:
         self._crates = self._crates[:-amount]
         return removed
 
+    def add_crates(self, crates: Iterable[str]):
+        """
+        Add crates to the stack.
+        :param crates: crates to add to the stack
+        """
+        self._crates.extend(reversed(crates))
+
     @property
     def top(self) -> str:
         """
