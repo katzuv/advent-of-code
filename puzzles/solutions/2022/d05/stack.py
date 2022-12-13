@@ -11,6 +11,12 @@ class Stack:
         """
         self._crates = list(initial_crates)
 
+    def __str__(self) -> str:
+        """
+        :return: a string representation of the crates in the stack
+        """
+        return " ".join(self._crates)
+
     def remove_crates(self, amount: int) -> list[str]:
         """
         Remove crates from the top of the stack and return a list of them.
