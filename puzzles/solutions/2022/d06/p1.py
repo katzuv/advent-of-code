@@ -3,6 +3,17 @@ import sys
 
 START_OF_PACKET_MINIMUM_UNIQUE_SEQUENCE_LENGTH = 4
 
+def get_unique_sequence_start_index(datastream: str, minimum_unique_sequence_length:int) -> int:
+    """
+    :param datastream: datastream to process
+    :param minimum_unique_sequence_length: minimum length of a unique sequence
+    :return: start index of the first unique sequence
+    """
+    for index in range(minimum_unique_sequence_length - 1, len(datastream)):
+        sequence = datastream[index - minimum_unique_sequence_length:index]
+        if len(set(sequence)) == minimum_unique_sequence_length:
+            return index
+
 
 def get_answer(input_text: str):
     raise NotImplementedError
