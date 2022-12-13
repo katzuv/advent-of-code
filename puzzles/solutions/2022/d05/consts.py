@@ -1,0 +1,1 @@
+INPUT_PARTS_SPLITTER = "\n\n"
