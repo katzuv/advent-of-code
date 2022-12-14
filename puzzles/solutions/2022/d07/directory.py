@@ -22,3 +22,9 @@ class Directory:
         :param file: file to add to the directory
         """
         self._files.append(file)
+
+    def add_subdirectory(self, subdirectory: Self) -> None:
+        """
+        :param subdirectory: subdirectory to add to the directory
+        """
+        self._subdirectories.append(subdirectory)
