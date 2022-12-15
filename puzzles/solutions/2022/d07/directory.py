@@ -28,3 +28,10 @@ class Directory:
         :param subdirectory: subdirectory to add to the directory
         """
         self._subdirectories.append(subdirectory)
+
+    @property
+    def files(self) -> tuple[File, ...]:
+        """
+        :return: files in the directory
+        """
+        return tuple(self._files)
