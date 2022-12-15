@@ -35,3 +35,10 @@ class Directory:
         :return: files in the directory
         """
         return tuple(self._files)
+
+    @property
+    def subdirectories(self) -> tuple[Self, ...]:
+        """
+        :return: subdirectories of the directory
+        """
+        return tuple(self._subdirectories)
