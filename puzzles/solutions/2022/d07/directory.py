@@ -42,3 +42,12 @@ class Directory:
         :return: subdirectories of the directory
         """
         return tuple(self._subdirectories)
+
+    @property
+    def size(self) -> int:
+        """
+        :return: size of the files and subdirectories in the directory
+        """
+        return sum(file.size for file in self.files) + sum(
+            subdirectory.size for subdirectory in self.subdirectories
+        )
