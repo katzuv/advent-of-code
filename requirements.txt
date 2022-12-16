@@ -3,3 +3,4 @@ click
 pyyaml
 beautifulsoup4
 black
+tzdata
