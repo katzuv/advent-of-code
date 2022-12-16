@@ -65,7 +65,13 @@ def get_filesystem(terminal_output: str) -> list[Directory]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the sum of the total sizes of all the directories with a total size of at most 100000."""
+    filesystem = get_filesystem(input_text)
+    return sum(
+        directory.size
+        for directory in filesystem
+        if directory.size < consts.SMALL_DIRECTORY_SIZE_THRESHOLD
+    )
 
 
 if __name__ == "__main__":
