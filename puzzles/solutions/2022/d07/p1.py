@@ -6,6 +6,18 @@ import input_parsing
 from directory import Directory
 
 
+def get_commands(input_text: str) -> tuple[str, ...]:
+    """
+    :param input_text: puzzle input
+    :return: tuple of commands from the terminal output
+    """
+    # Remove the first `$` so we don't have an empty string after running `split()`.
+    input_text = input_text[1:]
+    # First command is `cd /` which we can skip.
+    commands = input_text.split(consts.COMMANDS_SEPARATOR)[1:]
+    return tuple(command.strip() for command in commands)
+
+
 def build_filesystem(commands: Sequence[str]) -> Directory:
     """
     Build the filesystem according to the given commands and return the root directory.
