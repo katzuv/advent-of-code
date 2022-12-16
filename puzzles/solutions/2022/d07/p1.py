@@ -37,6 +37,22 @@ def build_filesystem(commands: Sequence[str]) -> Directory:
     return root
 
 
+def get_all_subdirectories(
+    directory: Directory, subdirectories=None
+) -> list[Directory]:
+    """
+    :param directory: directory to traverse
+    :param subdirectories: list to add subdirectories to
+    :return: subdirectories under the given directory
+    """
+    if subdirectories is None:
+        subdirectories = list()
+    subdirectories.append(directory)
+    for subdirectory in directory.subdirectories:
+        subdirectories.extend(get_all_subdirectories(subdirectory))
+    return subdirectories
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
