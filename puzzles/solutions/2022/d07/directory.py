@@ -17,6 +17,17 @@ class Directory:
         self._files = []
         self._subdirectories = []
 
+    def __str__(self):
+        """
+        :return: string representation of the directory, including its name, size, files, and subdirectories
+        """
+        files = ", ".join(file.name for file in self.files) or "no files"
+        subdirectories = (
+            ", ".join(subdirectory.name for subdirectory in self.subdirectories)
+            or "no subdirs"
+        )
+        return f"{self.name} ({self.size}): {files}; {subdirectories}"
+
     def add_file(self, file: File) -> None:
         """
         :param file: file to add to the directory
