@@ -37,6 +37,18 @@ def get_adjacent_trees(
     return top, bottom, left, right
 
 
+def is_tree_visible(
+    tree_height: int, adjacent_trees: tuple[tuple[int, ...], ...]
+) -> bool:
+    return any(
+        tree_height
+        > max(
+            current_adjacent_trees or (MAX_TREE_HEIGHT,)
+        )  # `max` raises a `ValueError` if given an empty iterator.
+        for current_adjacent_trees in adjacent_trees
+    )
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
