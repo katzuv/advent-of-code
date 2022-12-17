@@ -1,4 +1,5 @@
 import sys
+from typing import Sequence
 
 
 def get_trees_map(input_text: str) -> tuple[tuple[int, ...], ...]:
@@ -7,6 +8,30 @@ def get_trees_map(input_text: str) -> tuple[tuple[int, ...], ...]:
     :return: tuple of tuples representing the map of the tress
     """
     return tuple(tuple(map(int, row)) for row in input_text.splitlines())
+
+
+def get_adjacent_trees(
+    trees_map: Sequence[Sequence[int]],
+    map_length: int,
+    map_width: int,
+    tree_row: int,
+    tree_column: int,
+) -> tuple[tuple[int, ...], ...]:
+    """
+    :param trees_map: map of the trees
+    :param map_length: length of the map
+    :param map_width: width of the map
+    :param tree_row: row number the tree is on
+    :param tree_column: column number the tree is on
+    :return: adjacent trees of the tree which is on the given coordinates, without the tree itself
+    """
+    column = [trees_map[row][tree_column] for row in range(map_length)]
+    top = tuple(column[:tree_row])
+    bottom = tuple(column[tree_row + 1 :])
+    row = [trees_map[tree_row][column] for column in range(map_width)]
+    left = tuple(row[:tree_column])
+    right = tuple(row[tree_column + 1 :])
+    return top, bottom, left, right
 
 
 def get_answer(input_text: str):
