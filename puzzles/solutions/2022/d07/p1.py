@@ -53,6 +53,17 @@ def get_all_subdirectories(
     return subdirectories
 
 
+def get_filesystem(terminal_output: str) -> list[Directory]:
+    """
+    :param terminal_output: puzzle input
+    :return: filesystem built according to the terminal output
+    """
+    commands = get_commands(terminal_output)
+    root = build_filesystem(commands)
+    filesystem = get_all_subdirectories(root)
+    return filesystem
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
