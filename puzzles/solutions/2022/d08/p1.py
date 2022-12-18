@@ -1,3 +1,4 @@
+import itertools
 import sys
 from typing import Sequence
 
@@ -59,7 +60,21 @@ def get_edge_trees_amount(map_length: int, map_width: int) -> int:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    trees_map = get_trees_map(input_text)
+    map_length = len(trees_map)
+    map_width = len(trees_map[0])
+
+    visible_tress = 0
+    for row, column in itertools.product(
+        range(1, map_length - 1), range(1, map_width - 1)
+    ):
+        adjacent_trees = get_adjacent_trees(
+            trees_map, map_length, map_width, row, column
+        )
+        tree_height = trees_map[row][column]
+        if is_tree_visible(tree_height, adjacent_trees):
+            visible_tress += 1
+    return visible_tress + get_edge_trees_amount(map_length, map_width)
 
 
 if __name__ == "__main__":
