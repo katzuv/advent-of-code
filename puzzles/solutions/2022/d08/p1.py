@@ -2,6 +2,9 @@ import sys
 from typing import Sequence
 
 
+MAX_TREE_HEIGHT = 10
+
+
 def get_trees_map(input_text: str) -> tuple[tuple[int, ...], ...]:
     """
     :param input_text: puzzle input
