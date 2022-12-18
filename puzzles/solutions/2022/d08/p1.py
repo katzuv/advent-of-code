@@ -49,6 +49,15 @@ def is_tree_visible(
     )
 
 
+def get_edge_trees_amount(map_length: int, map_width: int) -> int:
+    """
+    :param map_length: length of the map
+    :param map_width: width of the map
+    :return: amount of trees on the edges of the map
+    """
+    return map_length * 2 + (map_width - 2) * 2
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
