@@ -26,6 +26,23 @@ def get_adjacent_trees(
     return tuple(reversed(top)), bottom, tuple(reversed(left)), right
 
 
+def get_tree_scenic_score(
+    tree_height: int, adjacent_trees: Sequence[Sequence[int, ...], ...]
+) -> int:
+    """
+    :param tree_height: height of the tree
+    :param adjacent_trees: sequences of adjacent trees
+    :return: the tree's scenic score
+    """
+    scenic_score = 1
+    for trees_run in adjacent_trees:
+        trees_until_blocking_tree = len(
+            tuple(itertools.takewhile(lambda tree: tree <= tree_height, trees_run))
+        )
+        scenic_score *= trees_until_blocking_tree
+    return scenic_score
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
