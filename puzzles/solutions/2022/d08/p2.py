@@ -1,3 +1,4 @@
+import itertools
 import sys
 from typing import Sequence
 import p1
@@ -27,7 +28,7 @@ def get_adjacent_trees(
 
 
 def get_tree_scenic_score(
-    tree_height: int, adjacent_trees: Sequence[Sequence[int, ...], ...]
+    tree_height: int, adjacent_trees: Sequence[Sequence[int]]
 ) -> int:
     """
     :param tree_height: height of the tree
@@ -37,8 +38,12 @@ def get_tree_scenic_score(
     scenic_score = 1
     for trees_run in adjacent_trees:
         trees_until_blocking_tree = len(
-            tuple(itertools.takewhile(lambda tree: tree <= tree_height, trees_run))
+            tuple(itertools.takewhile(lambda tree: tree < tree_height, trees_run))
         )
+        # Blocking trees are seen, and because `takewhile` stops before the blocking tree, we add a tree
+        # to the viewing distance, but only if we haven't already reached the end of the line.
+        if trees_until_blocking_tree < len(trees_run):
+            trees_until_blocking_tree += 1
         scenic_score *= trees_until_blocking_tree
     return scenic_score
 
