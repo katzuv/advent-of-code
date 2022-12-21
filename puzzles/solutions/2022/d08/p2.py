@@ -49,7 +49,21 @@ def get_tree_scenic_score(
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the highest scenic score possible for any tree."""
+    trees_map = p1.get_trees_map(input_text)
+    map_length = len(trees_map)
+    map_width = len(trees_map[0])
+
+    highest_scenic_score = 0
+    for row, column in itertools.product(range(map_length), range(map_width)):
+        tree_height = trees_map[row][column]
+        adjacent_trees = get_adjacent_trees(
+            trees_map, map_length, map_width, row, column
+        )
+        scenic_score = get_tree_scenic_score(tree_height, adjacent_trees)
+        highest_scenic_score = max(highest_scenic_score, scenic_score)
+
+    return highest_scenic_score
 
 
 if __name__ == "__main__":
