@@ -1,5 +1,9 @@
 import dataclasses
 
+from typing import Self
+
+import consts
+
 
 @dataclasses.dataclass
 class Knot:
@@ -16,3 +20,13 @@ class Knot:
         x, y = step
         self.row += x
         self.column += y
+
+    def is_touching(self, other: Self) -> bool:
+        """
+        :param other: other knot
+        :return: whether this knot and the other knot are touching
+        """
+        return (
+            abs(self.row - other.row) < consts.FAR_DISTANCE
+            and abs(self.column - other.column) < consts.FAR_DISTANCE
+        )
