@@ -9,7 +9,7 @@ CONTEXT = {"help_option_names": ["-h", "--help"]}
 @click.group(context_settings=CONTEXT)
 def cli() -> click.Group:
     """
-    Main CLI holding all Advent of Code related commands.
+    Make your Advent of Code journey easier.
 
     For more information about Advent of Code, see https://adventofcode.com.
     """
