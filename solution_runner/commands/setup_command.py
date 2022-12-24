@@ -19,14 +19,14 @@ _default_year = commands_utils.get_default_year()
     type=click.IntRange(consts.FIRST_AOC_YEAR, _default_year),
     default=_default_year,
     show_default=f"last year: {_default_year}",
-    help="year of puzzle setting up solution for",
+    help="year of puzzle to set up solution for",
 )
 @click.option(
     "-d",
     "--day",
     type=consts.ADVENT_DAYS_RANGE,
     required=True,
-    help="day of puzzle setting up solution for",
+    help="day of puzzle to set up solution for",
 )
 @click.option(
     "--use-cache/--ignore-cache",
