@@ -1,6 +1,7 @@
 import sys
 from typing import Iterator
 
+from knot import Knot
 import consts
 
 
@@ -40,7 +41,9 @@ def get_visited_positions_amount(
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the number of positions the tail of the rope visits at least once, when the rope has total 2 knots."""
+    steps = get_steps(input_text)
+    return get_visited_positions_amount(steps, 2)
 
 
 if __name__ == "__main__":
