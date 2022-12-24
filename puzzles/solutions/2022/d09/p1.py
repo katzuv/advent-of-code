@@ -18,6 +18,27 @@ def get_steps(input_text: str) -> Iterator[tuple[int, int]]:
     return tuple(steps)
 
 
+def get_visited_positions_amount(
+    steps: Iterator[tuple[int, int]], knots_amount: int
+) -> int:
+    """
+    :param steps: sequence of steps, one by one
+    :param knots_amount: amount of knots in the rope
+    :return: number of positions the tail of the rope visits at least once
+    """
+    knots = [Knot(0, 0) for _ in range(knots_amount)]
+    head = knots[0]
+    tail = knots[-1]
+    visited_positions = set()
+    for step in steps:
+        head.move(step)
+        for index in range(1, knots_amount):
+            # Move each knot according to the knot it follows.
+            knots[index].move_to_other(knots[index - 1])
+        visited_positions.add((tail.row, tail.column))
+    return len(visited_positions)
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
