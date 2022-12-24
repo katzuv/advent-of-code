@@ -32,7 +32,7 @@ def _parse_result(result: str) -> tuple[str, bool]:
     type=click.IntRange(consts.FIRST_AOC_YEAR, _default_year),
     default=_default_year,
     show_default=f"last year: {_default_year}",
-    help="year of puzzle setting up solution for",
+    help="year of puzzle to submit",
 )
 @click.option(
     "-d",
