@@ -128,7 +128,7 @@ def _get_answer(input_text: str, solution_path: Path) -> str:
         )
     # If an error occurred in the called solution file, print the exception and abort.
     except subprocess.CalledProcessError as error:
-        print(error.stderr)
+        click.secho(error.stderr, fg="red")
         raise click.Abort()
 
     solution = result.stdout.strip()
