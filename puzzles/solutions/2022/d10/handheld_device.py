@@ -30,3 +30,17 @@ class HandheldDevice:
     @property
     def is_ready_for_next(self) -> bool:
         return self._cpu.is_ready_for_next
+
+    def draw_current_pixel_if_needed(self) -> None:
+        """Draw the pixel under the sprite if the CRT is under it."""
+        current_pixel_row, current_pixel_column = divmod(
+            self._cpu.cycle, self._SCREEN_WIDTH
+        )
+        current_x_register = self._cpu.x_register
+        sprite_boundaries = (
+            current_x_register - 1,
+            current_x_register,
+            current_x_register + 1,
+        )
+        if current_pixel_column in sprite_boundaries:
+            self._screen[current_pixel_row][current_pixel_column] = self._LIT_PIXEL
