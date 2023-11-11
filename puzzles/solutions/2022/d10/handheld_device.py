@@ -26,3 +26,7 @@ class HandheldDevice:
         :param parameters: instruction parameters
         """
         self._cpu.run(opcode, parameters)
+
+    @property
+    def is_ready_for_next(self) -> bool:
+        return self._cpu.is_ready_for_next
