@@ -25,6 +25,13 @@ class CPU:
         """
         return self._cycle
 
+    @property
+    def x_register(self) -> int:
+        """
+        :return: the current value of the CPU's x register
+        """
+        return self._x_register
+
     def run(self, opcode: str, parameters: Sequence[int]) -> None:
         """
         Run the given instruction.
@@ -35,7 +42,7 @@ class CPU:
         """
         self._cycle += 1
         if self.cycle == self._interesting_cycle:
-            signal_strength = self.cycle * self._x_register
+            signal_strength = self.cycle * self.x_register
             self.interesting_signal_strengths_sum += signal_strength
             self._interesting_cycle += self._INTERESTING_CYCLES_DIFFERENCE
 
