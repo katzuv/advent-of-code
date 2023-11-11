@@ -14,3 +14,8 @@ class CPU:
 
         self._interesting_cycle = self._INITIAL_INTERESTING_CYCLE
         self.interesting_signal_strengths_sum = 0
+
+    def _finish_instruction(self) -> None:
+        """Set the cycle in instruction counter to zero and mark the CPU as ready for the next instruction."""
+        self._cycle_in_instruction = 0
+        self.is_ready_for_next = True
