@@ -1,6 +1,8 @@
 import sys
 from typing import Iterator
 
+from cpu import CPU
+
 
 def get_instructions(input_text: str) -> Iterator[tuple[str, tuple[int, ...]]]:
     """
@@ -13,7 +15,20 @@ def get_instructions(input_text: str) -> Iterator[tuple[str, tuple[int, ...]]]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the sum of signal strengths during the 20th, 60th, 100th, 140th, 180th, and 220th cycles of the CPU."""
+    cpu = CPU()
+    instructions = get_instructions(input_text)
+    instruction = next(instructions)
+    while True:
+        instruction_opcode, parameters = instruction
+        cpu.run(instruction_opcode, parameters)
+        if cpu.is_ready_for_next:
+            try:
+                instruction = next(instructions)
+            except StopIteration:
+                break
+
+    return cpu.interesting_signal_strengths_sum
 
 
 if __name__ == "__main__":
