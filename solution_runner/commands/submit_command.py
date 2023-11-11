@@ -78,7 +78,7 @@ def command(year: int, day: int, part: int, should_print_only: bool):
         root_directory / Directories.SOLUTIONS / year / f"d{day}" / f"p{part}"
     ).with_suffix(FileExtensions.PYTHON)
     answer = _get_answer(input_text, solution_path)
-    click.echo(f"Your answer: {answer}")
+    click.echo(f"Your answer:\n{answer}")
 
     if should_print_only:
         return
