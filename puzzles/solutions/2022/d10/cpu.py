@@ -26,3 +26,12 @@ class CPU:
     def _noop(self, parameters: Sequence[int]) -> None:
         """Handle `noop` instruction."""
         self._finish_instruction()
+
+    def _addx(self, parameters: Sequence[int]) -> None:
+        """Handle `addx` instruction."""
+        if self._cycle_in_instruction == 0:
+            self._cycle_in_instruction += 1
+            self.is_ready_for_next = False
+            return
+        self._x_register += parameters[0]
+        self._finish_instruction()
