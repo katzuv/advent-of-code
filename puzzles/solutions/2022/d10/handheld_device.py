@@ -5,3 +5,4 @@ class HandheldDevice:
     _SCREEN_HEIGHT = 6
 
     _DARK_PIXEL = "."
+    _LIT_PIXEL = "#"
