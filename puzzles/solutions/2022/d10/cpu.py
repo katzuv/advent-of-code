@@ -18,6 +18,13 @@ class CPU:
         self._interesting_cycle = self._INITIAL_INTERESTING_CYCLE
         self.interesting_signal_strengths_sum = 0
 
+    @property
+    def cycle(self) -> int:
+        """
+        :return: the current CPU's cycle
+        """
+        return self._cycle
+
     def run(self, opcode: str, parameters: Sequence[int]) -> None:
         """
         Run the given instruction.
@@ -27,8 +34,8 @@ class CPU:
         :param parameters: instruction parameters
         """
         self._cycle += 1
-        if self._cycle == self._interesting_cycle:
-            signal_strength = self._cycle * self._x_register
+        if self.cycle == self._interesting_cycle:
+            signal_strength = self.cycle * self._x_register
             self.interesting_signal_strengths_sum += signal_strength
             self._interesting_cycle += self._INTERESTING_CYCLES_DIFFERENCE
 
