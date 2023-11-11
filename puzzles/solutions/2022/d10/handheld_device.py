@@ -44,3 +44,9 @@ class HandheldDevice:
         )
         if current_pixel_column in sprite_boundaries:
             self._screen[current_pixel_row][current_pixel_column] = self._LIT_PIXEL
+
+    def render_screen(self) -> str:
+        """
+        :return: rendered and prettified version of the screen
+        """
+        return "\n".join("".join(row) for row in self._screen)
