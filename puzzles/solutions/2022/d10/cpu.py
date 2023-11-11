@@ -35,3 +35,5 @@ class CPU:
             return
         self._x_register += parameters[0]
         self._finish_instruction()
+
+    _INSTRUCTION_TO_HANDLER = {"noop": _noop, "addx": _addx}
