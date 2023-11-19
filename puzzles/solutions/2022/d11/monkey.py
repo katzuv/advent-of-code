@@ -23,3 +23,11 @@ class Monkey:
         """
         other.items.append(item_to_throw)
         self.inspected_items_amount += 1
+
+    def empty_items(self) -> None:
+        """
+        Empty the items list of the monkey.
+
+        Use when the monkey's turn ends (monkeys have no items at the end of the round).
+        """
+        self.items = []
