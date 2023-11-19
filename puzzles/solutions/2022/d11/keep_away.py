@@ -35,3 +35,9 @@ class KeepAway:
         for item in items:
             self._handle_item(item, monkey)
         monkey.empty_items()
+
+    def run(self) -> None:
+        """Run the Keep Away game."""
+        for _ in range(self._ROUNDS_AMOUNT):
+            for monkey in self._monkeys:
+                self._run_turn(monkey)
