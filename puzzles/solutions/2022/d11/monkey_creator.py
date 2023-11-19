@@ -1,6 +1,8 @@
-from typing import Callable
+from typing import Sequence, Callable
 import re
 import operator
+
+from monkey import Monkey
 
 
 _FIRST_PARAMETER = "first_parameter"
@@ -8,6 +10,34 @@ _OPERATOR = "operator"
 _SECOND_PARAMETER = "second_parameter"
 _OLD = "old"
 PLUS_SIGN = "+"
+
+
+def create_monkey(monkey_attributes: Sequence[str]) -> Monkey:
+    """
+    :param monkey_attributes: list of lines containing the monkey attributes
+    :return: monkey created from the attributes
+    """
+    starting_items_match = re.findall(r"\b\d+\b", monkey_attributes[0])
+    starting_items = list(int(item) for item in starting_items_match)
+
+    worry_function = _get_worry_function(monkey_attributes[1])
+
+    test_divisor_match = re.search(r"\d+", monkey_attributes[2])
+    test_divisor = int(test_divisor_match.group())
+
+    true_test_result_monkey_number_match = re.search(r"\d+", monkey_attributes[3])
+    true_test_result_monkey_number = int(true_test_result_monkey_number_match.group())
+
+    false_test_result_monkey_number_match = re.search(r"\d+", monkey_attributes[4])
+    false_test_result_monkey_number = int(false_test_result_monkey_number_match.group())
+
+    return Monkey(
+        starting_items,
+        worry_function,
+        test_divisor,
+        true_test_result_monkey_number,
+        false_test_result_monkey_number,
+    )
 
 
 def _get_worry_function(
