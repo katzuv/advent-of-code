@@ -24,3 +24,13 @@ class KeepAway:
             else monkey.false_test_result_monkey_number
         )
         monkey.throw(self._monkeys[monkey_number_to_throw_item_to], worry_level)
+
+    def _run_turn(self, monkey: Monkey) -> None:
+        """
+        Run a turn.
+        :param monkey: monkey who plays the current turn
+        """
+        items = monkey.items[:]
+        for item in items:
+            self._handle_item(item, monkey)
+        monkey.empty_items()
