@@ -1,6 +1,7 @@
 import sys
 from monkey import Monkey
 from monkey_creator import create_monkey
+from keep_away import KeepAway
 
 
 def create_monkeys(input_text: str) -> list[Monkey]:
@@ -17,7 +18,11 @@ def create_monkeys(input_text: str) -> list[Monkey]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Get the monkey business level at the end of the Keep Away game."""
+    monkeys = create_monkeys(input_text)
+    game = KeepAway(monkeys)
+    game.run()
+    return game.get_monkey_business_level()
 
 
 if __name__ == "__main__":
