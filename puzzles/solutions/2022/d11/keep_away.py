@@ -41,3 +41,17 @@ class KeepAway:
         for _ in range(self._ROUNDS_AMOUNT):
             for monkey in self._monkeys:
                 self._run_turn(monkey)
+
+    def get_monkey_business_level(self) -> int:
+        """
+        :return: monkey business level, which is the product of the inspected items amount of the two most active
+        monkeys in the game.
+        """
+        two_most_active_monkeys = sorted(
+            self._monkeys, key=lambda monkey: monkey.inspected_items_amount
+        )[-2:]
+        monkey_business = (
+            two_most_active_monkeys[0].inspected_items_amount
+            * two_most_active_monkeys[1].inspected_items_amount
+        )
+        return monkey_business
