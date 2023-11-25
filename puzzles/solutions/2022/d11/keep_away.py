@@ -6,8 +6,6 @@ from monkey import Monkey
 class KeepAway:
     """Class managing the monkeys' Keep Away game."""
 
-    _RELIEF_WORRY_REDUCTION_FACTOR = 3
-
     def __init__(
         self,
         monkeys: list[Monkey],
@@ -26,7 +24,7 @@ class KeepAway:
         """
         worry_level = item
         worry_level = monkey.worry_function(worry_level)
-        worry_level //= self._RELIEF_WORRY_REDUCTION_FACTOR
+        worry_level = self._worry_level_modifier(worry_level, self._monkeys)
         monkey_number_to_throw_item_to = (
             monkey.true_test_result_monkey_number
             if worry_level % monkey.test_divisor == 0
