@@ -2,6 +2,8 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
+import p1
+from keep_away import KeepAway
 from monkey import Monkey
 
 
@@ -22,7 +24,11 @@ def modify_worry_level(worry_level: int, monkeys: Iterable[Monkey]) -> int:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Get the monkey business level at the end of the Keep Away game."""
+    monkeys = p1.create_monkeys(input_text)
+    game = KeepAway(monkeys, ROUNDS_AMOUNT, modify_worry_level)
+    game.run()
+    return game.get_monkey_business_level()
 
 
 if __name__ == "__main__":
