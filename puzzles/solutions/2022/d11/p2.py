@@ -10,6 +10,9 @@ sys.path.insert(0, SOLUTIONS_DIRECTORY)
 from utils import crt
 
 
+ROUNDS_AMOUNT = 10_000
+
+
 def modify_worry_level(worry_level: int, monkeys: Iterable[Monkey]) -> int:
     moduli_to_remainders = {
         current_monkey.test_divisor: worry_level % current_monkey.test_divisor
