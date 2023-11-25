@@ -5,9 +5,9 @@ class KeepAway:
     """Class managing the monkeys' Keep Away game."""
 
     _RELIEF_WORRY_REDUCTION_FACTOR = 3
-    _ROUNDS_AMOUNT = 20
 
-    def __init__(self, monkeys: list[Monkey]):
+    def __init__(self, monkeys: list[Monkey], rounds_amount: int):
+        self._rounds_amount = rounds_amount
         self._monkeys = monkeys
 
     def _handle_item(self, item: int, monkey: Monkey) -> None:
@@ -38,7 +38,7 @@ class KeepAway:
 
     def run(self) -> None:
         """Run the Keep Away game."""
-        for _ in range(self._ROUNDS_AMOUNT):
+        for _ in range(self._rounds_amount):
             for monkey in self._monkeys:
                 self._run_turn(monkey)
 
