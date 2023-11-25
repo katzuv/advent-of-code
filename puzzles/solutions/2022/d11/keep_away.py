@@ -1,3 +1,5 @@
+from typing import Callable, Iterable
+
 from monkey import Monkey
 
 
@@ -6,9 +8,15 @@ class KeepAway:
 
     _RELIEF_WORRY_REDUCTION_FACTOR = 3
 
-    def __init__(self, monkeys: list[Monkey], rounds_amount: int):
-        self._rounds_amount = rounds_amount
+    def __init__(
+        self,
+        monkeys: list[Monkey],
+        rounds_amount: int,
+        worry_level_modifier: Callable[[int, Iterable[Monkey]], int],
+    ):
         self._monkeys = monkeys
+        self._rounds_amount = rounds_amount
+        self._worry_level_modifier = worry_level_modifier
 
     def _handle_item(self, item: int, monkey: Monkey) -> None:
         """
