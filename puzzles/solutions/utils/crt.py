@@ -1,3 +1,28 @@
+import functools
+import operator
+
+
+def calculate_chinese_remainder_theorem(modulo_to_remainder: dict[int, int]) -> int:
+    total_product = functools.reduce(operator.mul, modulo_to_remainder)
+    modulo_to_partial_product = {
+        modulo: total_product // modulo for modulo in modulo_to_remainder
+    }
+    modulo_to_inverse = {
+        modulo: calculate_extended_euclidean_algorithm(
+            modulo_to_partial_product[modulo], modulo
+        )[0]
+        for modulo in modulo_to_remainder
+    }
+
+    result = sum(
+        modulo_to_remainder[modulo]
+        * modulo_to_partial_product[modulo]
+        * modulo_to_inverse[modulo]
+        for modulo in modulo_to_remainder
+    )
+    return result % total_product
+
+
 def calculate_extended_euclidean_algorithm(
     first_integer: int, second_integer: int
 ) -> tuple[int, int]:
