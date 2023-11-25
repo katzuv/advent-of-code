@@ -1,7 +1,13 @@
 import sys
+from typing import Iterable
+
 from monkey import Monkey
 from monkey_creator import create_monkey
 from keep_away import KeepAway
+
+
+RELIEF_WORRY_REDUCTION_FACTOR = 3
+ROUNDS_AMOUNT = 20
 
 
 def create_monkeys(input_text: str) -> list[Monkey]:
@@ -17,10 +23,14 @@ def create_monkeys(input_text: str) -> list[Monkey]:
     return monkeys
 
 
+def modify_worry_level(worry_level: int, monkeys: Iterable[Monkey]) -> int:
+    return worry_level // RELIEF_WORRY_REDUCTION_FACTOR
+
+
 def get_answer(input_text: str):
     """Get the monkey business level at the end of the Keep Away game."""
     monkeys = create_monkeys(input_text)
-    game = KeepAway(monkeys)
+    game = KeepAway(monkeys, ROUNDS_AMOUNT, modify_worry_level)
     game.run()
     return game.get_monkey_business_level()
 
