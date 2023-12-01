@@ -26,7 +26,9 @@ def _convert_digits_names_to_numbers(input_text: str) -> str:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the calibrations values sum where digits names are replaced with numbers."""
+    input_text = _convert_digits_names_to_numbers(input_text)
+    return p1.calculate_calibration_values_sum(input_text)
 
 
 if __name__ == "__main__":
