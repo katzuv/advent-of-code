@@ -1,5 +1,15 @@
 import sys
 
+import p1
+
+
+DIGITS_NAMES_TO_NUMBERS = dict(
+    zip(
+        ("one", "two", "three", "four", "five", "six", "seven", "eight", "nine"),
+        (map(str, range(1, 10))),
+    )
+)
+
 
 def get_answer(input_text: str):
     raise NotImplementedError
