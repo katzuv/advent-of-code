@@ -1,4 +1,14 @@
+import re
 import sys
+
+
+def calculate_calibration_values_sum(input_text: str) -> int:
+    calibration_values_sum = 0
+    for line in input_text.splitlines():
+        numbers = re.findall(r"\d", line)
+        calibration_value = int(numbers[0]) * 10 + int(numbers[-1])
+        calibration_values_sum += calibration_value
+    return calibration_values_sum
 
 
 def get_answer(input_text: str):
