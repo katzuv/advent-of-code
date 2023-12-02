@@ -21,8 +21,18 @@ def get_games_info(input_text: str) -> list[[list[dict[str, int]]]]:
     return games_info
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    """Return the sum of numbers of possible games."""
+    games_info = get_games_info(input_text)
+    possible_games_numbers_sum = 0
+    for game_number, game in enumerate(games_info, start=1):
+        if all(
+            amount <= MAXIMAL_AMOUNTS[color]
+            for round_info in game
+            for color, amount in round_info.items()
+        ):
+            possible_games_numbers_sum += game_number
+    return possible_games_numbers_sum
 
 
 if __name__ == "__main__":
