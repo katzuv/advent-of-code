@@ -1,6 +1,9 @@
 import sys
 
 
+MAXIMAL_AMOUNTS = {"red": 12, "green": 13, "blue": 14}
+
+
 def get_games_info(input_text: str) -> list[[list[dict[str, int]]]]:
     games_info = []
     for line in input_text.splitlines():
