@@ -1,6 +1,31 @@
 import sys
 
 from input_parser import Coordinate
+import queue
+
+
+def shortest_path(
+    start: Coordinate, graph: dict[Coordinate, list[Coordinate]]
+) -> list[Coordinate]:
+    """
+    :param start: start node
+    :param graph: mapping of positions to climbable neighbors
+    :return: shortest path between the start and end position
+    """
+    state_queue = queue.Queue()
+    state_queue.put(start)
+    visited = {start}
+    node_to_parent = {start: None}
+    while not state_queue.empty():
+        current = state_queue.get()
+        if current.is_end:
+            return _reconstruct_path(node_to_parent, current)
+
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                state_queue.put(neighbor)
+                visited.add(neighbor)
+                node_to_parent[neighbor] = current
 
 
 def _reconstruct_path(
