@@ -1,4 +1,5 @@
 import sys
+from typing import Iterable
 
 import input_parser
 from input_parser import Coordinate
@@ -6,17 +7,18 @@ import queue
 
 
 def shortest_path(
-    start: Coordinate, graph: dict[Coordinate, list[Coordinate]]
+    start: Iterable[Coordinate], graph: dict[Coordinate, list[Coordinate]]
 ) -> list[Coordinate]:
     """
-    :param start: start node
+    :param start: start node(s)
     :param graph: mapping of positions to climbable neighbors
-    :return: shortest path between the start and end position
+    :return: shortest path between one of the start position and end position
     """
     state_queue = queue.Queue()
-    state_queue.put(start)
-    visited = {start}
-    node_to_parent = {start: None}
+    for node in start:
+        state_queue.put(node)
+    visited = set(start)
+    node_to_parent = dict.fromkeys(start)
     while not state_queue.empty():
         current = state_queue.get()
         if current.is_end:
@@ -43,7 +45,7 @@ def _reconstruct_path(
 def get_answer(input_text: str):
     """Return the fewest steps required to move from the start to the end position."""
     start, graph = input_parser.get_graph(input_text)
-    path = shortest_path(start, graph)
+    path = shortest_path({start}, graph)
     steps = len(path) - 1
     return steps
 
