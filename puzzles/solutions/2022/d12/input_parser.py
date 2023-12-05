@@ -1,4 +1,5 @@
 import collections
+import itertools
 
 
 Coordinate = collections.namedtuple(
@@ -46,3 +47,22 @@ def _get_neighbors(position: Coordinate, heightmap: list[str]) -> list[Coordinat
         for neighbor in neighbors
         if neighbor.elevation - position.elevation <= 1
     ]
+
+
+def get_graph(input_text: str) -> tuple[Coordinate, dict[Coordinate, list[Coordinate]]]:
+    """
+    :param input_text: puzzle input
+    :return: start position and mapping of each coordinate in the graph to its climbable neighbors
+    """
+    heightmap = input_text.splitlines()
+    position_to_neighbors = {}
+    for row_number, column_number in itertools.product(
+        range(len(heightmap)), range(len(heightmap[0]))
+    ):
+        position = _create_coordinate(heightmap, row_number, column_number)
+        neighbors = _get_neighbors(position, heightmap)
+        position_to_neighbors[position] = neighbors
+
+        if position.is_start:
+            start = position
+    return start, position_to_neighbors
