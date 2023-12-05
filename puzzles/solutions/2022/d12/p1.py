@@ -1,5 +1,6 @@
 import sys
 
+import input_parser
 from input_parser import Coordinate
 import queue
 
@@ -40,7 +41,11 @@ def _reconstruct_path(
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    """Return the fewest steps required to move from the start to the end position."""
+    start, graph = input_parser.get_graph(input_text)
+    path = shortest_path(start, graph)
+    steps = len(path) - 1
+    return steps
 
 
 if __name__ == "__main__":
