@@ -12,6 +12,7 @@ class SchematicParser:
         self._schematic_width = len(self._schematic[0])
 
         self._numbers = []
+        self._gears_positions = []
 
     def _is_character_adjacent_to_character(
         self,
