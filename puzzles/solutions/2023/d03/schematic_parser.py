@@ -77,3 +77,10 @@ class SchematicParser:
                 is_adjacent_to_symbol = False
 
         return [number for number, digits_positions in self._numbers]
+
+    def find_gears(self):
+        for row, column in itertools.product(
+            range(self._schematic_length), range(self._schematic_width)
+        ):
+            if self._schematic[row][column] == "*":
+                self._gears_positions.append((row, column))
