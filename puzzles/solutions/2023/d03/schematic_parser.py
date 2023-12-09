@@ -1,4 +1,5 @@
 import itertools
+import string
 from typing import Iterable
 
 
@@ -52,3 +53,26 @@ class SchematicParser:
         first_column = column - len(digits)
         positions = tuple(zip(itertools.repeat(row), range(first_column, column)))
         self._numbers.append((number, positions))
+
+    def find_part_numbers(self) -> list[int]:
+        current_digits = []
+        is_adjacent_to_symbol = False
+
+        for row, column in itertools.product(
+            range(self._schematic_length), range(self._schematic_width)
+        ):
+            character = self._schematic[row][column]
+            if character.isdigit():
+                current_digits.append(character)
+                is_adjacent_to_symbol |= self._is_character_adjacent_to_character(
+                    row, column, string.digits + ".", False
+                )
+            # Avoid edge case where there is a part number at the end of one line and another on the
+            # start of the following line -- we want to treat them as two different part numbers.
+            if not character.isdigit() or column == self._schematic_width - 1:
+                if is_adjacent_to_symbol:
+                    self._add_number(row, column, current_digits)
+                current_digits = []
+                is_adjacent_to_symbol = False
+
+        return [number for number, digits_positions in self._numbers]
