@@ -43,3 +43,12 @@ class SchematicParser:
                 return True
 
         return False
+
+    def _add_number(self, row: int, column: int, digits: list[str]) -> None:
+        if not digits:
+            return
+
+        number = int("".join(digits))
+        first_column = column - len(digits)
+        positions = tuple(zip(itertools.repeat(row), range(first_column, column)))
+        self._numbers.append((number, positions))
