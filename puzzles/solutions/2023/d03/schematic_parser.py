@@ -84,3 +84,13 @@ class SchematicParser:
         ):
             if self._schematic[row][column] == "*":
                 self._gears_positions.append((row, column))
+
+    @staticmethod
+    def _is_number_adjacent(
+        position: tuple[int, int], digits_positions: Iterable[tuple[int, int]]
+    ) -> bool:
+        position_row, position_column = position
+        return any(
+            abs(row - position_row) <= 1 and abs(column - position_column) <= 1
+            for row, column in digits_positions
+        )
