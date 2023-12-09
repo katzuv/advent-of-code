@@ -94,3 +94,16 @@ class SchematicParser:
             abs(row - position_row) <= 1 and abs(column - position_column) <= 1
             for row, column in digits_positions
         )
+
+    def calculate_gear_ratios_sum(self):
+        gear_ratios_sum = 0
+        for gear_position in self._gears_positions:
+            adjacent_numbers = [
+                number
+                for number, digits_positions in self._numbers
+                if self._is_number_adjacent(gear_position, digits_positions)
+            ]
+            if len(adjacent_numbers) == 2:
+                gear_ratio = adjacent_numbers[0] * adjacent_numbers[1]
+                gear_ratios_sum += gear_ratio
+        return gear_ratios_sum
