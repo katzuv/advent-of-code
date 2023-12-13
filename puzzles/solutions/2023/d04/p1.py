@@ -15,6 +15,14 @@ def get_card_from_line(card_line: str) -> Card:
 
     return Card(card_number, winning_numbers, chosen_numbers)
 
+
+def calculate_card_points(card: Card) -> int:
+    amount_of_card_winning_numbers = len(card.winning_numbers & card.chosen_numbers)
+    if amount_of_card_winning_numbers == 0:
+        return 0
+    return 2 ** (amount_of_card_winning_numbers - 1)
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
