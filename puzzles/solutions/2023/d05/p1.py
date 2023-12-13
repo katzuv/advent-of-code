@@ -1,3 +1,4 @@
+import math
 import re
 import sys
 
@@ -32,8 +33,20 @@ def get_all_mappings(mapping_lines: str) -> dict[str, dict[int, int]]:
     return source_to_destination_categories_ranges
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    """Return the lowest location number hat corresponds to any of the initial seed numbers."""
+    first_line, mapping_lines = input_text.split("\n\n", maxsplit=1)
+    initial_seeds = [int(number) for number in re.findall(r"\d+", first_line)]
+
+    mappings = get_all_mappings(mapping_lines)
+    lowest_location_number = math.inf
+    for seed in initial_seeds:
+        running_value = seed
+        for mapping_range in mappings.values():
+            running_value = mapping_range.get(running_value, running_value)
+        lowest_location_number = min(lowest_location_number, running_value)
+
+    return lowest_location_number
 
 
 if __name__ == "__main__":
