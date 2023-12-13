@@ -3,29 +3,26 @@ import re
 import sys
 
 
-def get_map_ranges(lines: list[str]) -> dict[int, int]:
-    mapping = {}
+def get_map_ranges(lines: list[str]) -> list[tuple[int, int, int]]:
+    ranges = []
     for line in lines:
         destination_range_start, source_range_start, range_length = map(
             int, line.split()
         )
-        source_numbers = range(source_range_start, source_range_start + range_length)
-        destination_numbers = range(
-            destination_range_start, destination_range_start + range_length
-        )
-
-        mapping |= zip(source_numbers, destination_numbers)
-    return mapping
+        difference = destination_range_start - source_range_start
+        source_range_end = source_range_start + range_length
+        ranges.append((source_range_start, source_range_end, difference))
+    return ranges
 
 
-def get_category_mapping(mapping: str) -> tuple[str, dict[int, int]]:
+def get_category_mapping(mapping: str) -> tuple[str, list[tuple[int, int, int]]]:
     lines = mapping.splitlines()
-    source = re.match(r"(\w+)-to", lines[0]).group()
+    source = re.match(r"([a-z]+)", lines[0]).group()
     ranges = get_map_ranges(lines[1:])
     return source, ranges
 
 
-def get_all_mappings(mapping_lines: str) -> dict[str, dict[int, int]]:
+def get_all_mappings(mapping_lines: str) -> dict[str, list[tuple[int, int, int]]]:
     source_to_destination_categories_ranges = {}
     for mapping in mapping_lines.split("\n\n"):
         source, ranges = get_category_mapping(mapping)
@@ -42,8 +39,11 @@ def get_answer(input_text: str) -> int:
     lowest_location_number = math.inf
     for seed in initial_seeds:
         running_value = seed
-        for mapping_range in mappings.values():
-            running_value = mapping_range.get(running_value, running_value)
+        for name, mapping_ranges in mappings.items():
+            for source_range_start, source_range_end, difference in mapping_ranges:
+                if source_range_start <= running_value <= source_range_end:
+                    running_value += difference
+                    break
         lowest_location_number = min(lowest_location_number, running_value)
 
     return lowest_location_number
