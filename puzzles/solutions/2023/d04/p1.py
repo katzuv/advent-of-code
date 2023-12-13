@@ -1,5 +1,8 @@
+import collections
 import sys
 
+
+Card = collections.namedtuple("Card", ("number", "winning_numbers", "chosen_numbers"))
 
 def get_answer(input_text: str):
     raise NotImplementedError
