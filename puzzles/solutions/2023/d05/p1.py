@@ -24,6 +24,14 @@ def get_category_mapping(mapping: str) -> tuple[str, dict[int, int]]:
     return source, ranges
 
 
+def get_all_mappings(mapping_lines: str) -> dict[str, dict[int, int]]:
+    source_to_destination_categories_ranges = {}
+    for mapping in mapping_lines.split("\n\n"):
+        source, ranges = get_category_mapping(mapping)
+        source_to_destination_categories_ranges[source] = ranges
+    return source_to_destination_categories_ranges
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
