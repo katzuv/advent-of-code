@@ -1,3 +1,4 @@
+import re
 import sys
 
 
@@ -14,6 +15,13 @@ def get_map_ranges(lines: list[str]) -> dict[int, int]:
 
         mapping |= zip(source_numbers, destination_numbers)
     return mapping
+
+
+def get_category_mapping(mapping: str) -> tuple[str, dict[int, int]]:
+    lines = mapping.splitlines()
+    source = re.match(r"(\w+)-to", lines[0]).group()
+    ranges = get_map_ranges(lines[1:])
+    return source, ranges
 
 
 def get_answer(input_text: str):
