@@ -7,7 +7,7 @@ Card = collections.namedtuple("Card", ("number", "winning_numbers", "chosen_numb
 
 def get_card_from_line(card_line: str) -> Card:
     card_number, numbers_lists = card_line.split(": ")
-    card_number = card_number.split()[1]
+    card_number = int(card_number.split()[1])
 
     winning_numbers, chosen_numbers = numbers_lists.split(" | ")
     winning_numbers = set(winning_numbers.split())
