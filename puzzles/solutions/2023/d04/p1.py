@@ -23,8 +23,10 @@ def calculate_card_points(card: Card) -> int:
     return 2 ** (amount_of_card_winning_numbers - 1)
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    """Return the colourful cards total points worth."""
+    cards = [get_card_from_line(line) for line in input_text.splitlines()]
+    return sum(map(calculate_card_points, cards))
 
 
 if __name__ == "__main__":
