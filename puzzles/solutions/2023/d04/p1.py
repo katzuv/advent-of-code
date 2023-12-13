@@ -4,6 +4,17 @@ import sys
 
 Card = collections.namedtuple("Card", ("number", "winning_numbers", "chosen_numbers"))
 
+
+def get_card_from_line(card_line: str) -> Card:
+    card_number, numbers_lists = card_line.split(": ")
+    card_number = card_number.split()[1]
+
+    winning_numbers, chosen_numbers = numbers_lists.split(" | ")
+    winning_numbers = set(winning_numbers.split())
+    chosen_numbers = set(chosen_numbers.split())
+
+    return Card(card_number, winning_numbers, chosen_numbers)
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
