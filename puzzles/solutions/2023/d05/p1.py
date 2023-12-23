@@ -30,12 +30,18 @@ def get_all_mappings(mapping_lines: str) -> dict[str, list[tuple[int, int, int]]
     return source_to_destination_categories_ranges
 
 
-def get_answer(input_text: str) -> int:
-    """Return the lowest location number hat corresponds to any of the initial seed numbers."""
+def get_initial_data(
+    input_text: str,
+) -> tuple[list[int], dict[str, list[tuple[int, int, int]]]]:
     first_line, mapping_lines = input_text.split("\n\n", maxsplit=1)
     initial_seeds = [int(number) for number in re.findall(r"\d+", first_line)]
-
     mappings = get_all_mappings(mapping_lines)
+    return initial_seeds, mappings
+
+
+def get_answer(input_text: str) -> int:
+    """Return the lowest location number hat corresponds to any of the initial seed numbers."""
+    initial_seeds, mappings = get_initial_data(input_text)
     lowest_location_number = math.inf
     for seed in initial_seeds:
         running_value = seed
