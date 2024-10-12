@@ -1,6 +1,10 @@
 import sys
 
 
+def does_seed_exist(running_value: int, seeds_ranges: list[range]) -> bool:
+    return any(running_value in seed_range for seed_range in seeds_ranges)
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
