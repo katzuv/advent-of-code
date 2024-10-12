@@ -11,7 +11,7 @@ def get_answer(input_text: str) -> int:
         running_value = seed
         for name, mapping_ranges in mappings.items():
             for source_range_start, source_range_end, difference in mapping_ranges:
-                if source_range_start <= running_value <= source_range_end:
+                if source_range_start <= running_value < source_range_end:
                     running_value += difference
                     break
         lowest_location_number = min(lowest_location_number, running_value)
