@@ -46,3 +46,24 @@ def get_seeds_ranges(seeds: list[int]) -> list[range]:
         range(seed_number, seed_number + range_length)
         for seed_number, range_length in itertools.batched(seeds, 2)
     ]
+
+
+def reverse_mappings(mappings: dict[str, Mapping]) -> dict[str, Mapping]:
+    reversed_mappings = {}
+    for name, mapping in reversed(mappings.items()):
+        reversed_mapping = []
+        for mapping_range in mapping:
+            (
+                original_destination_range_start,
+                original_source_range_start,
+                original_difference,
+            ) = mapping_range
+            reversed_range = (
+                original_destination_range_start + original_difference,
+                original_source_range_start + original_difference,
+                -original_difference,
+            )
+            reversed_mapping.append(reversed_range)
+        reversed_mappings[name] = reversed_mapping
+
+    return reversed_mappings
