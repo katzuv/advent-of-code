@@ -1,3 +1,4 @@
+import itertools
 import re
 
 
@@ -38,3 +39,10 @@ def get_initial_data(
     initial_seeds = [int(number) for number in re.findall(r"\d+", first_line)]
     mappings = get_all_mappings(mapping_lines)
     return initial_seeds, mappings
+
+
+def get_seeds_ranges(seeds: list[int]) -> list[range]:
+    return [
+        range(seed_number, seed_number + range_length)
+        for seed_number, range_length in itertools.batched(seeds, 2)
+    ]
