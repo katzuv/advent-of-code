@@ -16,9 +16,9 @@ def get_answer(input_text: str) -> int:
 
     for location_number in itertools.count(start=1):
         running_value = location_number
-        for name, mapping_ranges in mappings.items():
+        for mapping_ranges in mappings:
             for source_range_start, source_range_end, difference in mapping_ranges:
-                if source_range_start <= running_value <= source_range_end:
+                if source_range_start <= running_value < source_range_end:
                     running_value += difference
                     break
         print(location_number, running_value)

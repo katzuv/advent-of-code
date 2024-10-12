@@ -24,17 +24,17 @@ def get_category_mapping(mapping: str) -> tuple[str, Mapping]:
     return source, ranges
 
 
-def get_all_mappings(mapping_lines: str) -> dict[str, Mapping]:
-    source_to_destination_categories_ranges = {}
+def get_all_mappings(mapping_lines: str) -> list[Mapping]:
+    source_to_destination_categories_ranges = []
     for mapping in mapping_lines.split("\n\n"):
         source, ranges = get_category_mapping(mapping)
-        source_to_destination_categories_ranges[source] = ranges
+        source_to_destination_categories_ranges.append(ranges)
     return source_to_destination_categories_ranges
 
 
 def get_initial_data(
     input_text: str,
-) -> tuple[list[int], dict[str, Mapping]]:
+) -> tuple[list[int], list[Mapping]]:
     first_line, mapping_lines = input_text.split("\n\n", maxsplit=1)
     initial_seeds = [int(number) for number in re.findall(r"\d+", first_line)]
     mappings = get_all_mappings(mapping_lines)
@@ -48,9 +48,9 @@ def get_seeds_ranges(seeds: list[int]) -> list[range]:
     ]
 
 
-def reverse_mappings(mappings: dict[str, Mapping]) -> dict[str, Mapping]:
-    reversed_mappings = {}
-    for name, mapping in reversed(mappings.items()):
+def reverse_mappings(mappings: list[Mapping]) -> list[Mapping]:
+    reversed_mappings = []
+    for name, mapping in reversed(mappings):
         reversed_mapping = []
         for mapping_range in mapping:
             (
@@ -64,6 +64,6 @@ def reverse_mappings(mappings: dict[str, Mapping]) -> dict[str, Mapping]:
                 -original_difference,
             )
             reversed_mapping.append(reversed_range)
-        reversed_mappings[name] = reversed_mapping
+        reversed_mappings.append(reversed_mapping)
 
     return reversed_mappings

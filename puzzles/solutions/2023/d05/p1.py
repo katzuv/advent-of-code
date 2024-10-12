@@ -9,7 +9,7 @@ def get_answer(input_text: str) -> int:
     lowest_location_number = math.inf
     for seed in initial_seeds:
         running_value = seed
-        for name, mapping_ranges in mappings.items():
+        for mapping_ranges in mappings:
             for source_range_start, source_range_end, difference in mapping_ranges:
                 if source_range_start <= running_value < source_range_end:
                     running_value += difference
