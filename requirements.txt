@@ -4,3 +4,4 @@ pyyaml
 beautifulsoup4
 black
 tzdata
+GitPython
