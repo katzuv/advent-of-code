@@ -5,7 +5,6 @@ from zoneinfo import ZoneInfo
 
 import click
 
-
 FIRST_AOC_YEAR = 2015
 DECEMBER = 12
 ADVENT_DAYS_RANGE = click.IntRange(1, 25)
@@ -25,6 +24,7 @@ ROOT_DIRECTORY_TYPE = click.Path(
 ROOT_DIRECTORY = "root directory"
 SOLUTION_PARTS = ("p1", "p2")
 SESSION_ID = "session ID"
+GITHUB_AUTH_TOKEN = "GitHub auth token"
 SOLUTION_FILE_TEMPLATE_PATH = Path(Path(__file__).parent, "solution_template.py")
 
 
