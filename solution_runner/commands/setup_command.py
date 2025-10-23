@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 import click
+import git
 
 from . import consts, commands_utils
 from .consts import Directories, FileExtensions, HttpMethods
@@ -69,6 +70,8 @@ def command(year: int, day: int, should_use_cache: bool):
     year_solutions_directory = solutions_directory / year
     _ask_user_to_mkdir(year_solutions_directory, f"{year} solution files")
     _create_files(year_solutions_directory, day)
+
+    _initialize_git_branch(year_solutions_directory, day)
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
@@ -147,3 +150,14 @@ def _download_input(year: str, day: str, input_file: Path):
     endpoint = consts.INPUT_ENDPOINT_TEMPLATE.substitute(year=year, day=day)
     input_text = commands_utils.send_aoc_request(HttpMethods.GET, endpoint)
     input_file.write_text(input_text)
+
+
+def _initialize_git_branch(year_solutions_directory: Path, day: str):
+    repo = git.Repo(".")
+    branch_name = f"solve/{year_solutions_directory.name}-{day}"
+    repo.git.checkout(b=branch_name)
+
+    repo.index.add((year_solutions_directory / f"d{day}" / "p1.py").absolute())
+    repo.index.commit("Create solution file for part 1")
+
+    repo.git.push("origin", "--set-upstream", branch_name)
