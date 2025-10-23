@@ -7,6 +7,11 @@ import yaml
 from . import consts
 
 
+_SESSION_ID_PROMPT = (
+    "Enter session ID to download input files (available in AoC website cookies)"
+)
+
+
 @click.command(name="config")
 @click.option(
     "--root",
@@ -18,7 +23,7 @@ from . import consts
 )
 @click.option(
     "--session-id",
-    prompt=True,
+    prompt=_SESSION_ID_PROMPT,
     prompt_required=False,
     hide_input=True,
     help="session ID to access puzzles input",
@@ -41,6 +46,7 @@ def command(root_directory: str, session_id: str):
     root_directory.mkdir(exist_ok=True)
 
     _configure_session_id(configuration, session_id)
+    _configure_github_auth(configuration, github_auth)
 
     if configuration != initial_configuration:
         configuration_file.write_text(yaml.dump(configuration))
@@ -75,6 +81,6 @@ def _configure_session_id(configuration: dict[str, Any], session_id: str | None)
         configuration[consts.SESSION_ID] = session_id
     elif consts.SESSION_ID not in configuration:
         configuration[consts.SESSION_ID] = click.prompt(
-            "Enter session ID to download input files (available in AoC website cookies)",
+            _SESSION_ID_PROMPT,
             hide_input=True,
         )
