@@ -10,8 +10,14 @@ def get_location_id_lists(input_text: str) -> tuple[list[int], list[int]]:
     return first, second
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    first, second = get_location_id_lists(input_text)
+    first.sort()
+    second.sort()
+    return sum(
+        abs(first_id - second_id) for (first_id, second_id) in zip(first, second)
+    )
+
 
 if __name__ == "__main__":
     try:
