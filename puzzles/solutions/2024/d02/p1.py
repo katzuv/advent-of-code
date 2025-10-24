@@ -1,6 +1,10 @@
 import sys
 
 
+def get_reports(input_text: str) -> list[tuple[int, ...]]:
+    return [tuple(map(int, line.split())) for line in input_text.splitlines()]
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
