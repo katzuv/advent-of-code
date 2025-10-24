@@ -5,10 +5,10 @@ from pathlib import Path
 
 import click
 import git
+import github
 
 from . import consts, commands_utils
 from .consts import Directories, FileExtensions, HttpMethods
-
 
 _default_year = commands_utils.get_default_year()
 
@@ -73,6 +73,7 @@ def command(year: int, day: int, should_use_cache: bool):
 
     branch_name = f"solve/{year_solutions_directory.name}-{day}"
     _initialize_git_branch(branch_name, year_solutions_directory, day)
+    _open_pull_request(branch_name, year, day)
 
 
 def _abort_if_puzzle_locked(year: int, day: int):
@@ -161,3 +162,18 @@ def _initialize_git_branch(branch_name: str, year_solutions_directory: Path, day
     repo.index.commit("Create solution file for part 1")
 
     repo.git.push("origin", "--set-upstream", branch_name)
+
+
+def _open_pull_request(branch_name: str, year: str, day: str):
+    day = day.lstrip(consts.ZERO)
+    auth = github.Auth.Token(commands_utils.get_setting(consts.GITHUB_AUTH_TOKEN))
+    repo_name = (
+        git.Repo()
+        .remote("origin")
+        .url.split("https://github.com/")[1]
+        .removesuffix(".git")
+    )
+    repo = github.Github(auth=auth).get_repo(repo_name)
+    repo.create_pull(
+        base="main", head=branch_name, title=f"Solve {year} day {day}", draft=True
+    )
