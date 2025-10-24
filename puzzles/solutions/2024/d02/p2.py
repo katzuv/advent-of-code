@@ -1,4 +1,10 @@
 import sys
+def is_modified_report_safe(report: tuple[int, ...]) -> bool:
+    for i in range(len(report)):
+        modified_report = report[:i] + report[i + 1 :]
+        if is_report_safe(modified_report):
+            return True
+    return False
 
 
 def get_answer(input_text: str):
