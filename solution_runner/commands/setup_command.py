@@ -64,6 +64,9 @@ def command(year: int, day: int, should_use_cache: bool):
 
     _download_input(year, day, input_file)
 
+    # Solutions files, branch and PR probably already exist, so don't create them again.
+    if not should_use_cache:
+        return
     solutions_directory = root_directory / Directories.SOLUTIONS
     _ask_user_to_mkdir(solutions_directory, "solution files")
 
