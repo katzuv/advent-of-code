@@ -2,5 +2,5 @@ Solution:
   - head-branch: ['solve/.*']
 
 Solution runner:
-  - changed files:
+  - changed-files:
     - any-glob-to-any-file: 'solution_runner/**'
