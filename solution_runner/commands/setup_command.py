@@ -74,9 +74,7 @@ def command(year: int, day: int, should_use_cache: bool):
     _ask_user_to_mkdir(year_solutions_directory, f"{year} solution files")
     _create_files(year_solutions_directory, day)
 
-    click.open_file(
-        f"https://adventofcode.com/{year}/day/{day.removeprefix(consts.ZERO)}"
-    )
+    click.launch(f"https://adventofcode.com/{year}/day/{day.removeprefix(consts.ZERO)}")
     branch_name = f"solve/{year_solutions_directory.name}-{day}"
     _initialize_git_branch(branch_name, year_solutions_directory, day)
     _open_pull_request(branch_name, year, day)
