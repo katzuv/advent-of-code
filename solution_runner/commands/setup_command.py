@@ -160,6 +160,7 @@ def _download_input(year: str, day: str, input_file: Path):
 
 def _initialize_git_branch(branch_name: str, year_solutions_directory: Path, day: str):
     repo = git.Repo(".")
+    repo.git.checkout("main")  # Create the branch from main.
     repo.git.checkout(b=branch_name)
 
     repo.index.add(year_solutions_directory / f"d{day}" / "p1.py")
