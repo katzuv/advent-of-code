@@ -17,8 +17,9 @@ def is_report_safe(report: tuple[int, ...]) -> bool:
     return True
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    reports = get_reports(input_text)
+    return sum(map(is_report_safe, reports))
 
 
 if __name__ == "__main__":
