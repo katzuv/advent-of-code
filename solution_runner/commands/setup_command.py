@@ -93,7 +93,7 @@ def _ask_user_to_mkdir(directory: Path, name: str = None):
     """
     Ask the user whether to create the given directory and abort if negative.
 
-    Should be use for directories which do not exist.
+    Should be used for directories which do not exist.
     :param directory: directory to ask about
     :param name: name of the directory to ask the user about, given directory name is default
     """
