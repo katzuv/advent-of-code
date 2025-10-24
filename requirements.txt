@@ -1,5 +1,6 @@
 requests
 click==8.1.7
+rich-click
 pyyaml
 beautifulsoup4
 black
