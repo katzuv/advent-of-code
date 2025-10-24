@@ -3,8 +3,8 @@ from datetime import datetime
 from enum import Enum
 from typing import Any
 
-import click
 import requests
+import rich_click as click
 import yaml
 
 from . import consts

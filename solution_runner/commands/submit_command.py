@@ -2,12 +2,11 @@ import subprocess
 from pathlib import Path
 
 import bs4
-import click
+import rich_click as click
 
 from . import consts, commands_utils
 from .commands_utils import get_setting
 from .consts import Directories, FileExtensions, HttpMethods
-
 
 _default_year = commands_utils.get_default_year()
 

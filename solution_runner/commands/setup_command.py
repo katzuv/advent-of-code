@@ -3,9 +3,9 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
-import click
 import git
 import github
+import rich_click as click
 
 from . import consts, commands_utils
 from .consts import Directories, FileExtensions, HttpMethods

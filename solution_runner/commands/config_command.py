@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Any
 
-import click
+import rich_click as click
 import yaml
 
 from . import consts
