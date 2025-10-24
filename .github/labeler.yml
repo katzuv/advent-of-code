@@ -1,0 +1,6 @@
+Solution:
+  - head-branch: ['solve/.*']
+
+Solution runner:
+  - any-glob-to-any-file: '**/solution_runner/**'
+  
