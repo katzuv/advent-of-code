@@ -6,6 +6,11 @@ import yaml
 
 from . import consts
 
+_SESSION_ID_PROMPT = (
+    "Enter session ID to download input files (available in AoC website cookies)"
+)
+_GITHUB_AUTH_PROMPT = "Enter GitHub auth to open pull request for your solution (https://github.com/settings/personal-access-tokens/new?type=fine-grained&name=Advent+of+Code+CLI)"
+
 
 @click.command(name="config")
 @click.option(
@@ -18,12 +23,19 @@ from . import consts
 )
 @click.option(
     "--session-id",
-    prompt=True,
+    prompt=_SESSION_ID_PROMPT,
     prompt_required=False,
     hide_input=True,
     help="session ID to access puzzles input",
 )
-def command(root_directory: str, session_id: str):
+@click.option(
+    "--github-auth",
+    prompt=_GITHUB_AUTH_PROMPT,
+    prompt_required=False,
+    hide_input=True,
+    help="GitHub authentication token",
+)
+def command(root_directory: str, session_id: str, github_auth: str):
     """Set options."""
     app_data_directory = click.get_app_dir(consts.APP_DATA_DIRECTORY)
     configuration_file = Path(app_data_directory, consts.CONFIGURATION_FILE_NAME)
@@ -41,6 +53,7 @@ def command(root_directory: str, session_id: str):
     root_directory.mkdir(exist_ok=True)
 
     _configure_session_id(configuration, session_id)
+    _configure_github_auth(configuration, github_auth)
 
     if configuration != initial_configuration:
         configuration_file.write_text(yaml.dump(configuration))
@@ -75,6 +88,21 @@ def _configure_session_id(configuration: dict[str, Any], session_id: str | None)
         configuration[consts.SESSION_ID] = session_id
     elif consts.SESSION_ID not in configuration:
         configuration[consts.SESSION_ID] = click.prompt(
-            "Enter session ID to download input files (available in AoC website cookies)",
+            _SESSION_ID_PROMPT,
+            hide_input=True,
+        )
+
+
+def _configure_github_auth(configuration: dict[str, Any], github_auth: str | None):
+    """
+    Configure the GitHub auth token if needed.
+    :param configuration: current configuration
+    :param github_auth: GitHub auth token passed by the user, `None` if wasn't passed
+    """
+    if github_auth is not None:
+        configuration[consts.GITHUB_AUTH_TOKEN] = github_auth
+    elif consts.GITHUB_AUTH_TOKEN not in configuration:
+        configuration[consts.GITHUB_AUTH_TOKEN] = click.prompt(
+            _GITHUB_AUTH_PROMPT,
             hide_input=True,
         )
