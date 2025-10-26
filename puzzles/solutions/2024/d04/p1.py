@@ -1,6 +1,9 @@
 import sys
 
 
+Matrix = list[str]
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
