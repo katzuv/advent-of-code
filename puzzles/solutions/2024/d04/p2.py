@@ -1,3 +1,4 @@
+import itertools
 import sys
 
 from p1 import Matrix
@@ -6,24 +7,21 @@ from p1 import Matrix
 def get_all_a_locations(matrix: Matrix) -> list[tuple[int, int]]:
     return [
         (row, column)
-        for row, column in itertools.product(range(len(matrix)), range(len(matrix[0])))
+        for row, column in itertools.product(
+            range(1, len(matrix) - 1), range(1, len(matrix[0]) - 1)
+        )
         if matrix[row][column] == "A"
     ]
 
 
 def is_a_x_mas(matrix, location: tuple[int, int]) -> bool:
     row, column = location
-    try:
-        surrounding = (
-            matrix[row - 1][column - 1],
-            matrix[row + 1][column - 1],
-            matrix[row + 1][column + 1],
-            matrix[row - 1][column + 1],
-        )
-    # `A` is on matrix bounds, so it can't be in the center of an X-MAS.
-    except IndexError:
-        return False
-
+    surrounding = (
+        matrix[row - 1][column - 1],
+        matrix[row + 1][column - 1],
+        matrix[row + 1][column + 1],
+        matrix[row - 1][column + 1],
+    )
     return any("".join(surrounding[i:] + surrounding[:i]) == "SSMM" for i in range(4))
 
 
