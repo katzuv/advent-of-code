@@ -34,8 +34,20 @@ def get_diagonal_by_start_cell(
     return diagonal
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_all_text_sequences(input_text: str) -> Matrix:
+    matrix = input_text.splitlines()
+    columns = ["".join(row[i] for row in matrix) for i in range(len(matrix[0]))]
+
+    down_right_diagonals = get_diagonals(matrix)
+    up_right_diagonals = get_diagonals(matrix[::-1])
+
+    sequences = matrix + columns + down_right_diagonals + up_right_diagonals
+    return sequences + [sequence[::-1] for sequence in sequences]
+
+
+def get_answer(input_text: str) -> int:
+    sequences = get_all_text_sequences(input_text)
+    return sum(sequence.count("XMAS") for sequence in sequences)
 
 
 if __name__ == "__main__":
