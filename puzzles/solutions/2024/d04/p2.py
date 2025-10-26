@@ -25,8 +25,10 @@ def is_a_x_mas(matrix, location: tuple[int, int]) -> bool:
     return any("".join(surrounding[i:] + surrounding[:i]) == "SSMM" for i in range(4))
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    matrix = input_text.splitlines()
+    a_locations = get_all_a_locations(matrix)
+    return sum(is_a_x_mas(matrix, a_location) for a_location in a_locations)
 
 
 if __name__ == "__main__":
