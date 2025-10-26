@@ -2,7 +2,7 @@ import re
 import sys
 
 
-def get_products_sum(input_text) -> int:
+def get_products_sum(input_text: str) -> int:
     multiplications = re.findall(r"mul\(\d+,\d+\)", input_text)
     result = 0
     for multiplication in multiplications:
