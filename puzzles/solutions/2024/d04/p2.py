@@ -14,7 +14,7 @@ def get_all_a_locations(matrix: Matrix) -> list[tuple[int, int]]:
     ]
 
 
-def is_a_x_mas(matrix, location: tuple[int, int]) -> bool:
+def is_a_x_mas(matrix: Matrix, location: tuple[int, int]) -> bool:
     row, column = location
     surrounding = (
         matrix[row - 1][column - 1],
