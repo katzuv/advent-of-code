@@ -11,6 +11,22 @@ def get_all_a_locations(matrix: Matrix) -> list[tuple[int, int]]:
     ]
 
 
+def is_a_x_mas(matrix, location: tuple[int, int]) -> bool:
+    row, column = location
+    try:
+        surrounding = (
+            matrix[row - 1][column - 1],
+            matrix[row + 1][column - 1],
+            matrix[row + 1][column + 1],
+            matrix[row - 1][column + 1],
+        )
+    # `A` is on matrix bounds, so it can't be in the center of an X-MAS.
+    except IndexError:
+        return False
+
+    return any("".join(surrounding[i:] + surrounding[:i]) == "SSMM" for i in range(4))
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
