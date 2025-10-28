@@ -1,4 +1,14 @@
+import graphlib
 import sys
+
+
+def get_ordering_rules(ordering_rules: str) -> tuple[int, ...]:
+    graph = graphlib.TopologicalSorter()
+    for rule in ordering_rules.splitlines():
+        dependency, dependant = rule.split("|")
+        graph.add(dependant, dependency)
+
+    return tuple(graph.static_order())
 
 
 def get_answer(input_text: str):
