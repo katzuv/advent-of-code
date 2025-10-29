@@ -1,14 +1,14 @@
-import graphlib
+import collections
 import sys
 
 
-def get_ordering_rules(ordering_rules: str) -> tuple[int, ...]:
-    graph = graphlib.TopologicalSorter()
+def get_ordering_rules(ordering_rules: str) -> dict[str, set[str]]:
+    graph = collections.defaultdict(set)
     for rule in ordering_rules.splitlines():
         dependency, dependant = rule.split("|")
-        graph.add(dependant, dependency)
+        graph[dependant].add(dependency)
 
-    return tuple(graph.static_order())
+    return graph
 
 
 def is_update_in_right_order(order: tuple[int, ...], update: list[str]) -> bool:
