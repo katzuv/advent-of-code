@@ -4,6 +4,13 @@ import sys
 Graph = dict[str, set[str]]
 
 
+def get_ordering_rules_and_updates(input_text: str) -> tuple[Graph, list[list[str]]]:
+    ordering_rules, updates = input_text.split("\n\n")
+    order = get_ordering_rules(ordering_rules)
+    updates = [update.split(",") for update in updates.splitlines()]
+    return order, updates
+
+
 def get_ordering_rules(ordering_rules: str) -> Graph:
     graph = collections.defaultdict(set)
     for rule in ordering_rules.splitlines():
@@ -25,10 +32,7 @@ def is_update_in_right_order(update: list[str], graph: Graph) -> bool:
 
 
 def get_answer(input_text: str) -> int:
-    ordering_rules, updates = input_text.split("\n\n")
-    order = get_ordering_rules(ordering_rules)
-    updates = [update.split(",") for update in updates.splitlines()]
-
+    order, updates = get_ordering_rules_and_updates(input_text)
     return sum(
         int(update[len(update) // 2])  # Middle page number.
         for update in updates
