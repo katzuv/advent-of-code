@@ -21,8 +21,16 @@ def is_update_in_right_order(order: tuple[int, ...], update: list[str]) -> bool:
     return True
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    ordering_rules, updates = input_text.split("\n\n")
+    order = get_ordering_rules(ordering_rules)
+    updates = [update.split(",") for update in updates.splitlines()]
+
+    return sum(
+        int(update[len(update) // 2])  # Middle page number.
+        for update in updates
+        if is_update_in_right_order(order, update)
+    )
 
 
 if __name__ == "__main__":
