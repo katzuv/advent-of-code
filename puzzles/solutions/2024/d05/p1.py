@@ -13,13 +13,14 @@ def get_ordering_rules(ordering_rules: str) -> Graph:
     return graph
 
 
-def is_update_in_right_order(order: tuple[int, ...], update: list[str]) -> bool:
-    previous_page_number_index = -1
-    for page_number in update:
-        current_page_number_index = order.index(page_number)
-        if current_page_number_index < previous_page_number_index:
+def is_update_in_right_order(update: list[str], graph: Graph) -> bool:
+    done_pages = set()
+    for i, page_number in enumerate(update):
+        left_pages = set(update[i + 1 :])
+        next_pages_dependencies = left_pages & graph[page_number]
+        if not (next_pages_dependencies <= done_pages):
             return False
-        previous_page_number_index = current_page_number_index
+        done_pages.add(page_number)
     return True
 
 
@@ -31,7 +32,7 @@ def get_answer(input_text: str) -> int:
     return sum(
         int(update[len(update) // 2])  # Middle page number.
         for update in updates
-        if is_update_in_right_order(order, update)
+        if is_update_in_right_order(update, order)
     )
 
 
