@@ -1,6 +1,6 @@
 import sys
 
-from p1 import Graph
+from p1 import get_ordering_rules_and_updates, is_update_in_right_order, Graph
 
 
 def sort_update(update: list[str], order: Graph) -> list[str]:
@@ -19,8 +19,16 @@ def sort_update(update: list[str], order: Graph) -> list[str]:
     return sorted_update
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    order, updates = get_ordering_rules_and_updates(input_text)
+    wrong_updates = [
+        update for update in updates if not is_update_in_right_order(update, order)
+    ]
+    total = 0
+    for update in wrong_updates:
+        sorted_update = sort_update(update, order)
+        total += int(sorted_update[len(sorted_update) // 2])
+    return total
 
 
 if __name__ == "__main__":
