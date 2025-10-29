@@ -26,11 +26,11 @@ def traverse_map(lab_map: Map, start_position: Position) -> Map:
 
     directions = itertools.cycle(((-1, 0), (0, 1), (1, 0), (0, -1)))
     direction = next(directions)
+    while True:
+        new_map[row][column] = "X"
 
-    rows_number, columns_number = len(lab_map[0]), len(lab_map[0])
+        next_row, next_column = (row + direction[0], column + direction[1])
 
-    next_row, next_column = (row + direction[0], column + direction[1])
-    while 0 <= row < rows_number and 0 <= column < columns_number:
         try:
             if lab_map[next_row][next_column] == "#":
                 direction = next(directions)
@@ -39,9 +39,6 @@ def traverse_map(lab_map: Map, start_position: Position) -> Map:
             break
 
         row, column = next_row, next_column
-        new_map[row][column] = "X"
-
-        next_row, next_column = (row + direction[0], column + direction[1])
     return new_map
 
 
