@@ -1,8 +1,10 @@
 import collections
 import sys
 
+Graph = dict[str, set[str]]
 
-def get_ordering_rules(ordering_rules: str) -> dict[str, set[str]]:
+
+def get_ordering_rules(ordering_rules: str) -> Graph:
     graph = collections.defaultdict(set)
     for rule in ordering_rules.splitlines():
         dependency, dependant = rule.split("|")
