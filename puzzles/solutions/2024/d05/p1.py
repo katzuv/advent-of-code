@@ -14,8 +14,8 @@ def get_ordering_rules_and_updates(input_text: str) -> tuple[Graph, list[list[st
 def get_ordering_rules(ordering_rules: str) -> Graph:
     graph = collections.defaultdict(set)
     for rule in ordering_rules.splitlines():
-        dependency, dependant = rule.split("|")
-        graph[dependant].add(dependency)
+        dependency, dependent = rule.split("|")
+        graph[dependent].add(dependency)
 
     return graph
 
