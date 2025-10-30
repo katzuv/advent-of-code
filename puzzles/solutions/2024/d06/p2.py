@@ -1,4 +1,5 @@
 import copy
+import itertools
 import sys
 
 from p1 import get_map_and_start_position, traverse_map, Map, Position
@@ -17,8 +18,24 @@ def is_there_a_loop(
     return False
 
 
-def get_answer(input_text: str):
-    raise NotImplementedError
+def get_answer(input_text: str) -> int:
+    lab_map, start_position = get_map_and_start_position(input_text)
+    original_traversed_map = traverse_map(lab_map, start_position)
+    map_coordinates = tuple(
+        itertools.product(range(len(lab_map)), range(len(lab_map[0])))
+    )
+
+    path = [
+        (row, column)
+        for (row, column) in map_coordinates
+        if original_traversed_map[row][column] == "X"
+    ]
+    path.remove(start_position)  # Can't put an obstacle on the guard's start position.
+
+    return sum(
+        is_there_a_loop(lab_map, start_position, obstacle_position)
+        for obstacle_position in map_coordinates
+    )
 
 
 if __name__ == "__main__":
