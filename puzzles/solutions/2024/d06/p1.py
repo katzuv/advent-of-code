@@ -25,9 +25,15 @@ def traverse_map(lab_map: Map, start_position: Position) -> Map:
     new_map = copy.deepcopy(lab_map)
 
     directions = itertools.cycle(((-1, 0), (0, 1), (1, 0), (0, -1)))
+    steps_taken = []
+
     direction = next(directions)
     while True:
         new_map[row][column] = "X"
+        step = ((row, column), direction)
+        if step in steps_taken:
+            raise ValueError("Loop detected!")
+        steps_taken.append(step)
 
         next_row, next_column = (row + direction[0], column + direction[1])
 
