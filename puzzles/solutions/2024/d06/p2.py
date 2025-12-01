@@ -1,13 +1,14 @@
 import copy
 import itertools
+import multiprocessing
 import sys
 
 from p1 import get_map_and_start_position, traverse_map, Map, Position
 
 
-def is_there_a_loop(
-    lab_map: Map, start_position: Position, obstacle_position: Position
-) -> bool:
+def is_there_a_loop(inputs: tuple[Map, Position, Position]) -> bool:
+    lab_map, start_position, obstacle_position = inputs
+
     row, column = obstacle_position
     map_with_obstacle = copy.deepcopy(lab_map)
     map_with_obstacle[row][column] = "#"
@@ -31,11 +32,19 @@ def get_answer(input_text: str) -> int:
         if original_traversed_map[row][column] == "X"
     ]
     path.remove(start_position)  # Can't put an obstacle on the guard's start position.
+    # print(len(path))
 
-    return sum(
-        is_there_a_loop(lab_map, start_position, obstacle_position)
-        for obstacle_position in map_coordinates
-    )
+    with multiprocessing.Pool(multiprocessing.cpu_count() - 1) as pool:
+        return sum(
+            pool.map(
+                is_there_a_loop,
+                zip(
+                    itertools.repeat(lab_map),
+                    itertools.repeat(start_position),
+                    path,
+                ),
+            )
+        )
 
 
 if __name__ == "__main__":
