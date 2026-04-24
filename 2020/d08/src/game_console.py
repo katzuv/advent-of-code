@@ -3,7 +3,11 @@ from .program_state import ProgramState
 
 
 class GameConsole:
-    _OPERATIONS_TO_HANDLERS = {'acc': AccumulatorOperation, 'jmp': JumpOperation, 'nop': NoOperationOperation}
+    _OPERATIONS_TO_HANDLERS = {
+        "acc": AccumulatorOperation,
+        "jmp": JumpOperation,
+        "nop": NoOperationOperation,
+    }
 
     def __init__(self, code: list[str]):
         self._program_state = ProgramState(code)
@@ -14,7 +18,9 @@ class GameConsole:
         :return: whether the program terminated successfully (reached the last instruction)
         """
         while True:
-            operation_type, argument = self._parse(self._program_state.current_instruction)
+            operation_type, argument = self._parse(
+                self._program_state.current_instruction
+            )
 
             operation_handler = self._OPERATIONS_TO_HANDLERS[operation_type]
             operation_runner = operation_handler(self._program_state, argument)

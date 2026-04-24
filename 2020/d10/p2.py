@@ -4,7 +4,9 @@ from p1 import get_adapters_from_input, INPUT_FILE_PATH
 
 
 def get_next_vertices(adapter_joltage: int, adapters: tuple[int]) -> tuple[int]:
-    return tuple([adapter for adapter in adapters if 0 < adapter - adapter_joltage <= 3])
+    return tuple(
+        [adapter for adapter in adapters if 0 < adapter - adapter_joltage <= 3]
+    )
 
 
 @functools.cache
@@ -26,8 +28,8 @@ def main():
     adapters = tuple(adapters)
 
     arrangements = get_paths_amount(0, max(adapters), adapters)
-    print(f'Total number of arrangements: {arrangements}')
+    print(f"Total number of arrangements: {arrangements}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

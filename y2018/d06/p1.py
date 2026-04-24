@@ -2,7 +2,7 @@ from collections import namedtuple
 from itertools import product, tee
 from typing import Tuple, List, Iterable
 
-Coordinate = namedtuple('Coordinate', ['x', 'y'])
+Coordinate = namedtuple("Coordinate", ["x", "y"])
 
 
 class Rectangle:
@@ -13,21 +13,28 @@ class Rectangle:
         self._max_y = max_y
 
     def all_coordinates(self):
-        return [Coordinate(x, y)
-                for x, y in product(range(self._min_x, self._max_x + 1), range(self._min_y, self._max_y + 1))]
+        return [
+            Coordinate(x, y)
+            for x, y in product(
+                range(self._min_x, self._max_x + 1), range(self._min_y, self._max_y + 1)
+            )
+        ]
 
     def __contains__(self, coordinate: Coordinate):
-        return self._min_x < coordinate.x < self._max_x and self._min_y < coordinate.y < self._max_y
+        return (
+            self._min_x < coordinate.x < self._max_x
+            and self._min_y < coordinate.y < self._max_y
+        )
 
 
-def targets_from_file(path='..\inputs\\6.txt') -> Iterable[Coordinate]:
+def targets_from_file(path="..\inputs\\6.txt") -> Iterable[Coordinate]:
     """Return a list of targets which are stored in a file, each target in its own line.
     :param path: path of file with targets
     :return: list of targets from file
     """
     with open(path) as file:
         for line in file:
-            x, y = line.replace(' ', '').split(',')
+            x, y = line.replace(" ", "").split(",")
             yield Coordinate(int(x), int(y))
 
 
@@ -53,7 +60,11 @@ def find_largest_area(targets: List[Coordinate]) -> int:
     """
     rectangle = enclosing_rectangle(targets)
     # Filter out target coordinates which are on the "enclosing_rectangle" of the grid
-    coordinates = [coordinate for coordinate in rectangle.all_coordinates() if coordinate not in targets]
+    coordinates = [
+        coordinate
+        for coordinate in rectangle.all_coordinates()
+        if coordinate not in targets
+    ]
 
     targets_to_area = {target: [target] for target in targets}
 
@@ -62,8 +73,11 @@ def find_largest_area(targets: List[Coordinate]) -> int:
         if closest is not None:
             targets_to_area[closest].append(coordinate)
 
-    filtered_targets = [target for target in targets_to_area
-                        if all(coordinate in rectangle for coordinate in targets_to_area[target])]
+    filtered_targets = [
+        target
+        for target in targets_to_area
+        if all(coordinate in rectangle for coordinate in targets_to_area[target])
+    ]
     return max([len(targets_to_area[target]) for target in filtered_targets])
 
 
@@ -79,8 +93,7 @@ def closest_target(coordinate, targets):
 
 
 def closest_coordinate(coordinate, coordinates):
-    return min(coordinates,
-               key=lambda c: dist(coordinate, c))
+    return min(coordinates, key=lambda c: dist(coordinate, c))
 
 
 def dist(c1: Coordinate, c2: Coordinate, abs=abs) -> int:
@@ -90,8 +103,8 @@ def dist(c1: Coordinate, c2: Coordinate, abs=abs) -> int:
 def main():
     targets = list(targets_from_file())
     largest_area = find_largest_area(targets)
-    print(f'Largest area: {largest_area}')
+    print(f"Largest area: {largest_area}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

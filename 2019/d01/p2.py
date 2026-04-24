@@ -12,6 +12,8 @@ def mass_needed_for_mass_recursive(mass: int) -> int:
     return mass_needed + mass_needed_for_mass_recursive(mass_needed)
 
 
-if __name__ == '__main__':
-    with open('../inputs/1.txt') as input_file:
-        print(f'Answer for part 2: {sum((mass_needed_for_mass_recursive(int(module))) for module in input_file)}')
+if __name__ == "__main__":
+    with open("../inputs/1.txt") as input_file:
+        print(
+            f"Answer for part 2: {sum((mass_needed_for_mass_recursive(int(module))) for module in input_file)}"
+        )

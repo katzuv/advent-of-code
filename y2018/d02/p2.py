@@ -1,4 +1,5 @@
 """Solution of day 2 part 2."""
+
 from typing import List
 
 
@@ -20,9 +21,11 @@ def find_correct_boxes(box_ids: List[str]) -> str:
     for i, first_id in enumerate(box_ids):
         for second_id in box_ids[i:]:
             if are_almost_identical(first_id, second_id):
-                return ''.join(
-                    first_char for first_char, second_char in zip(first_id, second_id) if
-                    first_char == second_char).strip()
+                return "".join(
+                    first_char
+                    for first_char, second_char in zip(first_id, second_id)
+                    if first_char == second_char
+                ).strip()
 
 
 def strings_from_file(path: str) -> List[str]:
@@ -36,9 +39,9 @@ def strings_from_file(path: str) -> List[str]:
 
 
 def main():
-    box_ids = strings_from_file('..\\inputs\\2.txt')
+    box_ids = strings_from_file("..\\inputs\\2.txt")
     print(find_correct_boxes(box_ids))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

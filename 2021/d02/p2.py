@@ -4,7 +4,9 @@ import directions
 from p1 import INPUT_FILE_PATH, get_commands_from_input, Command
 
 
-def get_position(commands: Iterator[Command], horizontal: int = 0, depth: int = 0, aim: int = 0) -> tuple[int, int]:
+def get_position(
+    commands: Iterator[Command], horizontal: int = 0, depth: int = 0, aim: int = 0
+) -> tuple[int, int]:
     """
     Get position the submarine would be at after completing the given commands.
     :param commands: list of command to follow
@@ -36,5 +38,5 @@ def main():
     print(f"Product of the submarine's positional position with its depth: {product}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

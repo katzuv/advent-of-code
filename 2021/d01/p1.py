@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Sequence, Iterable
 
 
-INPUT_FILE_PATH = Path('..', 'inputs', '1.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "1.txt")
 
 
 def get_measurements_from_input(input_text: str) -> Iterable[int]:
@@ -27,8 +27,10 @@ def main():
     measurements = get_measurements_from_input(input_text)
 
     depth_measurements_increases = get_depth_measurements_increases(measurements)
-    print(f'Amount of measurements which are larger than the previous measurement: {depth_measurements_increases}')
+    print(
+        f"Amount of measurements which are larger than the previous measurement: {depth_measurements_increases}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

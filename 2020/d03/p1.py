@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Union
 
-INPUT_FILE_PATH = Path('..', 'inputs', '3.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "3.txt")
 
-TREE = '#'
+TREE = "#"
 DISTANCE_MOVING_RIGHT = 3
 
 
@@ -27,8 +27,8 @@ def count_trees(grid: list[str]) -> int:
 def main():
     grid = get_grid_from_input()
     encountered_tress = count_trees(grid)
-    print(f'Amount of trees encountered: {encountered_tress}')
+    print(f"Amount of trees encountered: {encountered_tress}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

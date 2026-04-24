@@ -3,7 +3,7 @@ from pathlib import Path
 
 from anytree import Node
 
-COM = 'COM'
+COM = "COM"
 
 
 class OrbitCountChecksumCalculator:
@@ -21,15 +21,15 @@ class OrbitCountChecksumCalculator:
         for node in self.com.descendants:
             if node.name == name:
                 return node
-        raise ValueError(f'Node {name} not found')
+        raise ValueError(f"Node {name} not found")
 
 
-def get_orbits_from_input() -> dict[str: list[str]]:
-    input_file = Path('..', 'inputs', '6.txt')
+def get_orbits_from_input() -> dict[str : list[str]]:
+    input_file = Path("..", "inputs", "6.txt")
     couples = input_file.read_text().splitlines()
     orbits = defaultdict(list)
     for couple in couples:
-        orbited, orbiter = couple.split(')')
+        orbited, orbiter = couple.split(")")
         orbits[orbited].append(orbiter)
     return orbits
 
@@ -38,9 +38,11 @@ def main():
     orbits = get_orbits_from_input()
 
     calc = OrbitCountChecksumCalculator(orbits)
-    total_orbits = sum(str(node).count(calc.com.separator) - 1 for node in calc.com.descendants)
-    print(f'Total amount of direct and indirect orbits: {total_orbits}')
+    total_orbits = sum(
+        str(node).count(calc.com.separator) - 1 for node in calc.com.descendants
+    )
+    print(f"Total amount of direct and indirect orbits: {total_orbits}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

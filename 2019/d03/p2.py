@@ -11,11 +11,17 @@ def main():
     second_path_points = p1.get_points_from_path(second_path)
     intersections = p1.get_intersections(first_path_points, second_path_points)
 
-    closest_intersection = min(intersections,
-                               key=lambda i: first_path_points.index(i) + second_path_points.index(i))
-    min_distance = first_path_points.index(closest_intersection) + second_path_points.index(closest_intersection)
-    print(f'Manhattan distance from the central port to the closest intersection by steps number: {min_distance}')
+    closest_intersection = min(
+        intersections,
+        key=lambda i: first_path_points.index(i) + second_path_points.index(i),
+    )
+    min_distance = first_path_points.index(
+        closest_intersection
+    ) + second_path_points.index(closest_intersection)
+    print(
+        f"Manhattan distance from the central port to the closest intersection by steps number: {min_distance}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -2,7 +2,9 @@ import d05.p1
 from d02.p1 import get_program_from_input
 
 
-class ThermalEnvironmentSupervisionTerminal(d05.p1.ThermalEnvironmentSupervisionTerminal):
+class ThermalEnvironmentSupervisionTerminal(
+    d05.p1.ThermalEnvironmentSupervisionTerminal
+):
     def _run_opcode_5(self, parameters: list[int], modes: list[int]):
         first = self.arg(parameters[0], modes[0])
         if first == 0:
@@ -36,5 +38,5 @@ class ThermalEnvironmentSupervisionTerminal(d05.p1.ThermalEnvironmentSupervision
         self.program[parameters[2]] = 1 if first == second else 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ThermalEnvironmentSupervisionTerminal(get_program_from_input(5)).program_output()

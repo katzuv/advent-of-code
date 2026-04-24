@@ -2,8 +2,8 @@ from typing import List
 
 
 def get_program_from_input(day_number):
-    with open(f'../inputs/{day_number}.txt') as input_file:
-        numbers = [int(number) for number in input_file.read().split(',')]
+    with open(f"../inputs/{day_number}.txt") as input_file:
+        numbers = [int(number) for number in input_file.read().split(",")]
     return numbers
 
 
@@ -31,13 +31,13 @@ class IntcodeComputer:
             try:
                 amount = self.OPCODES_TO_AMOUNT_OF_PARAMS[opcode]
             except KeyError:
-                raise NotImplementedError(f'opcode {opcode} is not yet supported')
-            self._run_instruction(opcode, self.program[i + 1: i + 1 + amount])
+                raise NotImplementedError(f"opcode {opcode} is not yet supported")
+            self._run_instruction(opcode, self.program[i + 1 : i + 1 + amount])
             for _ in range(amount):
                 next(indexes)
 
     def _run_instruction(self, opcode: int, parameters: List[int], modes: List[int]):
-        getattr(self, f'_run_opcode_{opcode}')(parameters, modes)
+        getattr(self, f"_run_opcode_{opcode}")(parameters, modes)
 
     def _run_opcode_1(self, parameters: List[int], modes: List[int]):
         first = self.arg(parameters[0], modes[0])
@@ -54,7 +54,7 @@ class IntcodeComputer:
             return self.program[param]
         elif mode == 1:
             return param
-        raise LookupError(f'Parameter mode {mode} is not supported')
+        raise LookupError(f"Parameter mode {mode} is not supported")
 
 
 def main():
@@ -62,8 +62,8 @@ def main():
     program[1] = 12
     program[2] = 2
     computer = IntcodeComputer(program)
-    print(f'Value at position 0: {computer.program_output()}')
+    print(f"Value at position 0: {computer.program_output()}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

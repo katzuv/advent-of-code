@@ -13,7 +13,8 @@ class Hunk:
         :param string: string representing the hunk, in the form "{ID} @ {row},{column}: {width}X{height}"
         """
         self.id, self._first_column, self._first_row, width, height = [
-            int(s) for s in re.match(r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)', string).groups()
+            int(s)
+            for s in re.match(r"#(\d+) @ (\d+),(\d+): (\d+)x(\d+)", string).groups()
         ]
         self._one_after_last_column = self._first_column + width
         self._one_after_end_row = self._first_row + height
@@ -23,11 +24,13 @@ class Hunk:
         Return all cells this hunk covers.
         :return: list of covered cells by this hunk
         """
-        return product(range(self._first_row, self._one_after_end_row),
-                       range(self._first_column, self._one_after_last_column))
+        return product(
+            range(self._first_row, self._one_after_end_row),
+            range(self._first_column, self._one_after_last_column),
+        )
 
 
-def hunks_from_file(path: str = 'inputs\\3.txt') -> List[Hunk]:
+def hunks_from_file(path: str = "inputs\\3.txt") -> List[Hunk]:
     """
     Return a list of hunks which are stored in a file, each hunk claim in its own line.
     :param path: path of file with claims of hunks
@@ -37,14 +40,14 @@ def hunks_from_file(path: str = 'inputs\\3.txt') -> List[Hunk]:
         return [Hunk(line) for line in file]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     hunks = hunks_from_file()
     covered_cells = [cell for hunk in hunks for cell in hunk.covered_cells()]
     covered_cells_amounts = Counter(covered_cells)
     duplicates = sum(count > 1 for count in covered_cells_amounts.values())
-    print(f'Amount of duplicates: {duplicates}')
+    print(f"Amount of duplicates: {duplicates}")
 
     # covered_cells_amounts = dict(covered_cells)
     for hunk in hunks:
         if all(covered_cells_amounts[cell] == 1 for cell in hunk.covered_cells()):
-            print(f'Claim which does not overlap: {hunk.id}')
+            print(f"Claim which does not overlap: {hunk.id}")

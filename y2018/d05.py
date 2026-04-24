@@ -7,13 +7,15 @@ def do_react(first: str, second: str) -> bool:
 
 
 def main():
-    with open('inputs\\5.txt') as file:
+    with open("inputs\\5.txt") as file:
         original = file.readline().strip()
 
-    print(f'1) Final length: {len(react(original))}')
+    print(f"1) Final length: {len(react(original))}")
 
-    print(f'Length of shortest reacted polymer by removing one type: \
-          {min(len(react(original.replace(letter, "").replace(letter.upper(),""))) for letter in string.ascii_lowercase)}')
+    print(
+        f"Length of shortest reacted polymer by removing one type: \
+          {min(len(react(original.replace(letter, '').replace(letter.upper(), ''))) for letter in string.ascii_lowercase)}"
+    )
 
 
 def react(polymer: str) -> str:
@@ -29,11 +31,11 @@ def react(polymer: str) -> str:
             next_unit = polymer[i + 1]
             if do_react(unit, next_unit):
                 changed = True
-                polymer = polymer[:i] + polymer[i + 2:]
+                polymer = polymer[:i] + polymer[i + 2 :]
                 start = max(0, i - 1)
                 break
     return polymer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

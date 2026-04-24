@@ -26,16 +26,20 @@ def guards_to_sleep_intervals(records: List[Tuple[datetime, str]]) -> Dict[int, 
     """
     guards_to_time = {}
     for i, (time, event) in enumerate(records):
-        if '#' in event:
-            guard_id = int(re.match(r'Guard #(\d+) begins shift', event).groups()[0])
+        if "#" in event:
+            guard_id = int(re.match(r"Guard #(\d+) begins shift", event).groups()[0])
             if guard_id not in guards_to_time:
                 guards_to_time[guard_id] = Guard(guard_id)
-        elif event.startswith('falls asleep'):
+        elif event.startswith("falls asleep"):
             time_falls_asleep = time
             time_wakes_up = records[i + 1][0]
             time_asleep = time_wakes_up - time_falls_asleep
-            guards_to_time[guard_id].total_sleep_time += time_asleep.total_seconds() // 60
-            guards_to_time[guard_id].minutes_slept.extend(range(time_falls_asleep.minute, time_wakes_up.minute))
+            guards_to_time[guard_id].total_sleep_time += (
+                time_asleep.total_seconds() // 60
+            )
+            guards_to_time[guard_id].minutes_slept.extend(
+                range(time_falls_asleep.minute, time_wakes_up.minute)
+            )
 
     return guards_to_time
 
@@ -46,7 +50,9 @@ def best_guard_minute_combination1(guards_to_sleep: Dict[int, Guard]) -> int:
     :param guards_to_sleep: guards' sleeping and shift changing info
     :return: best guard/minute combination by most sleepy guard in total
     """
-    most_sleepy_guard = max(guards_to_sleep.items(), key=lambda guard: guard[1].total_sleep_time)[1]
+    most_sleepy_guard = max(
+        guards_to_sleep.items(), key=lambda guard: guard[1].total_sleep_time
+    )[1]
     return most_sleepy_guard.number * statistics.mode(most_sleepy_guard.minutes_slept)
 
 
@@ -56,8 +62,10 @@ def best_guard_minute_combination2(guards_to_sleep: Dict[int, Guard]) -> int:
     :param guards_to_sleep: guards' sleeping and shift changing info
     :return: best guard/minute combination by most sleepy guard on the same minute
     """
-    most_sleepy_guard = max(guards_to_sleep.items(),
-                            key=lambda guard: amount_of_most_common_item_only_one(guard[1].minutes_slept))[1]
+    most_sleepy_guard = max(
+        guards_to_sleep.items(),
+        key=lambda guard: amount_of_most_common_item_only_one(guard[1].minutes_slept),
+    )[1]
     return most_sleepy_guard.number * statistics.mode(most_sleepy_guard.minutes_slept)
 
 
@@ -93,17 +101,17 @@ def date_from_record(record: str) -> datetime:
     :return: extracted date and time
     """
     date = record[1:17]
-    date = datetime.strptime(date, '%Y-%m-%d %H:%M')
+    date = datetime.strptime(date, "%Y-%m-%d %H:%M")
     return date
 
 
 def main():
-    with open('inputs\\4.txt') as file:
+    with open("inputs\\4.txt") as file:
         records = sort_records(file.readlines())
         intervals = guards_to_sleep_intervals(records)
         print(best_guard_minute_combination1(intervals))
         print(best_guard_minute_combination2(intervals))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

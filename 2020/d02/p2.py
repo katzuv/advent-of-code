@@ -16,7 +16,7 @@ class Password:
 
     @staticmethod
     def _get_password_properties(password: str) -> Sequence[str]:
-        return re.match(r'(\d+)-(\d+) (\w): (\w+)', password).groups()
+        return re.match(r"(\d+)-(\d+) (\w): (\w+)", password).groups()
 
     def is_password_valid(self) -> bool:
         first_letter = self._get_letter_in_position(self._first_index)
@@ -27,7 +27,9 @@ class Password:
         return letter_amount_in_positions == self._REQUIRED_POSITION_TO_CONTAIN_LETTER
 
     def _get_letter_in_position(self, position: int) -> str:
-        return self._password_text[position - 1]  # Toboggan Corporate Policies have no concept of "index zero"
+        return self._password_text[
+            position - 1
+        ]  # Toboggan Corporate Policies have no concept of "index zero"
 
 
 def main():
@@ -35,8 +37,8 @@ def main():
     passwords = list(map(Password, passwords_input))
 
     valid_passwords = sum(password.is_password_valid() for password in passwords)
-    print(f'Amount of valid passwords: {valid_passwords}')
+    print(f"Amount of valid passwords: {valid_passwords}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

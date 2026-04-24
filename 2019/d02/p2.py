@@ -13,8 +13,8 @@ def main():
         computer.program = program
         output = computer.program_output()
         if output == 19690720:
-            print(f'100 * noun + verb = {100 * noun + verb}')
+            print(f"100 * noun + verb = {100 * noun + verb}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

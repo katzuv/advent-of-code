@@ -17,8 +17,8 @@ def main():
 
     seats_ids = get_seats_ids(seats)
     missing_seat_id = get_missing_seat_id(seats_ids)
-    print(f'My seat id: {missing_seat_id}')
+    print(f"My seat id: {missing_seat_id}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

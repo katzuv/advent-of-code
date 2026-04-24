@@ -6,6 +6,8 @@ def mass_needed_for_mass(mass: int) -> int:
     return max(0, (mass // 3) - 2)
 
 
-if __name__ == '__main__':
-    with open('../inputs/1.txt') as input_file:
-        print(f'Answer for part 1: {sum((mass_needed_for_mass(int(module))) for module in input_file)}')
+if __name__ == "__main__":
+    with open("../inputs/1.txt") as input_file:
+        print(
+            f"Answer for part 1: {sum((mass_needed_for_mass(int(module))) for module in input_file)}"
+        )

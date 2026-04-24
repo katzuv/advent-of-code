@@ -4,7 +4,7 @@ from p1 import get_passports_from_input, FIELDS_WITHOUT_PID, INPUT_FILE_PATH
 
 
 class Passport:
-    _KEY_VALUE_SEPARATOR = ':'
+    _KEY_VALUE_SEPARATOR = ":"
 
     class _Requirements:
         YEAR_LENGTH = 4
@@ -12,21 +12,21 @@ class Passport:
         ISSUE_YEAR = (2010, 2020)
         EXPIRATION_YEAR = (2020, 2030)
 
-        CM = 'cm'
-        IN = 'in'
+        CM = "cm"
+        IN = "in"
         HEIGHTS = {CM: (150, 193), IN: (59, 76)}
 
-        EYE_COLORS = ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth')
+        EYE_COLORS = ("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
 
         PASSPORT_ID_LENGTH = 9
 
     def __init__(self, passport_text: str):
         if not self._are_required_fields_present(passport_text):
-            raise ValueError('Passport does not contain all required fields')
+            raise ValueError("Passport does not contain all required fields")
 
         keys_values = self._get_fields_with_values(passport_text)
         for key, value in keys_values.items():
-            setattr(self, f'_{key}', value)
+            setattr(self, f"_{key}", value)
 
     @staticmethod
     def _are_required_fields_present(passport_text: str) -> bool:
@@ -42,7 +42,9 @@ class Passport:
         return keys_values
 
     def is_valid(self) -> bool:
-        return all(getattr(self, f'_is_{field}_valid')() for field in FIELDS_WITHOUT_PID)
+        return all(
+            getattr(self, f"_is_{field}_valid")() for field in FIELDS_WITHOUT_PID
+        )
 
     @classmethod
     def _is_year_length_valid(cls, year: str):
@@ -51,21 +53,33 @@ class Passport:
     def _is_byr_valid(self):
         if not self._is_year_length_valid(self._byr):
             return False
-        return self._Requirements.BIRTH_YEAR[0] <= int(self._byr) <= self._Requirements.BIRTH_YEAR[1]
+        return (
+            self._Requirements.BIRTH_YEAR[0]
+            <= int(self._byr)
+            <= self._Requirements.BIRTH_YEAR[1]
+        )
 
     def _is_iyr_valid(self):
         if not self._is_year_length_valid(self._iyr):
             return False
-        return self._Requirements.ISSUE_YEAR[0] <= int(self._iyr) <= self._Requirements.ISSUE_YEAR[1]
+        return (
+            self._Requirements.ISSUE_YEAR[0]
+            <= int(self._iyr)
+            <= self._Requirements.ISSUE_YEAR[1]
+        )
 
     def _is_eyr_valid(self):
         if not self._is_year_length_valid(self._eyr):
             return False
-        return self._Requirements.EXPIRATION_YEAR[0] <= int(self._eyr) <= self._Requirements.EXPIRATION_YEAR[1]
+        return (
+            self._Requirements.EXPIRATION_YEAR[0]
+            <= int(self._eyr)
+            <= self._Requirements.EXPIRATION_YEAR[1]
+        )
 
     def _is_hgt_valid(self):
         try:
-            height, unit = re.match(r'^(\d+)(cm|in)$', self._hgt).groups()
+            height, unit = re.match(r"^(\d+)(cm|in)$", self._hgt).groups()
         except AttributeError:  # Field value doesn't match pattern.
             return False
 
@@ -77,7 +91,7 @@ class Passport:
         return False
 
     def _is_hcl_valid(self):
-        return re.match(r'^#[0-9a-f]{6}', self._hcl)
+        return re.match(r"^#[0-9a-f]{6}", self._hcl)
 
     def _is_ecl_valid(self):
         return self._ecl in self._Requirements.EYE_COLORS
@@ -96,8 +110,8 @@ def main():
             valid_passports += Passport(passport).is_valid()
         except ValueError:
             pass
-    print(f'Valid passports: {valid_passports}')
+    print(f"Valid passports: {valid_passports}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

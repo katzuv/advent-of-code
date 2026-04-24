@@ -1,7 +1,7 @@
 import itertools
 from pathlib import Path
 
-INPUT_FILE_PATH = Path('..', 'inputs', '9.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "9.txt")
 
 PREAMBLE_LENGTH = 25
 
@@ -20,7 +20,7 @@ def is_number_valid(number: int, numbers: list[int]) -> bool:
 
 def get_first_invalid_number(numbers: list[int]) -> int:
     for i, number in enumerate(numbers[PREAMBLE_LENGTH:]):
-        preamble = numbers[i:i + PREAMBLE_LENGTH]
+        preamble = numbers[i : i + PREAMBLE_LENGTH]
         if not is_number_valid(number, preamble):
             return number
 
@@ -30,8 +30,10 @@ def main():
     numbers = get_numbers_from_input(input_text)
     number = get_first_invalid_number(numbers)
 
-    print(f'First number which is not a sum of two of the {PREAMBLE_LENGTH} numbers before it: {number}')
+    print(
+        f"First number which is not a sum of two of the {PREAMBLE_LENGTH} numbers before it: {number}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

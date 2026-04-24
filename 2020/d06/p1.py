@@ -1,7 +1,7 @@
 from pathlib import Path
 
-INPUT_FILE_PATH = Path('..', 'inputs', '6.txt')
-GROUPS_SEPARATOR = '\n\n'
+INPUT_FILE_PATH = Path("..", "inputs", "6.txt")
+GROUPS_SEPARATOR = "\n\n"
 
 
 def get_groups_from_input(input_text: str) -> list:
@@ -9,7 +9,7 @@ def get_groups_from_input(input_text: str) -> list:
 
 
 def get_positive_answers_from_groups(group: str) -> set:
-    group = group.replace('\n', '')
+    group = group.replace("\n", "")
     return set(group)
 
 
@@ -23,5 +23,5 @@ def main():
     print(f'Sum of questions answered "yes" to: {total_positive_answers}')
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

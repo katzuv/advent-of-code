@@ -14,8 +14,8 @@ def main():
     rules = get_rules_dict(input_text)
 
     total = inner_bags_amount(REQUIRED_BAG, rules) - 1  # Don't count the outermost bag.
-    print(f'Total amount of bags inside a {REQUIRED_BAG} bag: {total}')
+    print(f"Total amount of bags inside a {REQUIRED_BAG} bag: {total}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

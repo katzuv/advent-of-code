@@ -1,8 +1,15 @@
 import copy
 import itertools
 
-from p1 import count_occupied_seats, count_adjacent_seats_by_types, FLOOR, EMPTY, OCCUPIED, get_grid_from_input, \
-    INPUT_FILE_PATH
+from p1 import (
+    count_occupied_seats,
+    count_adjacent_seats_by_types,
+    FLOOR,
+    EMPTY,
+    OCCUPIED,
+    get_grid_from_input,
+    INPUT_FILE_PATH,
+)
 
 MINIMAL_EMPTY_ADJACENT_SEATS_AMOUNT_TO_LEAVE = 5
 
@@ -10,7 +17,9 @@ DISPLACEMENTS = list(itertools.product(range(-1, 2), range(-1, 2)))
 DISPLACEMENTS.remove((0, 0))
 
 
-def get_seen_seat(diff: tuple[int, int], row: int, column: int, grid: list[list[str]]) -> str:
+def get_seen_seat(
+    diff: tuple[int, int], row: int, column: int, grid: list[list[str]]
+) -> str:
     while True:
         row += diff[0]
         column += diff[1]
@@ -33,7 +42,11 @@ def get_seat_next_state(seat: str, other_seats: list[str]) -> str:
     other_seats_by_types_counter = count_adjacent_seats_by_types(other_seats)
     if seat == EMPTY and other_seats_by_types_counter[EMPTY] == len(other_seats):
         return OCCUPIED
-    if seat == OCCUPIED and other_seats_by_types_counter[OCCUPIED] >= MINIMAL_EMPTY_ADJACENT_SEATS_AMOUNT_TO_LEAVE:
+    if (
+        seat == OCCUPIED
+        and other_seats_by_types_counter[OCCUPIED]
+        >= MINIMAL_EMPTY_ADJACENT_SEATS_AMOUNT_TO_LEAVE
+    ):
         return EMPTY
     return seat
 
@@ -44,7 +57,9 @@ def get_new_grid(grid: list[list[str]]) -> list[list[str]]:
         seat = grid[row][column]
         if seat == FLOOR:
             continue
-        new_grid[row][column] = get_seat_next_state(seat, get_seen_seats(grid, row, column))
+        new_grid[row][column] = get_seat_next_state(
+            seat, get_seen_seats(grid, row, column)
+        )
     return new_grid
 
 
@@ -64,8 +79,8 @@ def main():
     grid = get_final_grid(grid)
 
     occupied_seats = count_occupied_seats(grid)
-    print(f'Occupied seats: {occupied_seats}')
+    print(f"Occupied seats: {occupied_seats}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
