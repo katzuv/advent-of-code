@@ -358,3 +358,5 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/git,linux,python,pycharm,windows,pycharm+all,pycharm+iml
 */inputs
 /session_id.py
+
+.venv/

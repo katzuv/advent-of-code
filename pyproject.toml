@@ -1,0 +1,16 @@
+[project]
+name = "advent-of-code"
+version = "0.1.0"
+description = "Solution runner for Advent of Code"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "click==8.1.7",
+    "gitpython>=3.1.47",
+    "pygithub>=2.9.1",
+    "pyyaml>=6.0.3",
+    "requests>=2.33.1",
+    "rich-click>=1.9.7",
+    "tzdata>=2026.2",
+]
