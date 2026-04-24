@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import List, Tuple
 
 
 def get_wires_paths() -> Tuple[List[str], List[str]]:

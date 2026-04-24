@@ -1,4 +1,4 @@
-from p1 import INPUT_FILE_PATH, get_rules_dict, REQUIRED_BAG
+from p1 import INPUT_FILE_PATH, REQUIRED_BAG, get_rules_dict
 
 
 def inner_bags_amount(color: str, rules: dict):

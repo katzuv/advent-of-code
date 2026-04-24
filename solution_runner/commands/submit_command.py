@@ -4,7 +4,7 @@ from pathlib import Path
 import bs4
 import rich_click as click
 
-from . import consts, commands_utils
+from . import commands_utils, consts
 from .commands_utils import get_setting
 from .consts import Directories, FileExtensions, HttpMethods
 

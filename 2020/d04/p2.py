@@ -1,6 +1,6 @@
 import re
 
-from p1 import get_passports_from_input, FIELDS_WITHOUT_PID, INPUT_FILE_PATH
+from p1 import FIELDS_WITHOUT_PID, INPUT_FILE_PATH, get_passports_from_input
 
 
 class Passport:
@@ -33,7 +33,7 @@ class Passport:
         return all(field in passport_text for field in FIELDS_WITHOUT_PID)
 
     @classmethod
-    def _get_fields_with_values(cls, passport_text: str) -> dict[str: str]:
+    def _get_fields_with_values(cls, passport_text: str) -> dict[str, str]:
         items = passport_text.split()
         keys_values = {}
         for item in items:

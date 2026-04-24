@@ -1,4 +1,4 @@
-from p1 import get_program_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_program_from_input
 from src import GameConsole
 
 

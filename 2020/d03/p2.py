@@ -1,4 +1,4 @@
-from p1 import get_grid_from_input, TREE
+from p1 import TREE, get_grid_from_input
 
 
 def count_trees(

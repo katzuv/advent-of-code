@@ -1,7 +1,6 @@
 import itertools
 from pathlib import Path
-from typing import Sequence, Iterable
-
+from typing import Iterable, Sequence
 
 INPUT_FILE_PATH = Path("..", "inputs", "1.txt")
 

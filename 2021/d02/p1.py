@@ -4,7 +4,6 @@ from typing import Iterator
 
 import directions
 
-
 INPUT_FILE_PATH = Path("..", "inputs", "2.txt")
 
 

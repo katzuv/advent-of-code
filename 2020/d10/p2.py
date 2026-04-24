@@ -1,6 +1,6 @@
 import functools
 
-from p1 import get_adapters_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_adapters_from_input
 
 
 def get_next_vertices(adapter_joltage: int, adapters: tuple[int]) -> tuple[int]:

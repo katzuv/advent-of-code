@@ -1,5 +1,5 @@
 import itertools
-from typing import List, Dict, Set
+from typing import Dict, List, Set
 
 from p1 import couples_from_file, steps_to_their_dependencies
 

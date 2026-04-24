@@ -2,7 +2,7 @@ import re
 import statistics
 from collections import Counter
 from datetime import datetime
-from typing import List, Tuple, Dict
+from typing import Dict, List, Tuple
 
 
 class Guard:

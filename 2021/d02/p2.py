@@ -1,7 +1,7 @@
 from typing import Iterator
 
 import directions
-from p1 import INPUT_FILE_PATH, get_commands_from_input, Command
+from p1 import INPUT_FILE_PATH, Command, get_commands_from_input
 
 
 def get_position(

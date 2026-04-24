@@ -1,4 +1,4 @@
-from p1 import targets_from_file, enclosing_rectangle, dist
+from p1 import dist, enclosing_rectangle, targets_from_file
 
 MAX_TOTAL_DISTANCE = 10000
 

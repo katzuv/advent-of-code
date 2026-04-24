@@ -1,6 +1,6 @@
 """Solution of day 1 part 2."""
 
-from typing import Sequence, List
+from typing import List, Sequence
 
 
 def first_duplicate(sequence: Sequence[float]) -> float:

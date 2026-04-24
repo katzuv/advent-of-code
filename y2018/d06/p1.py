@@ -1,6 +1,6 @@
 from collections import namedtuple
 from itertools import product, tee
-from typing import Tuple, List, Iterable
+from typing import Iterable, List, Tuple
 
 Coordinate = namedtuple("Coordinate", ["x", "y"])
 

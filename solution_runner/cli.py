@@ -1,6 +1,6 @@
 import rich_click as click
 
-import commands
+from . import commands
 
 CONTEXT = {"help_option_names": ["-h", "--help"]}
 

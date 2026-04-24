@@ -7,7 +7,7 @@ import git
 import github
 import rich_click as click
 
-from . import consts, commands_utils
+from . import commands_utils, consts
 from .consts import Directories, FileExtensions, HttpMethods
 
 _default_year = commands_utils.get_default_year()

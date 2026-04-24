@@ -2,13 +2,13 @@ import copy
 import itertools
 
 from p1 import (
-    count_occupied_seats,
-    count_adjacent_seats_by_types,
-    FLOOR,
     EMPTY,
-    OCCUPIED,
-    get_grid_from_input,
+    FLOOR,
     INPUT_FILE_PATH,
+    OCCUPIED,
+    count_adjacent_seats_by_types,
+    count_occupied_seats,
+    get_grid_from_input,
 )
 
 MINIMAL_EMPTY_ADJACENT_SEATS_AMOUNT_TO_LEAVE = 5

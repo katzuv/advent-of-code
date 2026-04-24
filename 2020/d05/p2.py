@@ -1,4 +1,4 @@
-from p1 import get_seats_ids, get_seats_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_seats_from_input, get_seats_ids
 
 
 def get_missing_seat_id(seats_ids: list) -> int:

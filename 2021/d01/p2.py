@@ -2,10 +2,9 @@ from typing import Iterable
 
 from p1 import (
     INPUT_FILE_PATH,
-    get_measurements_from_input,
     get_depth_measurements_increases,
+    get_measurements_from_input,
 )
-
 
 _DEFAULT_WINDOW_SIZE = 3
 

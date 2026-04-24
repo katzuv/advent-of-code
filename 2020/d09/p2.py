@@ -1,4 +1,4 @@
-from p1 import get_first_invalid_number, get_numbers_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_first_invalid_number, get_numbers_from_input
 
 MINIMAL_SET_LENGTH = 2
 

@@ -1,5 +1,5 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 INPUT_FILE_PATH = Path("..", "inputs", "7.txt")
 

@@ -1,6 +1,6 @@
 import math
 
-from p1 import get_manhattan_distance, get_instructions_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_instructions_from_input, get_manhattan_distance
 
 FORWARD = "F"
 RIGHT = "R"

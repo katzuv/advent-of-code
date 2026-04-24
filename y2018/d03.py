@@ -1,7 +1,7 @@
 import re
 from collections import Counter
 from itertools import product
-from typing import List, Iterable
+from typing import Iterable, List
 
 
 class Hunk:
