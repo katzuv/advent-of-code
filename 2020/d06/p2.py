@@ -1,6 +1,6 @@
 from collections import Counter
 
-from p1 import INPUT_FILE_PATH, get_groups_from_input, get_positive_answers_from_groups
+from p1 import INPUT_FILE_PATH, get_groups_from_input
 
 INNER_GROUP_SEPARATOR = "\n"
 

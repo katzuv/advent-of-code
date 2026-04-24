@@ -7,7 +7,6 @@ def get_missing_seat_id(seats_ids: list) -> int:
         if seats_ids[i + 1] - seat_id == 2:
             # All seats are filled except mine, so if there is a pair of following seats IDs whose difference is 2,
             # my seat ID is the one between them.
-            missing_seat_id = seat_id + 1
             break
 
 

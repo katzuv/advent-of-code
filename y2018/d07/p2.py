@@ -86,7 +86,7 @@ def main():
             f"{second}{' ' * 12}{(' ' * 10).join(worker.current_step for worker in workers)}      {''.join(step for step in completed_steps_list)}"
         )
         if len(completed_steps) == len(steps_to_dependencies):
-            print(f"Total time:")
+            print("Total time:")
             break
 
 
