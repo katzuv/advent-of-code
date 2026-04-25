@@ -28,7 +28,7 @@ build-backend = "hatchling.build"
 packages = ["solution_runner"]
 
 [project.scripts]
-cli = "solution_runner.cli:cli"
+aoc = "solution_runner.cli:cli"
 
 [tool.uv]
 package = true
