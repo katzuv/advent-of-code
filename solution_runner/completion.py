@@ -65,7 +65,10 @@ def show(shell, case_insensitive):
     "--append/--overwrite", help="Append the completion code to the file", default=None
 )
 @click.option(
-    "-i", "--case-insensitive/--no-case-insensitive", help="Case insensitive completion"
+    "-i",
+    "--case-insensitive/--no-case-insensitive",
+    default=True,
+    help="Case insensitive completion",
 )
 @click.argument(
     "shell",
