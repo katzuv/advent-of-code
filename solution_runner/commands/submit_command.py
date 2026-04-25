@@ -67,7 +67,7 @@ def command(year: int, day: int, part: int, should_print_only: bool):
         click.secho(
             "Solution directory does not exist. Run setup command first", fg="red"
         )
-        raise click.Abort()
+        raise click.Abort
 
     input_path = (root_directory / Directories.INPUTS / year / day).with_suffix(
         FileExtensions.TEXT
@@ -89,6 +89,7 @@ def command(year: int, day: int, part: int, should_print_only: bool):
 def _print_result(result: tuple[str, bool]) -> None:
     """
     Print submit result retrieved from the website.
+
     :param result: result retrieved from the website
     """
     sentence, is_answer_right = result
@@ -99,6 +100,7 @@ def _print_result(result: tuple[str, bool]) -> None:
 def _get_result_from_website(year: str, day: str, part: int, answer: str) -> str:
     """
     Submit the answer to the website and return its response to it.
+
     :param year: year of the puzzle
     :param day: day of the puzzle
     :param part: part of the day's puzzle
@@ -115,6 +117,7 @@ def _get_result_from_website(year: str, day: str, part: int, answer: str) -> str
 def _get_answer(input_text: str, solution_path: Path) -> str:
     """
     Run the solution module and return the answer.
+
     :param input_text: input to pass to the solution module
     :param solution_path: path to the Python solution module
     :return: puzzle answer
@@ -128,7 +131,7 @@ def _get_answer(input_text: str, solution_path: Path) -> str:
     # If an error occurred in the called solution file, print the exception and abort.
     except subprocess.CalledProcessError as error:
         click.secho(error.stderr, fg="red")
-        raise click.Abort() from None
+        raise click.Abort from None
 
     solution = result.stdout.strip()
     return solution

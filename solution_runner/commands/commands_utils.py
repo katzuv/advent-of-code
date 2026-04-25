@@ -1,4 +1,5 @@
 import urllib.parse
+import zoneinfo
 from datetime import datetime
 from enum import Enum
 from typing import Any
@@ -35,6 +36,7 @@ def get_setting(key: str) -> Any:
 def send_aoc_request(method, endpoint: str, payload=None) -> str:
     """
     Send a request to Advent of Code's website and return the textual response.
+
     :param method: method of the request
     :param endpoint: endpoint to append to the base URL
     :param payload: optional payload to attach to the request
@@ -47,11 +49,16 @@ def send_aoc_request(method, endpoint: str, payload=None) -> str:
     url = urllib.parse.urljoin(consts.BASE_URL, endpoint)
 
     request = requests.request(
-        method, url, headers=consts.USER_AGENT_HEADER, cookies=cookies, data=payload
+        method,
+        url,
+        headers=consts.USER_AGENT_HEADER,
+        cookies=cookies,
+        data=payload,
+        timeout=10,
     )
     if not request.ok:
         click.secho(request.text, fg="red")
-        raise click.Abort()
+        raise click.Abort
     return request.text
 
 
@@ -59,7 +66,7 @@ def get_default_year() -> int:
     """
     :return: default year which is the current year if it's December, last year otherwise
     """
-    today = datetime.today()
+    today = datetime.now(tz=zoneinfo.ZoneInfo("America/New_York"))
     current_year = today.year
     if today.month == consts.DECEMBER:
         return current_year
