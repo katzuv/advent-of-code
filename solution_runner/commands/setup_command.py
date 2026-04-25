@@ -45,7 +45,7 @@ def command(year: int, day: int, should_use_cache: bool):
     try:
         root_directory = commands_utils.get_setting(consts.ROOT_DIRECTORY)
     except FileNotFoundError as error:
-        raise click.Abort() from error
+        raise click.Abort from error
     inputs_directory = root_directory / Directories.INPUTS
     _ask_user_to_mkdir(inputs_directory, "input files")
 
@@ -82,6 +82,7 @@ def command(year: int, day: int, should_use_cache: bool):
 def _abort_if_puzzle_locked(year: int, day: int):
     """
     Check if the puzzle at the given time wasn't unlocked yet, and abort if true.
+
     :param year: year of the puzzle
     :param day: day of the puzzle
     """
@@ -89,7 +90,7 @@ def _abort_if_puzzle_locked(year: int, day: int):
     now = datetime.now(tz=consts.US_EASTERN_TIMEZONE)
     if puzzle_unlock_time > now:
         click.secho(f"{year}'s day {day} puzzle wasn't unlocked yet.", fg="red")
-        raise click.Abort()
+        raise click.Abort
 
 
 def _ask_user_to_mkdir(directory: Path, name: str = None):
@@ -116,18 +117,20 @@ def _ask_user_to_mkdir(directory: Path, name: str = None):
 
 def _abort_input_file_already_exists(year: str, day: str):
     """
-    Abort the script because the input file and notify the user.
+    Abort the script because the input file exists and notify the user.
+
     :param year: year of the puzzle
     :param day: day of the puzzle
     """
     day = day.lstrip(consts.ZERO)  # Remove leading zeros for prettier printing.
     click.secho(f"Input file for {year}'s day {day} puzzle already exists.", fg="red")
-    raise click.Abort()
+    raise click.Abort
 
 
 def _create_files(year_solutions_directory: Path, day: str):
     """
     Create challenge directory and files.
+
     :param year_solutions_directory: challenges solution files of the relevant year
     :param day: day of the challenge
     """
@@ -146,6 +149,7 @@ def _create_files(year_solutions_directory: Path, day: str):
 def _download_input(year: str, day: str, input_file: Path):
     """
     Download the puzzle's input and write it to a file.
+
     :param year: year of the puzzle
     :param day: day of the puzzle
     :param input_file: input file path

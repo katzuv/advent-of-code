@@ -64,6 +64,7 @@ def _configure_root_directory(
 ) -> str:
     """
     Edit the root directory configuration if needed.
+
     :param configuration: current configuration
     :param root_directory: root directory passed by the user, `None` if wasn't passed
     :return: root directory after configuration if needed
@@ -81,6 +82,7 @@ def _configure_root_directory(
 def _configure_session_id(configuration: dict[str, Any], session_id: str | None):
     """
     Configure the session ID if needed.
+
     :param configuration: current configuration
     :param session_id: session ID passed by the user, `None` if wasn't passed
     """
@@ -96,6 +98,7 @@ def _configure_session_id(configuration: dict[str, Any], session_id: str | None)
 def _configure_github_auth(configuration: dict[str, Any], github_auth: str | None):
     """
     Configure the GitHub auth token if needed.
+
     :param configuration: current configuration
     :param github_auth: GitHub auth token passed by the user, `None` if wasn't passed
     """

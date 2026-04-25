@@ -129,7 +129,7 @@ def install():
         )
     except subprocess.CalledProcessError:
         click.secho("Failed to locate PowerShell profile.", fg="red")
-        raise click.Abort() from None
+        raise click.Abort from None
 
     # 4. Write the modern script to the profile safely
     profile = Path(profile_path)
