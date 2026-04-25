@@ -14,8 +14,10 @@ def cli() -> click.Group:
     """
 
 
+cli.add_command(commands.setup)
+cli.add_command(commands.config)
+cli.add_command(commands.submit)
+
+
 if __name__ == "__main__":
-    cli.add_command(commands.setup)
-    cli.add_command(commands.config)
-    cli.add_command(commands.submit)
     cli()
