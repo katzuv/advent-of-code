@@ -1,18 +1,18 @@
 from pathlib import Path
 
-UPPER_HALF_ROW = 'B'
-LOWER_HALF_ROW = 'F'
-UPPER_HALF_COLUMN = 'R'
-LOWER_HALF_COLUMN = 'L'
+UPPER_HALF_ROW = "B"
+LOWER_HALF_ROW = "F"
+UPPER_HALF_COLUMN = "R"
+LOWER_HALF_COLUMN = "L"
 
 ROW_LENGTH = 7
 COLUMN_LENGTH = 3
 
 BINARY_BASE = 2
-ZERO = '0'
-ONE = '1'
+ZERO = "0"
+ONE = "1"
 
-INPUT_FILE_PATH = Path('..', 'inputs', '5.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "5.txt")
 
 
 def get_seats_from_input(input_text: str) -> list:
@@ -24,7 +24,9 @@ def split_row_column(seat: str) -> tuple:
 
 
 def _get_number(string: str, lower_half_symbol: str, upper_half_symbol: str) -> int:
-    binary_number = string.replace(lower_half_symbol, ZERO).replace(upper_half_symbol, ONE)
+    binary_number = string.replace(lower_half_symbol, ZERO).replace(
+        upper_half_symbol, ONE
+    )
     return int(binary_number, base=BINARY_BASE)
 
 
@@ -58,8 +60,8 @@ def main():
     seats = get_seats_from_input(seats_input)
 
     seats_ids = get_seats_ids(seats)
-    print(f'Highest seat ID: {max(seats_ids)}')
+    print(f"Highest seat ID: {max(seats_ids)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

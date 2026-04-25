@@ -1,5 +1,4 @@
 """Solution of day 2 part 2."""
-from typing import List
 
 
 def are_almost_identical(first_id: str, second_id: str) -> bool:
@@ -9,10 +8,13 @@ def are_almost_identical(first_id: str, second_id: str) -> bool:
     :param second_id: second ID to check
     :return: whether two IDs are "almost identical"
     """
-    return sum(char1 != char2 for char1, char2 in zip(first_id, second_id)) == 1
+    return (
+        sum(char1 != char2 for char1, char2 in zip(first_id, second_id, strict=True))
+        == 1
+    )
 
 
-def find_correct_boxes(box_ids: List[str]) -> str:
+def find_correct_boxes(box_ids: list[str]) -> str:
     """
     :param box_ids: list of the box IDs
     :return: the letters which are common between the two correct box IDs
@@ -20,12 +22,14 @@ def find_correct_boxes(box_ids: List[str]) -> str:
     for i, first_id in enumerate(box_ids):
         for second_id in box_ids[i:]:
             if are_almost_identical(first_id, second_id):
-                return ''.join(
-                    first_char for first_char, second_char in zip(first_id, second_id) if
-                    first_char == second_char).strip()
+                return "".join(
+                    first_char
+                    for first_char, second_char in zip(first_id, second_id, strict=True)
+                    if first_char == second_char
+                ).strip()
 
 
-def strings_from_file(path: str) -> List[str]:
+def strings_from_file(path: str) -> list[str]:
     """
     Return a list of strings which are stored in a file, each string in its own line.
     :param path: path of file with strings
@@ -36,9 +40,9 @@ def strings_from_file(path: str) -> List[str]:
 
 
 def main():
-    box_ids = strings_from_file('..\\inputs\\2.txt')
+    box_ids = strings_from_file("..\\inputs\\2.txt")
     print(find_correct_boxes(box_ids))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

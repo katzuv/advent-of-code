@@ -1,8 +1,8 @@
 from pathlib import Path
 
-SPLITTER = ','
+SPLITTER = ","
 
-INPUT_FILE_PATH = Path('..', 'inputs', '13.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "13.txt")
 
 
 def get_notes_from_input(input_text: str) -> tuple[int, list[int]]:
@@ -31,14 +31,18 @@ def get_bus_departure_timestamp_difference(bus_id: int, timestamp: int) -> int:
 def main():
     input_text = INPUT_FILE_PATH.read_text()
     timestamp, bus_ids = get_notes_from_input(input_text)
-    bus_departures_differences = {bus_id: get_bus_departure_timestamp_difference(bus_id, timestamp)
-                                  for bus_id in bus_ids}
+    bus_departures_differences = {
+        bus_id: get_bus_departure_timestamp_difference(bus_id, timestamp)
+        for bus_id in bus_ids
+    }
 
     earliest_bus = min(bus_departures_differences.items(), key=lambda item: item[1])
 
     product = earliest_bus[0] * earliest_bus[1]
-    print(f"ID of the earliest bus multiplied by the number of minutes you'll need to wait for that bus: {product}")
+    print(
+        f"ID of the earliest bus multiplied by the number of minutes you'll need to wait for that bus: {product}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 import sys
 
-
 Matrix = list[str]
 
 

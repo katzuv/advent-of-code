@@ -1,3 +1,3 @@
-FORWARD = 'forward'
-DOWN = 'down'
-UP = 'up'
+FORWARD = "forward"
+DOWN = "down"
+UP = "up"

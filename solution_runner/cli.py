@@ -1,6 +1,6 @@
 import rich_click as click
 
-import commands
+from . import commands
 
 CONTEXT = {"help_option_names": ["-h", "--help"]}
 
@@ -14,8 +14,10 @@ def cli() -> click.Group:
     """
 
 
+cli.add_command(commands.setup)
+cli.add_command(commands.config)
+cli.add_command(commands.submit)
+
+
 if __name__ == "__main__":
-    cli.add_command(commands.setup)
-    cli.add_command(commands.config)
-    cli.add_command(commands.submit)
     cli()

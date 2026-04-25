@@ -4,7 +4,7 @@ from pathlib import Path
 import bs4
 import rich_click as click
 
-from . import consts, commands_utils
+from . import commands_utils, consts
 from .commands_utils import get_setting
 from .consts import Directories, FileExtensions, HttpMethods
 
@@ -128,7 +128,7 @@ def _get_answer(input_text: str, solution_path: Path) -> str:
     # If an error occurred in the called solution file, print the exception and abort.
     except subprocess.CalledProcessError as error:
         click.secho(error.stderr, fg="red")
-        raise click.Abort()
+        raise click.Abort() from None
 
     solution = result.stdout.strip()
     return solution

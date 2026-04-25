@@ -1,9 +1,9 @@
 import math
 
-from p1 import get_manhattan_distance, get_instructions_from_input, INPUT_FILE_PATH
+from p1 import INPUT_FILE_PATH, get_instructions_from_input, get_manhattan_distance
 
-FORWARD = 'F'
-RIGHT = 'R'
+FORWARD = "F"
+RIGHT = "R"
 
 
 def north(x: int, y: int, value: int) -> tuple[int, int]:
@@ -22,13 +22,15 @@ def west(x: int, y: int, value: int) -> tuple[int, int]:
     return x - value, y
 
 
-def forward(ship_x: int, ship_y: int, waypoint_x: int, waypoint_y: int, value: int) -> tuple[int, int]:
+def forward(
+    ship_x: int, ship_y: int, waypoint_x: int, waypoint_y: int, value: int
+) -> tuple[int, int]:
     ship_x += waypoint_x * value
     ship_y += waypoint_y * value
     return ship_x, ship_y
 
 
-WAYPOINT_MOVERS = {'N': north, 'S': south, 'W': west, 'E': east}
+WAYPOINT_MOVERS = {"N": north, "S": south, "W": west, "E": east}
 
 
 def rotate(point_x: int, point_y: int, angle: int):
@@ -52,19 +54,23 @@ def main():
 
     for action, value in instructions:
         if action in WAYPOINT_MOVERS:
-            waypoint_x, waypoint_y = WAYPOINT_MOVERS[action](waypoint_x, waypoint_y, value)
+            waypoint_x, waypoint_y = WAYPOINT_MOVERS[action](
+                waypoint_x, waypoint_y, value
+            )
         elif action == FORWARD:
             ship_x, ship_y = forward(ship_x, ship_y, waypoint_x, waypoint_y, value)
 
         else:
-            if action == RIGHT:  # The angle of rotation is CCW, so rotating right a certain angle is equivalent to
+            if (
+                action == RIGHT
+            ):  # The angle of rotation is CCW, so rotating right a certain angle is equivalent to
                 # rotating left the negative angle.
                 value *= -1
             waypoint_x, waypoint_y = rotate(waypoint_x, waypoint_y, value)
 
     distance = get_manhattan_distance(ship_x, ship_y)
-    print(f'Distance from the start to the end: {distance}')
+    print(f"Distance from the start to the end: {distance}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

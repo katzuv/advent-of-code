@@ -1,7 +1,7 @@
 from collections import defaultdict
 from pathlib import Path
 
-INPUT_FILE_PATH = Path('..', 'inputs', '10.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "10.txt")
 
 
 def get_adapters_from_input(input_text: str) -> list[int]:
@@ -30,10 +30,14 @@ def main():
         differences[difference] += 1
         adapters.sort()
 
-    differences[3] += 1  # The device's built-in adapter is always 3 higher than the highest adapter.
+    differences[3] += (
+        1  # The device's built-in adapter is always 3 higher than the highest adapter.
+    )
     product = differences[1] * differences[3]
-    print(f'Number of 1-jolt differences multiplied by the number of 3-jolt differences: {product}')
+    print(
+        f"Number of 1-jolt differences multiplied by the number of 3-jolt differences: {product}"
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

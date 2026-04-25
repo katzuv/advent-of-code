@@ -1,9 +1,9 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
-INPUT_FILE_PATH = Path('..', 'inputs', '7.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "7.txt")
 
-REQUIRED_BAG = 'shiny gold'
+REQUIRED_BAG = "shiny gold"
 
 
 def get_rules_strings_from_input(input_text: str) -> list:
@@ -19,11 +19,13 @@ def get_rules_dict(rules_strings: str) -> dict:
 
 
 def get_bag_details(rule: str) -> tuple:
-    containing_bag, all_contained_bags = re.match(r'(\w+ \w+) bags contain (.+)\.', rule).groups()
+    containing_bag, all_contained_bags = re.match(
+        r"(\w+ \w+) bags contain (.+)\.", rule
+    ).groups()
     rules = {}
-    for contained_bag in all_contained_bags.split(', '):
+    for contained_bag in all_contained_bags.split(", "):
         try:
-            amount, color = re.match(r'(\d+) (\w+ \w+) bags?', contained_bag).groups()
+            amount, color = re.match(r"(\d+) (\w+ \w+) bags?", contained_bag).groups()
             rules[color] = int(amount)
         except AttributeError:  # Bag doesn't contain any other bags.
             pass
@@ -46,8 +48,8 @@ def main():
     rules = get_rules_dict(input_text)
 
     total = sum(does_bag_contain_bag(color, REQUIRED_BAG, rules) for color in rules)
-    print(f'Total amount of bags containing required bag: {total}')
+    print(f"Total amount of bags containing required bag: {total}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

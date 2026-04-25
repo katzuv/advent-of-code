@@ -1,7 +1,9 @@
-from p1 import get_grid_from_input, TREE
+from p1 import TREE, get_grid_from_input
 
 
-def count_trees(grid: list[str], distance_moving_right: int, distance_moving_down: int) -> int:
+def count_trees(
+    grid: list[str], distance_moving_right: int, distance_moving_down: int
+) -> int:
     trees_encountered = 0
     x_location = 0
     row_length = len(grid[0])
@@ -19,8 +21,8 @@ def main():
     product = 1
     for distance_moving_right, distance_moving_down in slopes:
         product *= count_trees(grid, distance_moving_right, distance_moving_down)
-    print(f'Product of trees encountered on each of the listed slopes: {product}')
+    print(f"Product of trees encountered on each of the listed slopes: {product}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,8 +1,8 @@
 import re
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence, Union
 
-INPUT_FILE_PATH = Path('..', 'inputs', '2.txt')
+INPUT_FILE_PATH = Path("..", "inputs", "2.txt")
 
 
 class Password:
@@ -15,14 +15,14 @@ class Password:
 
     @staticmethod
     def _get_password_properties(password: str) -> Sequence[str]:
-        return re.match(r'(\d+)-(\d+) (\w): (\w+)', password).groups()
+        return re.match(r"(\d+)-(\d+) (\w): (\w+)", password).groups()
 
     def is_password_valid(self) -> bool:
         letter_count = self._password_text.count(self._letter)
         return self._min <= letter_count <= self._max
 
 
-def get_passwords_from_input(path: Union[str, Path] = INPUT_FILE_PATH) -> list[str]:
+def get_passwords_from_input(path: str | Path = INPUT_FILE_PATH) -> list[str]:
     if isinstance(path, str):
         path = Path(path)
     return path.read_text().splitlines()
@@ -33,8 +33,8 @@ def main():
     passwords = list(map(Password, passwords_input))
 
     valid_passwords = sum(password.is_password_valid() for password in passwords)
-    print(f'Amount of valid passwords: {valid_passwords}')
+    print(f"Amount of valid passwords: {valid_passwords}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

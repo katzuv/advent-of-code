@@ -1,6 +1,6 @@
 import sys
 
-from p1 import get_ordering_rules_and_updates, is_update_in_right_order, Graph
+from p1 import Graph, get_ordering_rules_and_updates, is_update_in_right_order
 
 
 def sort_update(update: list[str], order: Graph) -> list[str]:

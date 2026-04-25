@@ -15,7 +15,8 @@ def get_answer(input_text: str) -> int:
     first.sort()
     second.sort()
     return sum(
-        abs(first_id - second_id) for (first_id, second_id) in zip(first, second)
+        abs(first_id - second_id)
+        for (first_id, second_id) in zip(first, second, strict=True)
     )
 
 
