@@ -3,7 +3,7 @@ import rich_click as click
 from . import commands
 from .completion import completion_group
 
-CONTEXT = {"help_option_names": ["-h", "--help"]}
+CONTEXT = {"help_option_names": ["-h", "--help"], "show_default": True}
 
 
 @click.group(context_settings=CONTEXT)
