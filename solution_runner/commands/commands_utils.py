@@ -1,5 +1,4 @@
 import urllib.parse
-import zoneinfo
 from datetime import datetime
 from enum import Enum
 from typing import Any
@@ -66,7 +65,7 @@ def get_default_year() -> int:
     """
     :return: default year which is the current year if it's December, last year otherwise
     """
-    today = datetime.now(tz=zoneinfo.ZoneInfo("America/New_York"))
+    today = datetime.now(tz=consts.US_EASTERN_TIMEZONE)
     current_year = today.year
     if today.month == consts.DECEMBER:
         return current_year
