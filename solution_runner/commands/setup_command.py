@@ -33,7 +33,6 @@ _default_year = commands_utils.get_default_year()
     "--use-cache/--ignore-cache",
     "should_use_cache",
     default=True,
-    show_default="true",
     help="whether to use cached input file",
 )
 def command(year: int, day: int, should_use_cache: bool):
@@ -110,7 +109,6 @@ def _ask_user_to_mkdir(directory: Path, name: str = None):
         f"{name} directory doesn't exist, do you want to create it?",
         prompt_suffix="",
         default=True,
-        show_default=True,
         abort=True,
     ):
         directory.mkdir()

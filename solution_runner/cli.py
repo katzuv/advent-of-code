@@ -1,8 +1,9 @@
 import rich_click as click
 
 from . import commands
+from .completion import completion_group
 
-CONTEXT = {"help_option_names": ["-h", "--help"]}
+CONTEXT = {"help_option_names": ["-h", "--help"], "show_default": True}
 
 
 @click.group(context_settings=CONTEXT)
@@ -17,6 +18,7 @@ def cli() -> click.Group:
 cli.add_command(commands.setup)
 cli.add_command(commands.config)
 cli.add_command(commands.submit)
+cli.add_command(completion_group)
 
 
 if __name__ == "__main__":
