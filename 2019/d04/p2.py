@@ -11,7 +11,7 @@ def main():
             continue
         if string_number != "".join(sorted(string_number)):
             continue
-        couples = list(zip(string_number[:-1], string_number[1:]))
+        couples = list(zip(string_number[:-1], string_number[1:], strict=True))
         adjacent_couples = [couple for couple in couples if couple[0] == couple[1]]
         if not any(couples.count(couple) == 1 for couple in adjacent_couples):
             continue

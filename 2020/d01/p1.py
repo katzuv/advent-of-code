@@ -1,11 +1,10 @@
 from pathlib import Path
-from typing import Union
 
 REQUIRED_SUM = 2020
 INPUT_FILE_PATH = Path("..", "inputs", "1.txt")
 
 
-def get_numbers_from_input(path: Union[str, Path] = INPUT_FILE_PATH) -> list[int]:
+def get_numbers_from_input(path: str | Path = INPUT_FILE_PATH) -> list[int]:
     if isinstance(path, str):
         path = Path(path)
     return list(map(int, path.read_text().splitlines()))

@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 
 from p1 import (
     INPUT_FILE_PATH,
@@ -21,7 +21,7 @@ def get_measurements_windows(
     """
     measurements = list(measurements)
     indented_measurements = (measurements[i:] for i in range(window_size))
-    return zip(*indented_measurements)
+    return zip(*indented_measurements, strict=True)
 
 
 def main():

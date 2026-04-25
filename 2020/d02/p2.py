@@ -1,5 +1,5 @@
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 from p1 import get_passwords_from_input
 

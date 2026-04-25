@@ -1,6 +1,6 @@
 """Solution of day 1 part 2."""
 
-from typing import List, Sequence
+from collections.abc import Sequence
 
 
 def first_duplicate(sequence: Sequence[float]) -> float:
@@ -23,7 +23,7 @@ def first_duplicate(sequence: Sequence[float]) -> float:
                 return current_sum
 
 
-def numbers_from_file(path: str) -> List[float]:
+def numbers_from_file(path: str) -> list[float]:
     """
     Return a list of floats which are stored in a file, each number in its own line.
     :param path: path of file with floats

@@ -1,4 +1,4 @@
-from typing import Iterator
+from collections.abc import Iterator
 
 import directions
 from p1 import INPUT_FILE_PATH, Command, get_commands_from_input

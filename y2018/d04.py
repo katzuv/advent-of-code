@@ -2,7 +2,6 @@ import re
 import statistics
 from collections import Counter
 from datetime import datetime
-from typing import Dict, List, Tuple
 
 
 class Guard:
@@ -18,7 +17,7 @@ class Guard:
         self.minutes_slept = []
 
 
-def guards_to_sleep_intervals(records: List[Tuple[datetime, str]]) -> Dict[int, Guard]:
+def guards_to_sleep_intervals(records: list[tuple[datetime, str]]) -> dict[int, Guard]:
     """
     Return mapping from guard IDs to guards' total sleep times and every minute they were asleep in.
     :param records: records of events
@@ -44,7 +43,7 @@ def guards_to_sleep_intervals(records: List[Tuple[datetime, str]]) -> Dict[int, 
     return guards_to_time
 
 
-def best_guard_minute_combination1(guards_to_sleep: Dict[int, Guard]) -> int:
+def best_guard_minute_combination1(guards_to_sleep: dict[int, Guard]) -> int:
     """
     Return best guard/minute combination by finding the guard that has the most minutes asleep.
     :param guards_to_sleep: guards' sleeping and shift changing info
@@ -56,7 +55,7 @@ def best_guard_minute_combination1(guards_to_sleep: Dict[int, Guard]) -> int:
     return most_sleepy_guard.number * statistics.mode(most_sleepy_guard.minutes_slept)
 
 
-def best_guard_minute_combination2(guards_to_sleep: Dict[int, Guard]) -> int:
+def best_guard_minute_combination2(guards_to_sleep: dict[int, Guard]) -> int:
     """
     Return best guard/minute combination by finding the guard who is most frequently asleep on the same minute.
     :param guards_to_sleep: guards' sleeping and shift changing info
@@ -69,7 +68,7 @@ def best_guard_minute_combination2(guards_to_sleep: Dict[int, Guard]) -> int:
     return most_sleepy_guard.number * statistics.mode(most_sleepy_guard.minutes_slept)
 
 
-def amount_of_most_common_item_only_one(numbers: List[int]) -> int:
+def amount_of_most_common_item_only_one(numbers: list[int]) -> int:
     """
     Return amount of most common integer in a list, 0 if there is more than one most common item.
     :param numbers: list to check
@@ -81,7 +80,7 @@ def amount_of_most_common_item_only_one(numbers: List[int]) -> int:
         return 0
 
 
-def sort_records(records: List[str]) -> List[Tuple[datetime, str]]:
+def sort_records(records: list[str]) -> list[tuple[datetime, str]]:
     """
     Sort list of records of guard shifts
     :param records:

@@ -1,3 +1,4 @@
+import contextlib
 import re
 
 from p1 import FIELDS_WITHOUT_PID, INPUT_FILE_PATH, get_passports_from_input
@@ -106,10 +107,8 @@ def main():
 
     valid_passports = 0
     for passport in passports:
-        try:
+        with contextlib.suppress(ValueError):
             valid_passports += Passport(passport).is_valid()
-        except ValueError:
-            pass
     print(f"Valid passports: {valid_passports}")
 
 

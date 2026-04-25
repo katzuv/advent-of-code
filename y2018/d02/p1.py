@@ -1,7 +1,5 @@
 """Solution of day 2 part 1."""
 
-from typing import List
-
 
 def have_n_letters(box_id: str, n: int) -> bool:
     """
@@ -13,7 +11,7 @@ def have_n_letters(box_id: str, n: int) -> bool:
     return any(box_id.count(char) == n for char in box_id)
 
 
-def checksum(box_ids: List[str]) -> int:
+def checksum(box_ids: list[str]) -> int:
     """
     Return the checksum of list of box IDs.
     :param box_ids: list of box IDs
@@ -29,7 +27,7 @@ def checksum(box_ids: List[str]) -> int:
     return contain_double * contain_triple
 
 
-def strings_from_file(path: str) -> List[str]:
+def strings_from_file(path: str) -> list[str]:
     """
     Return a list of strings which are stored in a file, each string in its own line.
     :param path: path of file with strings

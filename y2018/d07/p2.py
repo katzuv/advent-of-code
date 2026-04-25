@@ -1,5 +1,4 @@
 import itertools
-from typing import Dict, List, Set
 
 from p1 import couples_from_file, steps_to_their_dependencies
 
@@ -23,10 +22,10 @@ class Worker:
 
 
 def next_available_steps(
-    steps_to_dependencies: Dict[str, List[str]],
-    completed_steps: Set[str],
-    current_steps: Set[str],
-) -> Set[str]:
+    steps_to_dependencies: dict[str, list[str]],
+    completed_steps: set[str],
+    current_steps: set[str],
+) -> set[str]:
     """
     :param steps_to_dependencies: mapping of (step: its dependencies)
     :param completed_steps: the steps which have been already completed
@@ -75,13 +74,12 @@ def main():
             steps_to_dependencies, completed_steps, current_steps
         )
         for worker in workers:
-            if available_steps:
-                if worker.is_available:
-                    assigned_step = min(available_steps)
-                    available_steps.remove(assigned_step)
-                    worker.current_step = assigned_step
-                    worker.time_remaining = step_duration(assigned_step)
-                    current_steps.add(assigned_step)
+            if available_steps and worker.is_available:
+                assigned_step = min(available_steps)
+                available_steps.remove(assigned_step)
+                worker.current_step = assigned_step
+                worker.time_remaining = step_duration(assigned_step)
+                current_steps.add(assigned_step)
         print(
             f"{second}{' ' * 12}{(' ' * 10).join(worker.current_step for worker in workers)}      {''.join(step for step in completed_steps_list)}"
         )

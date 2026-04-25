@@ -1,7 +1,7 @@
-from typing import List, Tuple
+import contextlib
 
 
-def couples_from_file(path: str = "..\\inputs\\7.txt") -> List[Tuple[str, str]]:
+def couples_from_file(path: str = "..\\inputs\\7.txt") -> list[tuple[str, str]]:
     """
     :return: list of steps-couples from file
     """
@@ -51,10 +51,8 @@ def topological_sorting(couples):  # Dict[str: List[str]]): -> List[str]:
         no_incoming_edges.remove(current_step)
         sorted_elements.append(current_step)
         for dependencies in steps_to_dependencies.values():
-            try:
+            with contextlib.suppress(ValueError):
                 dependencies.remove(current_step)
-            except ValueError:
-                pass
 
         if first_time:
             possible_steps.extend(list(no_incoming_edges))

@@ -45,8 +45,8 @@ def command(year: int, day: int, should_use_cache: bool):
 
     try:
         root_directory = commands_utils.get_setting(consts.ROOT_DIRECTORY)
-    except FileNotFoundError:
-        raise click.Abort()
+    except FileNotFoundError as error:
+        raise click.Abort() from error
     inputs_directory = root_directory / Directories.INPUTS
     _ask_user_to_mkdir(inputs_directory, "input files")
 

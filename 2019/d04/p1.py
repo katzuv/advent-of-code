@@ -20,7 +20,7 @@ def main():
             continue
         if all(
             couple[0] != couple[1]
-            for couple in zip(string_number[:-1], string_number[1:])
+            for couple in zip(string_number[:-1], string_number[1:], strict=True)
         ):
             continue
         valid_passwords += 1

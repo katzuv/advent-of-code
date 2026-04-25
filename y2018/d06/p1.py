@@ -1,6 +1,6 @@
 from collections import namedtuple
+from collections.abc import Iterable
 from itertools import product, tee
-from typing import Iterable, List, Tuple
 
 Coordinate = namedtuple("Coordinate", ["x", "y"])
 
@@ -38,12 +38,12 @@ def targets_from_file(path="..\inputs\\6.txt") -> Iterable[Coordinate]:
             yield Coordinate(int(x), int(y))
 
 
-def min_max(integers: Iterable[int]) -> Tuple[int, int]:
+def min_max(integers: Iterable[int]) -> tuple[int, int]:
     integers, integers_ = tee(integers)
     return min(integers), max(integers_)
 
 
-def enclosing_rectangle(targets: List[Coordinate]) -> Rectangle:
+def enclosing_rectangle(targets: list[Coordinate]) -> Rectangle:
     """
     :return: enclosing rectangle of the grid by given borders.
     """
@@ -54,7 +54,7 @@ def enclosing_rectangle(targets: List[Coordinate]) -> Rectangle:
     return Rectangle(min_x, max_x, min_y, max_y)
 
 
-def find_largest_area(targets: List[Coordinate]) -> int:
+def find_largest_area(targets: list[Coordinate]) -> int:
     """Find for each coordinate its closest target.
     :param targets: target coordinates
     """

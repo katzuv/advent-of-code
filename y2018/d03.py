@@ -1,7 +1,7 @@
 import re
 from collections import Counter
+from collections.abc import Iterable
 from itertools import product
-from typing import Iterable, List
 
 
 class Hunk:
@@ -30,7 +30,7 @@ class Hunk:
         )
 
 
-def hunks_from_file(path: str = "inputs\\3.txt") -> List[Hunk]:
+def hunks_from_file(path: str = "inputs\\3.txt") -> list[Hunk]:
     """
     Return a list of hunks which are stored in a file, each hunk claim in its own line.
     :param path: path of file with claims of hunks

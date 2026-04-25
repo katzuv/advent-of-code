@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Union
 
 INPUT_FILE_PATH = Path("..", "inputs", "3.txt")
 
@@ -7,7 +6,7 @@ TREE = "#"
 DISTANCE_MOVING_RIGHT = 3
 
 
-def get_grid_from_input(path: Union[Path, str] = INPUT_FILE_PATH) -> list[str]:
+def get_grid_from_input(path: Path | str = INPUT_FILE_PATH) -> list[str]:
     if isinstance(path, str):
         path = Path(path)
     return path.read_text().splitlines()

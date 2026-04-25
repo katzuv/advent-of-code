@@ -1,7 +1,4 @@
-from typing import List, Tuple
-
-
-def get_wires_paths() -> Tuple[List[str], List[str]]:
+def get_wires_paths() -> tuple[list[str], list[str]]:
     with open("../inputs/3.txt") as input_file:
         first_path = input_file.readline().split(",")
         second_path = input_file.readline().split(",")
@@ -10,7 +7,7 @@ def get_wires_paths() -> Tuple[List[str], List[str]]:
     return first_path, second_path
 
 
-def get_points_from_path(path: List[str]) -> List[Tuple[int, int]]:
+def get_points_from_path(path: list[str]) -> list[tuple[int, int]]:
     points = [(0, 0)]
     for move in path:
         direction, amount = move[0], int(move[1:])
