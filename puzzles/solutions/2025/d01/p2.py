@@ -1,8 +1,14 @@
 import sys
 
+from p1 import get_turns
+
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    turns = get_turns(input_text)
+
+    current_turn = 50
+
+    visits_at_zero = 0
 
 
 if __name__ == "__main__":
