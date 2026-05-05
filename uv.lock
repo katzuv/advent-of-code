@@ -26,7 +26,7 @@ dev = [
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.14.3" },
     { name = "click", specifier = "==8.1.7" },
-    { name = "gitpython", specifier = ">=3.1.47" },
+    { name = "gitpython", specifier = ">=3.1.49" },
     { name = "pygithub", specifier = ">=2.9.1" },
     { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "requests", specifier = ">=2.33.1" },
