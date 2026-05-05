@@ -22,10 +22,14 @@ ROOT_DIRECTORY_TYPE = click.Path(
     file_okay=False, dir_okay=True, writable=True, readable=True, resolve_path=True
 )
 ROOT_DIRECTORY = "root directory"
-SOLUTION_PARTS = ("p1", "p2")
+SOLUTION_PARTS = ("p2", "p1")
 SESSION_ID = "session ID"
 GITHUB_AUTH_TOKEN = "GitHub auth token"
 SOLUTION_FILE_TEMPLATE_PATH = Path(Path(__file__).parent, "solution_template.py")
+
+SETUP_COMPLETE_MESSAGE_TEMPLATE = string.Template(
+    "Created solution file. First file available here: $solution_file_path"
+)
 
 
 class Directories:

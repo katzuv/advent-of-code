@@ -146,6 +146,10 @@ def _create_files(year_solutions_directory: Path, day: str):
     for part in consts.SOLUTION_PARTS:
         filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
         shutil.copy(consts.SOLUTION_FILE_TEMPLATE_PATH, filepath)
+    click.secho(
+        consts.SETUP_COMPLETE_MESSAGE_TEMPLATE.substitute(solution_file_path=filepath),
+        fg="cyan",
+    )
 
 
 def _download_input(year: str, day: str, input_file: Path):
