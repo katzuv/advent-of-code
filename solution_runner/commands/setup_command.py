@@ -74,7 +74,7 @@ def command(year: int, day: int, should_use_cache: bool):
     _create_files(year_solutions_directory, day)
 
     click.launch(
-        "/".join((consts.BASE_URL, year, "day", day.removeprefix(consts.ZERO)))
+        "/".join((consts.BASE_URL + year, "day", day.removeprefix(consts.ZERO)))
     )
     branch_name = f"solve/{year_solutions_directory.name}-{day}"
     _initialize_git_branch(branch_name, year_solutions_directory, day)
