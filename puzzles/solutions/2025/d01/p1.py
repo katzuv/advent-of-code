@@ -15,6 +15,19 @@ def get_turns(input_text: str) -> list[int]:
 def get_answer(input_text: str):
     turns = get_turns(input_text)
 
+    current_turn = 50
+
+    visits_at_zero = 0
+
+    for turn in turns:
+        current_turn += turn
+        current_turn %= 100
+
+        if current_turn == 0:
+            visits_at_zero += 1
+
+    return visits_at_zero
+
 
 if __name__ == "__main__":
     try:
