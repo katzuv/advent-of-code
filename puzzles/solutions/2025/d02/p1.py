@@ -40,7 +40,7 @@ def get_answer(input_text: str):
     ids_sum = 0
 
     for current_range in ranges:
-        start, end = current_range.start, current_range.stop
+        start, end = current_range.start, current_range.stop - 1
         start_digits_amount = get_digits_amount(start)
 
         if start_digits_amount % 2 != 0:
