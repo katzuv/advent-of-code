@@ -13,7 +13,9 @@ def get_answer(input_text: str):
         max_joltage = 0
         current_index = 0
         for digit_number in range(BATTERIES_AMOUNT):
-            last_possible_index = bank_size + 1 + digit_number - BATTERIES_AMOUNT
+            remaining_digits_needed_after_this = BATTERIES_AMOUNT - digit_number - 1
+            # Slicing is exclusive, so we don't need to subtract another 1.
+            last_possible_index = bank_size - remaining_digits_needed_after_this
             max_digit = max(bank[current_index:last_possible_index])
             current_index = bank.index(max_digit, current_index) + 1
             max_joltage = (max_joltage * 10) + max_digit
