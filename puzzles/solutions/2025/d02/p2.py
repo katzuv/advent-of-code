@@ -17,9 +17,10 @@ def get_answer(input_text: str):
     invalid_ids = set()
 
     for current_range in ranges:
-        ids_possible_lengths = set(
-            map(p1.get_digits_amount, (current_range.start, current_range.stop))
+        start_length, end_lengths = map(
+            p1.get_digits_amount, (current_range.start, current_range.stop)
         )
+        ids_possible_lengths = range(start_length, end_lengths + 1)
         max_sequence_length = max(ids_possible_lengths) // 2
 
         for length, base_sequences in base_sequences_by_length:
