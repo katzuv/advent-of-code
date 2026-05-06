@@ -36,7 +36,6 @@ def get_relevant_id_half(number: int, *, is_start: bool) -> int:
 
 def get_answer(input_text: str):
     ranges = get_ranges(input_text)
-    ranges.sort(key=lambda r: r.start)
 
     ids_sum = 0
 
