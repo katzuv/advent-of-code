@@ -16,7 +16,7 @@ def get_answer(input_text: str):
             last_possible_index = bank_size + 1 + digit_number - BATTERIES_AMOUNT
             max_digit = max(bank[current_index:last_possible_index])
             current_index = bank.index(max_digit, current_index) + 1
-            max_joltage += max_digit * 10 ** (BATTERIES_AMOUNT - digit_number - 1)
+            max_joltage = (max_joltage * 10) + max_digit
         max_joltages += max_joltage
     return max_joltages
 
