@@ -11,7 +11,7 @@ def get_answer(input_text: str):
 
     base_sequences_by_length = {
         length + 1: tuple(map(str, range(10**length, 10 ** (length + 1))))
-        for length in range(max_digits_amount_in_half_id + 1)
+        for length in range(max_digits_amount_in_half_id)
     }.items()
 
     invalid_ids = set()
