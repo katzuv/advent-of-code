@@ -7,13 +7,13 @@ def get_banks(input_text: str) -> list[list[int]]:
 
 def get_answer(input_text: str):
     banks = get_banks(input_text)
-    max_joltages = 0
+    total_max_joltages = 0
     for bank in banks:
         tens_digit = max(bank[:-1])
         tens_digit_first_index = bank.index(tens_digit)
         ones_digit = max(bank[tens_digit_first_index + 1 :])
-        max_joltages += tens_digit * 10 + ones_digit
-    return max_joltages
+        total_max_joltages += tens_digit * 10 + ones_digit
+    return total_max_joltages
 
 
 if __name__ == "__main__":
