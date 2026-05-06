@@ -30,7 +30,7 @@ def get_answer(input_text: str):
                 break
 
             # We start from 2 because an ID is invalid if it's made only of a sequence at least twice.
-            for multiplier in range(2, max(ids_possible_lengths) + 1):
+            for multiplier in range(2, (max(ids_possible_lengths) + 1) // length + 1):
                 if multiplier * length not in ids_possible_lengths:
                     continue
                 for base_sequence in base_sequences:
