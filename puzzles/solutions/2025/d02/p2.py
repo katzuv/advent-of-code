@@ -6,7 +6,7 @@ import p1
 def get_answer(input_text: str):
     ranges = p1.get_ranges(input_text)
     max_digits_amount_in_half_id = (
-        p1.get_digits_amount(max(r.stop for r in ranges)) // 2
+        p1.get_digits_amount(max(r.stop - 1 for r in ranges)) // 2
     )
 
     base_sequences_by_length = {
