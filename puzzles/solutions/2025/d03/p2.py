@@ -9,12 +9,11 @@ def get_answer(input_text: str):
     banks = get_banks(input_text)
     max_joltages = 0
     for bank in banks:
+        bank_size = len(bank)
         max_joltage = 0
         current_index = 0
         for digit_number in range(BATTERIES_AMOUNT):
-            last_possible_index = 1 + digit_number - BATTERIES_AMOUNT
-            if last_possible_index == 0:
-                last_possible_index = len(bank)
+            last_possible_index = bank_size + 1 + digit_number - BATTERIES_AMOUNT
             max_digit = max(bank[current_index:last_possible_index])
             current_index = bank.index(max_digit, current_index) + 1
             max_joltage += max_digit * 10 ** (BATTERIES_AMOUNT - digit_number - 1)
