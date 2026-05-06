@@ -16,10 +16,27 @@ def get_digits_amount(number: int) -> int:
 
 def get_relevant_id_half(number: int, *, is_start: bool) -> int:
     """
-    Return the half of the relevant end ID.
+    Return the prefix used to build the nearest repeated-half ID bound.
 
-    :return: If this is the start ID, return the smallest ID after this, which is a sequence of two numbers after the
-    ID. If this is the end ID, return the largest ID before this, which is a sequence of two numbers after the ID.
+    The number is treated as having an even number of digits and is split into
+    two equal-length halves: ``first_half`` and ``second_half``. The caller
+    then reconstructs a full ID by repeating the returned half, e.g. ``13``
+    becomes ``1313``.
+
+    For a start bound, return the smallest half whose repeated form is greater
+    than or equal to ``number``. If ``first_half < second_half``, repeating
+    ``first_half`` would produce a value below ``number``, so the half is
+    incremented.
+
+    For an end bound, return the largest half whose repeated form is less than
+    or equal to ``number``. If ``first_half > second_half``, repeating
+    ``first_half`` would produce a value above ``number``, so the half is
+    decremented.
+
+    Example: ``1234`` splits into ``12 | 34``. As a start bound, this returns
+    ``13`` (so the first candidate ID is ``1313``). As an end bound, ``1299``
+    splits into ``12 | 99`` and returns ``12`` (so the last candidate ID is
+    ``1212``).
     """
     digits_amount = get_digits_amount(number)
     half_digits_amount = digits_amount // 2
