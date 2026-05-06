@@ -1,3 +1,4 @@
+import math
 import sys
 
 
@@ -7,6 +8,10 @@ def get_ranges(input_text: str) -> list[range]:
         start, end = map(int, ids_range.split("-"))
         ranges.append(range(start, end + 1))
     return ranges
+
+
+def get_digits_amount(number: int) -> int:
+    return int(math.log10(number)) + 1
 
 
 def get_answer(input_text: str):
