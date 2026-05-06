@@ -1,6 +1,10 @@
 import sys
 
 
+def get_banks(input_text: str) -> list[list[int]]:
+    return [list(map(int, line)) for line in input_text.splitlines()]
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
