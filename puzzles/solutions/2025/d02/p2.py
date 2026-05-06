@@ -18,7 +18,7 @@ def get_answer(input_text: str):
 
     for current_range in ranges:
         start_length, end_length = map(
-            p1.get_digits_amount, (current_range.start, current_range.stop)
+            p1.get_digits_amount, (current_range.start, current_range.stop - 1)
         )
         ids_possible_lengths = range(start_length, end_length + 1)
         max_sequence_length = max(ids_possible_lengths) // 2
