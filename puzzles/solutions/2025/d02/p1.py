@@ -49,6 +49,17 @@ def get_answer(input_text: str):
             if start > end:
                 continue
 
+        smallest_half_id = get_relevant_id_half(start, is_start=True)
+        largest_half_id = get_relevant_id_half(end, is_start=False)
+        for half_id in range(smallest_half_id, largest_half_id + 1):
+            half_digits_amount = get_digits_amount(half_id)
+            # Example: 13 -> 13 * 100 + 13 = 1313
+            full_id = half_id * (10**half_digits_amount + 1)
+            if full_id in current_range:
+                ids_sum += full_id
+
+    return ids_sum
+
 
 if __name__ == "__main__":
     try:
