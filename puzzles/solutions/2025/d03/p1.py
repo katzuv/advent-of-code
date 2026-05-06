@@ -1,4 +1,3 @@
-import itertools
 import sys
 
 
@@ -10,9 +9,10 @@ def get_answer(input_text: str):
     banks = get_banks(input_text)
     max_joltages = 0
     for bank in banks:
-        bank_joltages = itertools.combinations(bank, 2)
-        max_joltage = max(bank_joltages)
-        max_joltages += max_joltage[0] * 10 + max_joltage[1]
+        tens_digit = max(bank[:-1])
+        tens_digit_first_index = bank.index(tens_digit)
+        ones_digit = max(bank[tens_digit_first_index + 1 :])
+        max_joltages += tens_digit * 10 + ones_digit
     return max_joltages
 
 
