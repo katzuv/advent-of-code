@@ -35,7 +35,19 @@ def get_relevant_id_half(number: int, *, is_start: bool) -> int:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    ranges = get_ranges(input_text)
+    ranges.sort(key=lambda r: r.start)
+
+    ids_sum = 0
+
+    for current_range in ranges:
+        start, end = current_range.start, current_range.stop
+        start_digits_amount = get_digits_amount(start)
+
+        if start_digits_amount % 2 != 0:
+            start = 10**start_digits_amount
+            if start > end:
+                continue
 
 
 if __name__ == "__main__":
