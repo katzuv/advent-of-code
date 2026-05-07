@@ -13,6 +13,13 @@ example_input = """
 @.@.@@@.@.
 """.strip()
 
+PAPER_ROLL = "@"
+
+Grid = list[list[str]]
+
+
+def get_grid(input_text: str) -> Grid:
+    return [list(line) for line in input_text.splitlines()]
 
 def get_answer(input_text: str):
     raise NotImplementedError
