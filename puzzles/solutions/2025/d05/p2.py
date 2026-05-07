@@ -7,7 +7,7 @@ def get_answer(input_text: str):
     fresh_products, _ = p1.get_products(input_text)
     fresh_products = p1.merge_fresh_product_ranges(fresh_products)
 
-    return sum((r.stop - r.start) for r in fresh_products)
+    return sum(map(len, fresh_products))
 
 
 if __name__ == "__main__":
