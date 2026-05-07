@@ -27,7 +27,9 @@ def get_products(input_text: str) -> tuple[list[range], list[int]]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    fresh_products, all_products = get_products(input_text)
+    all_fresh_products = functools.reduce(set.union, map(set, fresh_products))
+    return len(all_fresh_products & set(all_products))
 
 
 if __name__ == "__main__":
