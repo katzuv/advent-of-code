@@ -43,14 +43,11 @@ def get_adjacent_rolls_number(grid, row, column):
 
 def get_answer(input_text: str):
     grid = get_grid(input_text)
-    accessible_rolls = 0
-    for row, column in itertools.product(range(len(grid)), range(len(grid[0]))):
-        if (
-            grid[row][column] == PAPER_ROLL
-            and get_adjacent_rolls_number(grid, row, column) <= MAX_ADJACENT_PAPER_ROLLS
-        ):
-            accessible_rolls += 1
-    return accessible_rolls
+    return sum(
+        grid[row][column] == PAPER_ROLL
+        and get_adjacent_rolls_number(grid, row, column) <= MAX_ADJACENT_PAPER_ROLLS
+        for row, column in itertools.product(range(len(grid)), range(len(grid[0])))
+    )
 
 
 if __name__ == "__main__":
