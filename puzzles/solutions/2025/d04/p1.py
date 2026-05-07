@@ -36,7 +36,8 @@ def get_adjacent_rolls_number(grid, row, column):
                 range(min_row, max_row + 1), range(min_column, max_column + 1)
             )
         )
-        - 1  # Exclude the cell we're counting adjacent around.
+        # Exclude the cell we're counting adjacent around.
+        - (grid[row][column] == PAPER_ROLL)
     )
 
 
