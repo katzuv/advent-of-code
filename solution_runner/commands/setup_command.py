@@ -146,7 +146,7 @@ def _create_files(year_solutions_directory: Path, day: str):
     for part in consts.SOLUTION_PARTS:
         filename = part + FileExtensions.PYTHON
         filepath = solutions_directory / filename
-        shutil.copy((consts.SOLUTION_FILES_TEMPLATES_DIRECTORY / filename), filepath)
+        shutil.copy((consts.SOLUTION_TEMPLATES_DIRECTORY / filename), filepath)
     click.secho(
         consts.SETUP_COMPLETE_MESSAGE_TEMPLATE.substitute(solution_file_path=filepath),
         fg="cyan",
