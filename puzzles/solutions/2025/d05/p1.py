@@ -15,6 +15,17 @@ input_example = """
 """.strip()
 
 
+def get_products(input_text: str) -> tuple[list[range], list[int]]:
+    fresh_products, available_products = input_text.split("\n\n")
+    fresh_products_parsed = []
+    for line in fresh_products.splitlines():
+        start, end = map(int, line.split("-"))
+        fresh_products_parsed.append(range(start, end + 1))
+    available_products_parsed = [int(line) for line in available_products.splitlines()]
+
+    return fresh_products_parsed, available_products_parsed
+
+
 def get_answer(input_text: str):
     raise NotImplementedError
 
