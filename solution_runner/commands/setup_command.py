@@ -144,8 +144,9 @@ def _create_files(year_solutions_directory: Path, day: str):
             return  # If solution directory already exists, don't create new solution files.
         raise
     for part in consts.SOLUTION_PARTS:
-        filepath = (solutions_directory / part).with_suffix(FileExtensions.PYTHON)
-        shutil.copy(consts.SOLUTION_FILE_TEMPLATE_PATH, filepath)
+        filename = part + FileExtensions.PYTHON
+        filepath = solutions_directory / filename
+        shutil.copy((consts.SOLUTION_FILES_TEMPLATES_DIRECTORY / filename), filepath)
     click.secho(
         consts.SETUP_COMPLETE_MESSAGE_TEMPLATE.substitute(solution_file_path=filepath),
         fg="cyan",
