@@ -27,9 +27,25 @@ def get_products(input_text: str) -> tuple[list[range], list[int]]:
 
 
 def get_answer(input_text: str):
-    fresh_products, all_products = get_products(input_text)
-    all_fresh_products = functools.reduce(set.union, map(set, fresh_products))
-    return len(all_fresh_products & set(all_products))
+    fresh_products, available_products = get_products(input_text)
+
+    fresh_products.sort(key=lambda r: r.start)
+    fresh_products = [
+        (products_range.start, products_range) for products_range in fresh_products
+    ]
+    available_products.sort()
+
+    fresh_available_products = []
+
+    for product in available_products:
+        for range_start, fresh_range in fresh_products:
+            if product in fresh_range:
+                fresh_available_products.append(product)
+                break
+            if range_start > product:
+                break
+
+    return len(fresh_available_products)
 
 
 if __name__ == "__main__":
