@@ -4,7 +4,10 @@ import p1
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    fresh_products, available_products = p1.get_products(input_text)
+    fresh_products = p1.merge_fresh_product_ranges(fresh_products)
+
+    return sum((r.stop - r.start) for r in fresh_products)
 
 
 if __name__ == "__main__":
