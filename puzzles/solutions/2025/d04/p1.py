@@ -14,6 +14,7 @@ example_input = """
 """.strip()
 
 PAPER_ROLL = "@"
+MAX_ADJACENT_PAPER_ROLLS = 3
 
 Grid = list[list[str]]
 
