@@ -25,7 +25,7 @@ def get_grid(input_text: str) -> Grid:
     return [list(line) for line in input_text.splitlines()]
 
 
-def get_adjacent_rolls_number(grid, row, column):
+def get_adjacent_rolls_number(grid: Grid, row: int, column: int):
     min_row = max(row - 1, 0)
     max_row = min(row + 1, len(grid) - 1)
     min_column = max(column - 1, 0)
@@ -42,7 +42,7 @@ def get_adjacent_rolls_number(grid, row, column):
     )
 
 
-def get_accessible_rolls(grid: list[str]) -> list[Position]:
+def get_accessible_rolls(grid: Grid) -> list[Position]:
     return [
         (row, column)
         for row, column in itertools.product(range(len(grid)), range(len(grid[0])))
