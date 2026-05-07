@@ -26,12 +26,23 @@ def get_products(input_text: str) -> tuple[list[range], list[int]]:
     return fresh_products_parsed, available_products_parsed
 
 
+def merge_fresh_product_ranges(ranges: list[range])->list[range]:
+    merged = [ranges[0]]
+    for product_range in ranges:
+        last = merged[-1]
+        if product_range.start <= last.stop:
+            merged[-1] = range(last.start, max(last.stop, product_range.stop))
+        else:
+            merged.append(product_range)
+    return merged
+
+
 def get_answer(input_text: str):
     fresh_products, available_products = get_products(input_text)
 
     fresh_products.sort(key=lambda r: r.start)
     available_products.sort()
-
+    fresh_products = merge_fresh_product_ranges(fresh_products)
     fresh_available_products = []
 
     for product in available_products:
