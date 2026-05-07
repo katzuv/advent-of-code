@@ -16,7 +16,15 @@ def clean_accessed_rolls(
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    grid = p1.get_grid(input_text)
+    total_accessible_rolls = 0
+    while True:
+        accessible_rolls = p1.get_accessible_rolls(grid)
+        if not accessible_rolls:
+            break
+        total_accessible_rolls += len(accessible_rolls)
+        grid = clean_accessed_rolls(grid, accessible_rolls)
+    return total_accessible_rolls
 
 
 if __name__ == "__main__":
