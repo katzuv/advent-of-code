@@ -24,7 +24,6 @@ def get_products(input_text: str) -> tuple[list[range], list[int]]:
     available_products_parsed = [int(line) for line in available_products.splitlines()]
 
     fresh_products_parsed.sort(key=lambda r: r.start)
-    available_products_parsed.sort()
     return fresh_products_parsed, available_products_parsed
 
 
@@ -41,7 +40,6 @@ def merge_fresh_product_ranges(ranges: list[range]) -> list[range]:
 
 def get_answer(input_text: str):
     fresh_products, available_products = get_products(input_text)
-
     fresh_products = merge_fresh_product_ranges(fresh_products)
     fresh_available_products = []
 
