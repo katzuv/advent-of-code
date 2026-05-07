@@ -17,11 +17,11 @@ example_input = """
 PAPER_ROLL = "@"
 MAX_ADJACENT_PAPER_ROLLS = 3
 
-Grid = list[list[str]]
+Grid = list[str]
 
 
 def get_grid(input_text: str) -> Grid:
-    return [list(line) for line in input_text.splitlines()]
+    return [line for line in input_text.splitlines()]
 
 
 def get_adjacent_rolls_number(grid, row, column):
