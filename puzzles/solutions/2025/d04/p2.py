@@ -9,7 +9,7 @@ def clean_accessed_rolls(
     grid: p1.Grid, accessible_rolls_positions: list[p1.Position]
 ) -> None:
     for row, column in accessible_rolls_positions:
-        grid[row][column] = "."
+        grid[row][column] = EMPTY_CELL
 
 
 def get_answer(input_text: str):
