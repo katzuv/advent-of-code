@@ -1,14 +1,23 @@
 import sys
 
+example_input = """
+..@@.@@@@.
+@@@.@.@.@@
+@@@@@.@.@@
+@.@@@@..@.
+@@.@@@@.@@
+.@@@@@@@.@
+.@.@.@.@@@
+@.@@@.@@@@
+.@@@@@@@@.
+@.@.@@@.@.
+""".strip()
+
 
 def get_answer(input_text: str):
     raise NotImplementedError
 
 
 if __name__ == "__main__":
-    try:
-        print(get_answer(sys.argv[1]))
-    except IndexError:
-        print(
-            "Warning: No input provided", file=sys.stderr
-        )  # Don't crash if no input was passed through command line arguments.
+    puzzle_input = sys.argv[1] if len(sys.argv) > 1 else example_input
+    print(get_answer(puzzle_input))
