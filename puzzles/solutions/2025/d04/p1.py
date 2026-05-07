@@ -1,3 +1,4 @@
+import itertools
 import sys
 
 example_input = """
@@ -22,8 +23,33 @@ Grid = list[list[str]]
 def get_grid(input_text: str) -> Grid:
     return [list(line) for line in input_text.splitlines()]
 
+
+def get_adjacent_rolls_number(grid, row, column):
+    min_row = max(row - 1, 0)
+    max_row = min(row + 1, len(grid) - 1)
+    min_column = max(column - 1, 0)
+    max_column = min(column + 1, len(grid[0]) - 1)
+    return (
+        sum(
+            grid[current_row][current_column] == PAPER_ROLL
+            for current_row, current_column in itertools.product(
+                range(min_row, max_row + 1), range(min_column, max_column + 1)
+            )
+        )
+        - 1  # Exclude the cell we're counting adjacent around.
+    )
+
+
 def get_answer(input_text: str):
-    raise NotImplementedError
+    grid = get_grid(input_text)
+    accessible_rolls = 0
+    for row, column in itertools.product(range(len(grid)), range(len(grid[0]))):
+        if (
+            grid[row][column] == PAPER_ROLL
+            and get_adjacent_rolls_number(grid, row, column) <= MAX_ADJACENT_PAPER_ROLLS
+        ):
+            accessible_rolls += 1
+    return accessible_rolls
 
 
 if __name__ == "__main__":
