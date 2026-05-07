@@ -1,4 +1,3 @@
-import copy
 import sys
 
 import p1
@@ -8,11 +7,9 @@ EMPTY_CELL = "."
 
 def clean_accessed_rolls(
     grid: p1.Grid, accessible_rolls_positions: list[p1.Position]
-) -> p1.Grid:
-    grid = copy.deepcopy(grid)
+) -> None:
     for row, column in accessible_rolls_positions:
         grid[row][column] = "."
-    return grid
 
 
 def get_answer(input_text: str):
@@ -23,7 +20,7 @@ def get_answer(input_text: str):
         if not accessible_rolls:
             break
         total_accessible_rolls += len(accessible_rolls)
-        grid = clean_accessed_rolls(grid, accessible_rolls)
+        clean_accessed_rolls(grid, accessible_rolls)
     return total_accessible_rolls
 
 
