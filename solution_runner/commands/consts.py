@@ -25,7 +25,7 @@ ROOT_DIRECTORY = "root directory"
 SOLUTION_PARTS = ("p2", "p1")
 SESSION_ID = "session ID"
 GITHUB_AUTH_TOKEN = "GitHub auth token"
-SOLUTION_FILE_TEMPLATE_PATH = Path(Path(__file__).parent, "solution_template.py")
+SOLUTION_TEMPLATES_DIRECTORY = Path(Path(__file__).parent, "solution_templates")
 
 SETUP_COMPLETE_MESSAGE_TEMPLATE = string.Template(
     "Created solution file. First file available here: $solution_file_path"
