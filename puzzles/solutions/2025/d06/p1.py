@@ -14,10 +14,6 @@ Problem = tuple[list[int], Callable[[int, int], int]]
 OPERATIONS_MAP = {"+": operator.add, "*": operator.mul}
 
 
-def split_input_into_number_lines(number_lines: list[str]) -> list[list[int]]:
-    return [[int(number) for number in line.split()] for line in number_lines]
-
-
 def get_problems(input_text: str) -> list[Problem]:
     lines = input_text.splitlines()
     number_lines = lines[:-1]
@@ -35,10 +31,6 @@ def get_answer(input_text: str):
     return sum(
         functools.reduce(operation, numbers) for (numbers, operation) in problems
     )
-
-
-def get_answer(input_text: str):
-    return sum_results(input_text)
 
 
 if __name__ == "__main__":
