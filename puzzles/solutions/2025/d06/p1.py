@@ -1,4 +1,8 @@
+import functools
+import operator
+import re
 import sys
+from collections.abc import Callable
 
 input_example = """123 328  51 64 
  45 64  387 23 
@@ -7,20 +11,18 @@ input_example = """123 328  51 64
 
 Problem = tuple[list[int], Callable[[int, int], int]]
 
+OPERATIONS_MAP = {"+": operator.add, "*": operator.mul}
+
 
 def get_problems(input_text: str) -> list[Problem]:
     lines = input_text.splitlines()
-    operators = (
-        (m.start(), m.end(), m.group().strip())
-        for m in re.finditer(r"[+*]\s*", lines[-1])
-    )
-    lines = lines[:-1]
+    number_lines = lines[:-1]
     return [
         (
-            [int(line[start:end]) for line in lines],
-            operator.add if operation == "+" else operator.mul,
+            [int(line[m.start() : m.end()]) for line in number_lines],
+            OPERATIONS_MAP[m.group().strip()],
         )
-        for (start, end, operation) in operators
+        for m in re.finditer(r"[+*]\s*", lines[-1])
     ]
 
 
