@@ -1,4 +1,4 @@
-import re
+import functools
 import sys
 
 import p1
@@ -21,7 +21,14 @@ def transpose_numbers(number_lines: list[str]) -> list[list[int]]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    lines = input_text.splitlines()
+    number_lines, operators_line = lines[:-1], lines[-1]
+    number_lines = transpose_numbers(number_lines)
+
+    return sum(
+        functools.reduce(p1.OPERATIONS_MAP[sign], numbers)
+        for (numbers, sign) in zip(number_lines, operators_line.split(), strict=True)
+    )
 
 
 if __name__ == "__main__":
