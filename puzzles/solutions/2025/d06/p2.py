@@ -14,7 +14,7 @@ def transpose_numbers(number_lines: list[str]) -> list[list[int]]:
         try:
             transposed_number_lines[-1].append(int("".join(line)))
         except ValueError:
-            # Whitespace row, create a new Problem.
+            # Whitespace column, create a new problem.
             transposed_number_lines.append([])
 
     return transposed_number_lines
