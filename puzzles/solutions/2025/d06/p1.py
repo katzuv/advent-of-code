@@ -25,7 +25,10 @@ def get_problems(input_text: str) -> list[Problem]:
 
 
 def get_answer(input_text: str):
-    raise NotImplementedError
+    problems = get_problems(input_text)
+    return sum(
+        functools.reduce(operation, numbers) for (numbers, operation) in problems
+    )
 
 
 if __name__ == "__main__":
